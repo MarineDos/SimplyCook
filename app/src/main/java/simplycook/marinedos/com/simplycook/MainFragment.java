@@ -16,6 +16,11 @@ import com.facebook.SessionState;
 import com.facebook.UiLifecycleHelper;
 import com.facebook.model.GraphUser;
 import com.facebook.widget.LoginButton;
+import com.firebase.client.AuthData;
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -27,10 +32,14 @@ import java.util.Arrays;
  * Created by Marine on 25/10/2014.
  */
 public class MainFragment extends Fragment{
+    // Elements
     private TextView userInfoTextView;
+    private LoginButton authButton;
+
     private static final String TAG = "MainFragment";
     private UiLifecycleHelper uiHelper;
-    private Session.StatusCallback callback = new Session.StatusCallback() {
+    private final Firebase ref = new Firebase("https://simplycook.firebaseio.com");
+    private final Session.StatusCallback callback = new Session.StatusCallback() {
         @Override
         public void call(Session session, SessionState state, Exception exception) {
             onSessionStateChange(session, state, exception);
@@ -38,12 +47,10 @@ public class MainFragment extends Fragment{
     };
 
     @Override
-    public View onCreateView(LayoutInflater inflater,
-                             ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.main, container, false);
 
-        LoginButton authButton = (LoginButton) view.findViewById(R.id.authButton);
+        authButton = (LoginButton) view.findViewById(R.id.authButton);
         authButton.setFragment(this);
         authButton.setReadPermissions(Arrays.asList("user_location", "user_birthday", "user_likes", "user_status"));
 
@@ -60,24 +67,71 @@ public class MainFragment extends Fragment{
     }
 
      // Facebook login in / out
-    private void onSessionStateChange(Session session, SessionState state, Exception exception) {
+    private void onSessionStateChange(final Session session, SessionState state, Exception exception) {
 
         if (state.isOpened()) {
+            // Logged in
             Log.i(TAG, "Logged in...");
             userInfoTextView.setVisibility(View.VISIBLE);
+            //authButton.setVisibility(View.INVISIBLE);
+
+            // Request user data
             Request.executeMeRequestAsync(session, new Request.GraphUserCallback() {
 
                 @Override
-                public void onCompleted(GraphUser user, Response response) {
+                public void onCompleted(final GraphUser user, Response response) {
                     if (user != null) {
                         // Display the parsed user info
                         userInfoTextView.setText(buildUserInfoDisplay(user));
+
+                        // Connect with Firebase
+                        ref.authWithOAuthToken("facebook", session.getAccessToken(), new Firebase.AuthResultHandler() {
+                            @Override
+                            public void onAuthenticated(AuthData authData) {
+                                // The Facebook user is now authenticated with Firebase
+                                Log.i(TAG, "Logged with Firebase");
+
+                                // Check if user is in database
+                                String url = "/users/" + authData.getProviderData().get("id");
+                                ref.child(url).addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(DataSnapshot snapshot) {
+                                        boolean exists = (snapshot.getValue() != null);
+                                        if(!exists){
+                                            System.out.println("Unexisting user");
+                                            // Create user in Firebase
+
+                                        }else{
+                                            System.out.println("User already exists");
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onCancelled(FirebaseError firebaseError) {
+                                    }
+                                });
+                                System.out.println("Token : " + authData.getToken());
+                                System.out.println("Uid : " + authData.getUid());
+                                System.out.println("ProviderData : " + authData.getProviderData().get("id"));
+                                System.out.println("Name : " + authData.getProviderData().get("displayName"));
+                                System.out.println("Birthday : " + user.getBirthday());
+                            }
+
+                            @Override
+                            public void onAuthenticationError(FirebaseError firebaseError) {
+                                // There was an error
+                                Log.i(TAG, "Logging with Firebase make an error");
+                            }
+                        });
                     }
                 }
             });
         } else if (state.isClosed()) {
             Log.i(TAG, "Logged out...");
             userInfoTextView.setVisibility(View.INVISIBLE);
+
+            // Unlog from Firebase
+            ref.unauth();
         }
     }
 
