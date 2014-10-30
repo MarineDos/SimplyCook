@@ -27,13 +27,14 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by Marine on 25/10/2014.
  */
 public class ConnectFragment extends Fragment{
     // Elements
-    private TextView userInfoTextView;
     private LoginButton authButton;
 
     private static final String TAG = "ConnectFragment";
@@ -52,9 +53,7 @@ public class ConnectFragment extends Fragment{
 
         authButton = (LoginButton) view.findViewById(R.id.authButton);
         authButton.setFragment(this);
-        authButton.setReadPermissions(Arrays.asList("user_location", "user_birthday", "user_likes", "user_status"));
-
-        userInfoTextView = (TextView) view.findViewById(R.id.userInfoTextView);
+        authButton.setReadPermissions(Arrays.asList("public_profile", "email"));
 
         return view;
     }
@@ -72,17 +71,14 @@ public class ConnectFragment extends Fragment{
         if (state.isOpened()) {
             // Logged in
             Log.i(TAG, "Logged in...");
-            userInfoTextView.setVisibility(View.VISIBLE);
             //authButton.setVisibility(View.INVISIBLE);
 
             // Request user data
             Request.executeMeRequestAsync(session, new Request.GraphUserCallback() {
 
                 @Override
-                public void onCompleted(final GraphUser user, Response response) {
+                public void onCompleted(final GraphUser user, final Response response) {
                     if (user != null) {
-                        // Display the parsed user info
-                        userInfoTextView.setText(buildUserInfoDisplay(user));
 
                         // Connect with Firebase
                         ref.authWithOAuthToken("facebook", session.getAccessToken(), new Firebase.AuthResultHandler() {
@@ -92,17 +88,34 @@ public class ConnectFragment extends Fragment{
                                 Log.i(TAG, "Logged with Firebase");
 
                                 // Check if user is in database
-                                String url = "/users/" + authData.getProviderData().get("id");
-                                ref.child(url).addListenerForSingleValueEvent(new ValueEventListener() {
+                                final String id = (String)(authData.getProviderData().get("id"));
+                                ref.child("/users/")
+                                        .startAt(id)
+                                        .endAt(id)
+                                        .addListenerForSingleValueEvent(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(DataSnapshot snapshot) {
+                                        System.out.println(snapshot.getValue());
+
                                         boolean exists = (snapshot.getValue() != null);
                                         if(!exists){
-                                            System.out.println("Unexisting user");
+                                            System.out.println("Unexisting user : " + id);
                                             // Create user in Firebase
+                                            System.out.println("1st : " + user.getFirstName());
+                                            System.out.println("last : " + user.getLastName());
+                                            System.out.println("last : " + user.getProperty("email"));
+
+                                            Map<String, String> newUser = new HashMap<String, String>();
+                                            newUser.put("firstName", user.getFirstName());
+                                            newUser.put("lastName", user.getLastName());
+                                            newUser.put("email", user.getProperty("email").toString());
+
+                                            Firebase newRef = ref.child("/users/").push();
+                                            newRef.setValue(newUser, id);
+
 
                                         }else{
-                                            System.out.println("User already exists");
+                                            System.out.println("User already exists : " + id);
                                         }
                                     }
 
@@ -110,11 +123,6 @@ public class ConnectFragment extends Fragment{
                                     public void onCancelled(FirebaseError firebaseError) {
                                     }
                                 });
-                                System.out.println("Token : " + authData.getToken());
-                                System.out.println("Uid : " + authData.getUid());
-                                System.out.println("ProviderData : " + authData.getProviderData().get("id"));
-                                System.out.println("Name : " + authData.getProviderData().get("displayName"));
-                                System.out.println("Birthday : " + user.getBirthday());
                             }
 
                             @Override
@@ -128,7 +136,6 @@ public class ConnectFragment extends Fragment{
             });
         } else if (state.isClosed()) {
             Log.i(TAG, "Logged out...");
-            userInfoTextView.setVisibility(View.INVISIBLE);
 
             // Unlog from Firebase
             ref.unauth();
@@ -177,46 +184,4 @@ public class ConnectFragment extends Fragment{
         uiHelper.onSaveInstanceState(outState);
     }
 
-    // Fetch Facebook data
-    private String buildUserInfoDisplay(GraphUser user) {
-        StringBuilder userInfo = new StringBuilder("");
-
-        // Example: typed access (name)
-        // - no special permissions required
-        userInfo.append(String.format("Name: %s\n\n",
-                user.getName()));
-
-        // Example: typed access (birthday)
-        // - requires user_birthday permission
-        userInfo.append(String.format("Birthday: %s\n\n",
-                user.getBirthday()));
-
-        // Example: partially typed access, to location field,
-        // name key (location)
-        // - requires user_location permission
-        userInfo.append(String.format("Location: %s\n\n",
-                user.getLocation().getProperty("name")));
-
-        // Example: access via property name (locale)
-        // - no special permissions required
-        userInfo.append(String.format("Locale: %s\n\n",
-                user.getProperty("locale")));
-
-        // Example: access via key for array (languages)
-        // - requires user_likes permission
-        JSONArray languages = (JSONArray)user.getProperty("languages");
-        if (languages.length() > 0) {
-            ArrayList<String> languageNames = new ArrayList<String> ();
-            for (int i=0; i < languages.length(); i++) {
-                JSONObject language = languages.optJSONObject(i);
-                // Add the language name to a list. Use JSON
-                // methods to get access to the name field.
-                languageNames.add(language.optString("name"));
-            }
-            userInfo.append(String.format("Languages: %s\n\n",
-                    languageNames.toString()));
-        }
-
-        return userInfo.toString();
-    }
 }
