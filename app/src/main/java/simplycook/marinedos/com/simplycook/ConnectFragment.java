@@ -31,12 +31,12 @@ import java.util.Arrays;
 /**
  * Created by Marine on 25/10/2014.
  */
-public class MainFragment extends Fragment{
+public class ConnectFragment extends Fragment{
     // Elements
     private TextView userInfoTextView;
     private LoginButton authButton;
 
-    private static final String TAG = "MainFragment";
+    private static final String TAG = "ConnectFragment";
     private UiLifecycleHelper uiHelper;
     private final Firebase ref = new Firebase("https://simplycook.firebaseio.com");
     private final Session.StatusCallback callback = new Session.StatusCallback() {
@@ -48,7 +48,7 @@ public class MainFragment extends Fragment{
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.main, container, false);
+        View view = inflater.inflate(R.layout.connect, container, false);
 
         authButton = (LoginButton) view.findViewById(R.id.authButton);
         authButton.setFragment(this);

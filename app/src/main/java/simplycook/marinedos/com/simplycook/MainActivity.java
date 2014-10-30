@@ -7,7 +7,7 @@ import android.view.MenuItem;
 import com.firebase.client.Firebase;
 
 public class MainActivity extends FragmentActivity {
-    private MainFragment mainFragment;
+    private ConnectFragment connectFragment;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -18,14 +18,14 @@ public class MainActivity extends FragmentActivity {
 
         if (savedInstanceState == null) {
             // Add the fragment on initial activity setup
-            mainFragment = new MainFragment();
+            connectFragment = new ConnectFragment();
             getSupportFragmentManager()
                     .beginTransaction()
-                    .add(android.R.id.content, mainFragment)
+                    .add(android.R.id.content, connectFragment)
                     .commit();
         } else {
             // Or set the fragment from restored state info
-            mainFragment = (MainFragment) getSupportFragmentManager()
+            connectFragment = (ConnectFragment) getSupportFragmentManager()
                     .findFragmentById(android.R.id.content);
         }
     }

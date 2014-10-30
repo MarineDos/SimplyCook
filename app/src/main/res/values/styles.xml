@@ -1,8 +1,19 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="SimplyCook" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
+    </style>
+
+    <style name="SimplyCook.mainBackground">
+        <item name="android:background">@drawable/background_bis</item>
+    </style>
+
+    <style name="SimplyCook.landscape">
+    </style>
+
+    <style name="SimplyCook.landscape.mainBackground">
+        <item name="android:background">@drawable/background</item>
     </style>
 
 </resources>
