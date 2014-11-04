@@ -6,4 +6,23 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
 
+    <!-- - Pop up connexion -->
+    <string name="messageLoginPopup">Entrez votre identifiant et votre mot de passe</string>
+    <string name="titleLoginPopup">Connexion</string>
+    <string name="positiveLoginPopup">Se connecter</string>
+    <string name="negativeLoginPopup">Annuler</string>
+    <string name="usernameLoginPopup">Identifiant</string>
+    <string name="passwordLoginPopup">Mot de passe</string>
+    <string name="title_activity_create_account">CreateAccountActivity</string>
+
+    <!-- Create account -->
+    <string name="hintFirstName">Prénom</string>
+    <string name="hintLastName">Nom</string>
+    <string name="hintMail">Mail</string>
+    <string name="hintPassword">Mot de passe</string>
+
+    <!-- Error message -->
+    <string name="errorMessage_emailAlreadyUsed">L\'adresse mail est déjà utilisée.</string>
+    <string name="errorMessage_incorrectPassword">La combinaison email / mot de passe est incorrect.</string>
+
 </resources>

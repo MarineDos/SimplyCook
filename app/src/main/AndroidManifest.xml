@@ -2,14 +2,17 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="simplycook.marinedos.com.simplycook" >
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/SimplyCook" >
-        <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/app_id"/>
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/app_id" />
+
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name" >
@@ -19,9 +22,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name="com.facebook.LoginActivity"/>
-
+        <activity android:name="com.facebook.LoginActivity" />
+        <activity
+            android:name=".CreateAccountActivity"
+            android:label="@string/app_name" >
+        </activity>
     </application>
 
 </manifest>
