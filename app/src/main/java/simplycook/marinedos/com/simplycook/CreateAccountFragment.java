@@ -35,6 +35,8 @@ public class CreateAccountFragment extends Fragment{
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+        final Context context = getActivity();
+
         final View rootView = getView();
         createAccount_btn = (Button) rootView.findViewById(R.id.btn_create_new_account);
         createAccount_btn.setOnClickListener(new View.OnClickListener() {
@@ -44,25 +46,25 @@ public class CreateAccountFragment extends Fragment{
                 // check if all input are full
                 firstName_input = (TextView) rootView.findViewById(R.id.firstName);
                 if(firstName_input.getText().toString().trim().equals("")){
-                    firstName_input.setError( "First name is required!" );
+                    firstName_input.setError( context.getString(R.string.errorFirstNameRequired) );
                     goOn = false;
                 }
 
                 lastName_input = (TextView) rootView.findViewById(R.id.lastName);
                 if(lastName_input.getText().toString().trim().equals("")){
-                    lastName_input.setError( "Last name is required!" );
+                    lastName_input.setError( context.getString(R.string.errorLastNameRequired) );
                     goOn = false;
                 }
 
                 email_input = (TextView) rootView.findViewById(R.id.email);
                 if(email_input.getText().toString().trim().equals("")){
-                    email_input.setError( "Email is required!" );
+                    email_input.setError( context.getString(R.string.errorEmailRequired) );
                     goOn = false;
                 }
 
                 password_input = (TextView) rootView.findViewById(R.id.password);
                 if(password_input.getText().toString().trim().equals("")){
-                    password_input.setError( "Password is required!" );
+                    password_input.setError( context.getString(R.string.errorPasswordRequired) );
                     goOn = false;
                 }
 
@@ -86,7 +88,6 @@ public class CreateAccountFragment extends Fragment{
                         @Override
                         public void onError(FirebaseError firebaseError) {
                             System.out.println("Error code : " + firebaseError.getCode());
-                            Context context = getActivity();
                             String message = "";
                             switch(firebaseError.getCode()){
                                 case -18:

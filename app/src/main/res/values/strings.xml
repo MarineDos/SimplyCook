@@ -6,6 +6,12 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
 
+    <!-- Button -->
+    <string name="buttonLogIn">Connexion</string>
+    <string name="buttonLogInFacebook">Connexion avec Facebook</string>
+    <string name="buttonLogOutFacebook">Déconnexion</string>
+    <string name="buttonCreateAccount">Créer un compte</string>
+
     <!-- - Pop up connexion -->
     <string name="messageLoginPopup">Entrez votre identifiant et votre mot de passe</string>
     <string name="titleLoginPopup">Connexion</string>
@@ -16,6 +22,7 @@
     <string name="title_activity_create_account">CreateAccountActivity</string>
 
     <!-- Create account -->
+    <string name="titleCreateAccount">Créer votre compte</string>
     <string name="hintFirstName">Prénom</string>
     <string name="hintLastName">Nom</string>
     <string name="hintMail">Mail</string>
@@ -24,5 +31,10 @@
     <!-- Error message -->
     <string name="errorMessage_emailAlreadyUsed">L\'adresse mail est déjà utilisée.</string>
     <string name="errorMessage_incorrectPassword">La combinaison email / mot de passe est incorrect.</string>
+    <string name="errorPasswordRequired">Un mot de passe est requis</string>
+    <string name="errorFirstNameRequired">Un prénom est requis</string>
+    <string name="errorLastNameRequired">Un nom de famille est requis</string>
+    <string name="errorEmailRequired">Un email est requis</string>
+    <string name="title_activity_home">Accueil</string>
 
 </resources>
