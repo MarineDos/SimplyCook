@@ -1,7 +1,6 @@
 package simplycook.marinedos.com.simplycook;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -14,7 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.facebook.Request;
@@ -30,10 +28,6 @@ import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -44,10 +38,15 @@ import java.util.Map;
 public class ConnectFragment extends Fragment{
     // Elements
     private LoginButton authButton;
+    private View mPopViewContent;
+    private View mPopViewLoader;
+    private  View mPopupView;
+    private AlertDialog mDialog;
+    private LogInTask mLoginTask;
 
     private static final String TAG = "ConnectFragment";
     private UiLifecycleHelper uiHelper;
-    private Button login_btn, new_account_btn;
+    private Button mLogin_btn, mNew_account_btn;
     private final Firebase ref = new Firebase("https://simplycook.firebaseio.com");
     private final Session.StatusCallback callback = new Session.StatusCallback() {
         @Override
@@ -55,10 +54,6 @@ public class ConnectFragment extends Fragment{
             onSessionStateChange(session, state, exception);
         }
     };
-    private View mPopViewContent;
-    private View mPopViewLoader;
-    private  View mPopupView;
-    private AlertDialog mDialog;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -70,60 +65,63 @@ public class ConnectFragment extends Fragment{
         authButton.setReadPermissions(Arrays.asList("public_profile", "email"));
 
         // Normal login button
-        login_btn = (Button) view.findViewById(R.id.btn_login);
-        login_btn.setOnClickListener(new View.OnClickListener(){
-             @Override
-             public void onClick(final View v) {
-                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                 LayoutInflater inflater = getActivity().getLayoutInflater();
+        mLogin_btn = (Button) view.findViewById(R.id.btn_login);
+        mLogin_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View v) {
+                // Display a login popup
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                LayoutInflater inflater = getActivity().getLayoutInflater();
 
-                 mPopupView = inflater.inflate(R.layout.login_dialog, null);
+                mPopupView = inflater.inflate(R.layout.login_dialog, null);
 
-                 mPopViewContent = mPopupView.findViewById(R.id.login_content);
-                 mPopViewLoader = mPopupView.findViewById(R.id.login_loader);
-                 Anim.hide(getActivity(), mPopViewLoader);
+                // Hide loader, show content
+                mPopViewContent = mPopupView.findViewById(R.id.login_content);
+                mPopViewLoader = mPopupView.findViewById(R.id.login_loader);
+                Anim.hide(getActivity(), mPopViewLoader);
 
-                 builder.setView(mPopupView)
-                         .setMessage(R.string.messageLoginPopup)
-                         .setTitle(R.string.titleLoginPopup)
-                         .setPositiveButton(R.string.positiveLoginPopup, new DialogInterface.OnClickListener() {
-                             public void onClick(DialogInterface dialog, int id) {
-                             }
-                         })
-                         .setNegativeButton(R.string.negativeLoginPopup, new DialogInterface.OnClickListener() {
-                             public void onClick(DialogInterface dialog, int id) {
-                                 // User cancelled the dialog
-                             }
-                         });
-                 mDialog = builder.create();
-                 mDialog.show();
+                builder.setView(mPopupView)
+                        .setMessage(R.string.messageLoginPopup)
+                        .setTitle(R.string.titleLoginPopup)
+                        .setPositiveButton(R.string.positiveLoginPopup, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                            }
+                        })
+                        .setNegativeButton(R.string.negativeLoginPopup, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                // User cancelled the dialog
+                            }
+                        });
+                mDialog = builder.create();
+                mDialog.show();
 
-                 Button theButton = mDialog.getButton(DialogInterface.BUTTON_POSITIVE);
-                 theButton.setOnClickListener(new View.OnClickListener(){
-                     @Override
-                     public void onClick(View v) {
-                         Anim.hide(getActivity(), mPopViewContent);
-                         Anim.show(getActivity(), mPopViewLoader);
+                // Prevent positive button to dismiss popup
+                Button theButton = mDialog.getButton(DialogInterface.BUTTON_POSITIVE);
+                theButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Anim.hide(getActivity(), mPopViewContent);
+                        Anim.show(getActivity(), mPopViewLoader);
 
-                         LogInTask logInTask = new LogInTask();
-                         logInTask.execute();
-                     }
-                 });
+                        // Launch log in task
+                        mLoginTask = new LogInTask();
+                        mLoginTask.execute();
+                    }
+                });
 
-             }
+            }
         });
 
         // New account button
-        new_account_btn = (Button) view.findViewById(R.id.btn_create_account);
-        new_account_btn.setOnClickListener(new View.OnClickListener(){
+        mNew_account_btn = (Button) view.findViewById(R.id.btn_create_account);
+        mNew_account_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Change activity to create an account
+                // Change activity to "create an account"
                 Intent intent = new Intent(getActivity(), CreateAccountActivity.class);
                 startActivity(intent);
             }
         });
-
 
         return view;
     }
@@ -141,7 +139,6 @@ public class ConnectFragment extends Fragment{
         if (state.isOpened()) {
             // Logged in
             Log.i(TAG, "Logged in...");
-            //authButton.setVisibility(View.INVISIBLE);
 
             // Request user data
             Request.executeMeRequestAsync(session, new Request.GraphUserCallback() {
@@ -168,6 +165,7 @@ public class ConnectFragment extends Fragment{
 
                                                 boolean exists = (snapshot.getValue() != null);
                                                 if(!exists){
+                                                    // Create user
                                                     Map<String, String> newUser = new HashMap<String, String>();
                                                     newUser.put("firstName", user.getFirstName());
                                                     newUser.put("lastName", user.getLastName());
@@ -181,6 +179,9 @@ public class ConnectFragment extends Fragment{
                                                     startActivity(intent);
                                                 }else{
                                                     System.out.println("User already exists : " + id);
+
+                                                    Intent intent = new Intent(getActivity(), HomeActivity.class);
+                                                    startActivity(intent);
                                                 }
                                             }
 
@@ -241,6 +242,9 @@ public class ConnectFragment extends Fragment{
     public void onDestroy() {
         super.onDestroy();
         uiHelper.onDestroy();
+        if(mLoginTask != null){
+            mLoginTask.cancel(true);
+        }
     }
 
     @Override
@@ -257,9 +261,9 @@ public class ConnectFragment extends Fragment{
 
             EditText email_input = (EditText) mPopupView.findViewById(R.id.identifiant);
             String email = email_input.getText().toString();
-
             EditText password_input = (EditText) mPopupView.findViewById(R.id.password);
             String password = password_input.getText().toString();
+
             ref.authWithPassword(email, password, new Firebase.AuthResultHandler() {
                 @Override
                 public void onAuthenticated(AuthData authData) {

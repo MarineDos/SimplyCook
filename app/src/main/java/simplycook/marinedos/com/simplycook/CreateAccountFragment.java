@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
@@ -25,8 +24,8 @@ import java.util.Map;
  * Created by Marine on 03/11/2014.
  */
 public class CreateAccountFragment extends Fragment{
-    private Button createAccount_btn;
-    private TextView firstName_input, lastName_input, email_input, password_input;
+    private Button mCreateAccount_btn;
+    private TextView mFirstName_input, mLastName_input, mEmail_input, mPassword_input;
     private CreateAccountTask mCreateAccountTask;
     private View mCreateAccountContent, mCreateAccountLoader;
 
@@ -44,12 +43,14 @@ public class CreateAccountFragment extends Fragment{
         final View rootView = getView();
         final Context context = getActivity();
 
+        // Hide loader, show content
         mCreateAccountContent = rootView.findViewById(R.id.create_account_content);
         mCreateAccountLoader = rootView.findViewById(R.id.create_account_loader);
         Anim.hide(context, mCreateAccountLoader);
 
-        createAccount_btn = (Button) rootView.findViewById(R.id.btn_create_new_account);
-        createAccount_btn.setOnClickListener(new View.OnClickListener() {
+        // Create account button
+        mCreateAccount_btn = (Button) rootView.findViewById(R.id.btn_create_new_account);
+        mCreateAccount_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 boolean goOn = true;
@@ -58,48 +59,49 @@ public class CreateAccountFragment extends Fragment{
                 Anim.hide(context, mCreateAccountContent);
 
                 // check if all input are full
-                firstName_input = (TextView) rootView.findViewById(R.id.firstName);
-                if(firstName_input.getText().toString().trim().equals("")){
-                    firstName_input.setError( context.getString(R.string.errorFirstNameRequired) );
+                mFirstName_input = (TextView) rootView.findViewById(R.id.firstName);
+                if (mFirstName_input.getText().toString().trim().equals("")) {
+                    mFirstName_input.setError(context.getString(R.string.errorFirstNameRequired));
                     goOn = false;
                 }
 
-                lastName_input = (TextView) rootView.findViewById(R.id.lastName);
-                if(lastName_input.getText().toString().trim().equals("")){
-                    lastName_input.setError( context.getString(R.string.errorLastNameRequired) );
+                mLastName_input = (TextView) rootView.findViewById(R.id.lastName);
+                if (mLastName_input.getText().toString().trim().equals("")) {
+                    mLastName_input.setError(context.getString(R.string.errorLastNameRequired));
                     goOn = false;
                 }
 
-                email_input = (TextView) rootView.findViewById(R.id.email);
-                if(email_input.getText().toString().trim().equals("")){
-                    email_input.setError( context.getString(R.string.errorEmailRequired) );
+                mEmail_input = (TextView) rootView.findViewById(R.id.email);
+                if (mEmail_input.getText().toString().trim().equals("")) {
+                    mEmail_input.setError(context.getString(R.string.errorEmailRequired));
                     goOn = false;
                 }
 
-                password_input = (TextView) rootView.findViewById(R.id.password);
-                if(password_input.getText().toString().trim().equals("")){
-                    password_input.setError( context.getString(R.string.errorPasswordRequired) );
+                mPassword_input = (TextView) rootView.findViewById(R.id.password);
+                if (mPassword_input.getText().toString().trim().equals("")) {
+                    mPassword_input.setError(context.getString(R.string.errorPasswordRequired));
                     goOn = false;
                 }
 
-                if(goOn) {
+                if (goOn) {
+                    // Launch create account task
                     mCreateAccountTask = new CreateAccountTask();
                     mCreateAccountTask.execute();
-                }else{
+                } else {
+                    // Hide loader, show content for next try
                     Anim.show(context, mCreateAccountContent);
                     Anim.hide(context, mCreateAccountLoader);
                 }
-
             }
         });
     }
 
     @Override
     public void onDestroy() {
+        super.onDestroy();
         if(mCreateAccountTask != null){
             mCreateAccountTask.cancel(true);
         }
-        super.onDestroy();
     }
 
     class CreateAccountTask extends AsyncTask<Void, Void, Void>{
@@ -109,19 +111,21 @@ public class CreateAccountFragment extends Fragment{
             final Context context = getActivity();
 
             final Firebase ref = new Firebase("https://simplycook.firebaseio.com");
-            String email = email_input.getText().toString();
-            String password = password_input.getText().toString();
+            String email = mEmail_input.getText().toString();
+            String password = mPassword_input.getText().toString();
+
+            // Try to create User
             ref.createUser(email, password, new Firebase.ResultHandler() {
                 @Override
                 public void onSuccess() {
                     // Create user in database
                     Map<String, String> newUser = new HashMap<String, String>();
-                    newUser.put("firstName", firstName_input.getText().toString());
-                    newUser.put("lastName", lastName_input.getText().toString());
-                    newUser.put("email", email_input.getText().toString());
+                    newUser.put("firstName", mFirstName_input.getText().toString());
+                    newUser.put("lastName", mLastName_input.getText().toString());
+                    newUser.put("email", mEmail_input.getText().toString());
 
                     Firebase newRef = ref.child("/users/").push();
-                    newRef.setValue(newUser, email_input.getText().toString());
+                    newRef.setValue(newUser, mEmail_input.getText().toString());
 
                     Anim.hide(context, mCreateAccountLoader);
 
@@ -138,8 +142,8 @@ public class CreateAccountFragment extends Fragment{
                     switch(firebaseError.getCode()){
                         case -18:
                             message = context.getString(R.string.errorMessage_emailAlreadyUsed);
-                            email_input.setError( context.getString(R.string.errorMessage_emailAlreadyUsed) );
-                            email_input.setText("");
+                            mEmail_input.setError(context.getString(R.string.errorMessage_emailAlreadyUsed));
+                            mEmail_input.setText("");
                     }
 
                     Anim.hide(context, mCreateAccountLoader);
@@ -159,7 +163,6 @@ public class CreateAccountFragment extends Fragment{
 
                 }
             });
-
             return null;
         }
     }
