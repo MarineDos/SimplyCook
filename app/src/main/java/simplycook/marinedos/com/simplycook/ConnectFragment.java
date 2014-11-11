@@ -72,42 +72,16 @@ public class ConnectFragment extends Fragment{
                  LayoutInflater inflater = getActivity().getLayoutInflater();
 
                  final View popupView = inflater.inflate(R.layout.login_dialog, null);
+
+                 final View content = popupView.findViewById(R.id.login_content);
+                 final View loader = popupView.findViewById(R.id.login_loader);
+                 Anim.hide(getActivity(), loader);
+
                  builder.setView(popupView)
                          .setMessage(R.string.messageLoginPopup)
                          .setTitle(R.string.titleLoginPopup)
                          .setPositiveButton(R.string.positiveLoginPopup, new DialogInterface.OnClickListener() {
                              public void onClick(DialogInterface dialog, int id) {
-                                 // Log in the user
-                                 View currentView = getView();
-
-                                 EditText email_input = (EditText) popupView.findViewById(R.id.identifiant);
-                                 String email = email_input.getText().toString();
-
-                                 EditText password_input = (EditText) popupView.findViewById(R.id.password);
-                                 String password = password_input.getText().toString();
-                                 ref.authWithPassword(email, password, new Firebase.AuthResultHandler() {
-                                     @Override
-                                     public void onAuthenticated(AuthData authData) {
-                                         // Change activity to home page
-                                         Intent intent = new Intent(getActivity(), HomeActivity.class);
-                                         startActivity(intent);
-                                     }
-
-                                     @Override
-                                     public void onAuthenticationError(FirebaseError firebaseError) {
-                                         Context context = getActivity();
-                                         System.out.println("Firebase error : " + firebaseError.getCode());
-                                         int codeError = firebaseError.getCode();
-                                         String message = "";
-                                         switch(codeError){
-                                             case -16:
-                                                 message = context.getString(R.string.errorMessage_incorrectPassword);
-                                         }
-                                         Toast toast = Toast.makeText(context, message, Toast.LENGTH_LONG);
-                                         toast.show();
-
-                                     }
-                                 });
                              }
                          })
                          .setNegativeButton(R.string.negativeLoginPopup, new DialogInterface.OnClickListener() {
@@ -115,9 +89,53 @@ public class ConnectFragment extends Fragment{
                                  // User cancelled the dialog
                              }
                          });
-                 AlertDialog dialog = builder.create();
+                 final AlertDialog dialog = builder.create();
                  dialog.show();
 
+                 Button theButton = dialog.getButton(DialogInterface.BUTTON_POSITIVE);
+                 theButton.setOnClickListener(new View.OnClickListener(){
+                     @Override
+                     public void onClick(View v) {
+                         // Log in the user
+                         Anim.hide(getActivity(), content);
+                         Anim.show(getActivity(), loader);
+
+                         EditText email_input = (EditText) popupView.findViewById(R.id.identifiant);
+                         String email = email_input.getText().toString();
+
+                         EditText password_input = (EditText) popupView.findViewById(R.id.password);
+                         String password = password_input.getText().toString();
+                         ref.authWithPassword(email, password, new Firebase.AuthResultHandler() {
+                             @Override
+                             public void onAuthenticated(AuthData authData) {
+                                 // Change activity to home page
+                                 Anim.show(getActivity(), content);
+                                 Anim.hide(getActivity(), loader);
+                                 dialog.cancel();
+                                 Intent intent = new Intent(getActivity(), HomeActivity.class);
+                                 startActivity(intent);
+                             }
+
+                             @Override
+                             public void onAuthenticationError(FirebaseError firebaseError) {
+                                 Anim.show(getActivity(), content);
+                                 Anim.hide(getActivity(), loader);
+
+                                 Context context = getActivity();
+                                 System.out.println("Firebase error : " + firebaseError.getCode());
+                                 int codeError = firebaseError.getCode();
+                                 String message = "";
+                                 switch(codeError){
+                                     case -16:
+                                         message = context.getString(R.string.errorMessage_incorrectPassword);
+                                 }
+                                 Toast toast = Toast.makeText(context, message, Toast.LENGTH_LONG);
+                                 toast.show();
+
+                             }
+                         });
+                     }
+                 });
 
              }
         });

@@ -28,6 +28,7 @@ public class CreateAccountFragment extends Fragment{
     private Button createAccount_btn;
     private TextView firstName_input, lastName_input, email_input, password_input;
     private CreateAccountTask mCreateAccountTask;
+    private View mCreateAccountContent, mCreateAccountLoader;
 
     @Override
     public View onCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -43,11 +44,19 @@ public class CreateAccountFragment extends Fragment{
         final View rootView = getView();
         final Context context = getActivity();
 
+        mCreateAccountContent = rootView.findViewById(R.id.create_account_content);
+        mCreateAccountLoader = rootView.findViewById(R.id.create_account_loader);
+        Anim.hide(context, mCreateAccountLoader);
+
         createAccount_btn = (Button) rootView.findViewById(R.id.btn_create_new_account);
         createAccount_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 boolean goOn = true;
+
+                Anim.show(context, mCreateAccountLoader);
+                Anim.hide(context, mCreateAccountContent);
+
                 // check if all input are full
                 firstName_input = (TextView) rootView.findViewById(R.id.firstName);
                 if(firstName_input.getText().toString().trim().equals("")){
@@ -76,6 +85,9 @@ public class CreateAccountFragment extends Fragment{
                 if(goOn) {
                     mCreateAccountTask = new CreateAccountTask();
                     mCreateAccountTask.execute();
+                }else{
+                    Anim.show(context, mCreateAccountContent);
+                    Anim.hide(context, mCreateAccountLoader);
                 }
 
             }
@@ -111,6 +123,8 @@ public class CreateAccountFragment extends Fragment{
                     Firebase newRef = ref.child("/users/").push();
                     newRef.setValue(newUser, email_input.getText().toString());
 
+                    Anim.hide(context, mCreateAccountLoader);
+
                     // Go back to login page
                     Intent intent = new Intent(getActivity(), ConnectActivity.class);
                     startActivity(intent);
@@ -128,6 +142,9 @@ public class CreateAccountFragment extends Fragment{
                             email_input.setText("");
                     }
 
+                    Anim.hide(context, mCreateAccountLoader);
+                    Anim.show(context, mCreateAccountContent);
+
                     // Show dialog to display error
                     AlertDialog.Builder builder = new AlertDialog.Builder(context);
                     builder.setMessage(message)
@@ -136,7 +153,7 @@ public class CreateAccountFragment extends Fragment{
                                     dialog.cancel();
                                 }
                             });
-                    
+
                     AlertDialog dialog = builder.create();
                     dialog.show();
 
