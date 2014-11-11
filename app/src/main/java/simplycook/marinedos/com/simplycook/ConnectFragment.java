@@ -1,9 +1,11 @@
 package simplycook.marinedos.com.simplycook;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.util.Log;
@@ -53,6 +55,10 @@ public class ConnectFragment extends Fragment{
             onSessionStateChange(session, state, exception);
         }
     };
+    private View mPopViewContent;
+    private View mPopViewLoader;
+    private  View mPopupView;
+    private AlertDialog mDialog;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -71,13 +77,13 @@ public class ConnectFragment extends Fragment{
                  AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                  LayoutInflater inflater = getActivity().getLayoutInflater();
 
-                 final View popupView = inflater.inflate(R.layout.login_dialog, null);
+                 mPopupView = inflater.inflate(R.layout.login_dialog, null);
 
-                 final View content = popupView.findViewById(R.id.login_content);
-                 final View loader = popupView.findViewById(R.id.login_loader);
-                 Anim.hide(getActivity(), loader);
+                 mPopViewContent = mPopupView.findViewById(R.id.login_content);
+                 mPopViewLoader = mPopupView.findViewById(R.id.login_loader);
+                 Anim.hide(getActivity(), mPopViewLoader);
 
-                 builder.setView(popupView)
+                 builder.setView(mPopupView)
                          .setMessage(R.string.messageLoginPopup)
                          .setTitle(R.string.titleLoginPopup)
                          .setPositiveButton(R.string.positiveLoginPopup, new DialogInterface.OnClickListener() {
@@ -89,51 +95,18 @@ public class ConnectFragment extends Fragment{
                                  // User cancelled the dialog
                              }
                          });
-                 final AlertDialog dialog = builder.create();
-                 dialog.show();
+                 mDialog = builder.create();
+                 mDialog.show();
 
-                 Button theButton = dialog.getButton(DialogInterface.BUTTON_POSITIVE);
+                 Button theButton = mDialog.getButton(DialogInterface.BUTTON_POSITIVE);
                  theButton.setOnClickListener(new View.OnClickListener(){
                      @Override
                      public void onClick(View v) {
-                         // Log in the user
-                         Anim.hide(getActivity(), content);
-                         Anim.show(getActivity(), loader);
+                         Anim.hide(getActivity(), mPopViewContent);
+                         Anim.show(getActivity(), mPopViewLoader);
 
-                         EditText email_input = (EditText) popupView.findViewById(R.id.identifiant);
-                         String email = email_input.getText().toString();
-
-                         EditText password_input = (EditText) popupView.findViewById(R.id.password);
-                         String password = password_input.getText().toString();
-                         ref.authWithPassword(email, password, new Firebase.AuthResultHandler() {
-                             @Override
-                             public void onAuthenticated(AuthData authData) {
-                                 // Change activity to home page
-                                 Anim.show(getActivity(), content);
-                                 Anim.hide(getActivity(), loader);
-                                 dialog.cancel();
-                                 Intent intent = new Intent(getActivity(), HomeActivity.class);
-                                 startActivity(intent);
-                             }
-
-                             @Override
-                             public void onAuthenticationError(FirebaseError firebaseError) {
-                                 Anim.show(getActivity(), content);
-                                 Anim.hide(getActivity(), loader);
-
-                                 Context context = getActivity();
-                                 System.out.println("Firebase error : " + firebaseError.getCode());
-                                 int codeError = firebaseError.getCode();
-                                 String message = "";
-                                 switch(codeError){
-                                     case -16:
-                                         message = context.getString(R.string.errorMessage_incorrectPassword);
-                                 }
-                                 Toast toast = Toast.makeText(context, message, Toast.LENGTH_LONG);
-                                 toast.show();
-
-                             }
-                         });
+                         LogInTask logInTask = new LogInTask();
+                         logInTask.execute();
                      }
                  });
 
@@ -274,6 +247,51 @@ public class ConnectFragment extends Fragment{
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         uiHelper.onSaveInstanceState(outState);
+    }
+
+    class LogInTask extends AsyncTask<Void, Void, Void>{
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            // Log in the user
+
+            EditText email_input = (EditText) mPopupView.findViewById(R.id.identifiant);
+            String email = email_input.getText().toString();
+
+            EditText password_input = (EditText) mPopupView.findViewById(R.id.password);
+            String password = password_input.getText().toString();
+            ref.authWithPassword(email, password, new Firebase.AuthResultHandler() {
+                @Override
+                public void onAuthenticated(AuthData authData) {
+                    // Change activity to home page
+                    Anim.show(getActivity(), mPopViewContent);
+                    Anim.hide(getActivity(), mPopViewLoader);
+                    mDialog.cancel();
+                    Intent intent = new Intent(getActivity(), HomeActivity.class);
+                    startActivity(intent);
+                }
+
+                @Override
+                public void onAuthenticationError(FirebaseError firebaseError) {
+                    Anim.show(getActivity(), mPopViewContent);
+                    Anim.hide(getActivity(), mPopViewLoader);
+
+                    Context context = getActivity();
+                    System.out.println("Firebase error : " + firebaseError.getCode());
+                    int codeError = firebaseError.getCode();
+                    String message = "";
+                    switch(codeError){
+                        case -16:
+                            message = context.getString(R.string.errorMessage_incorrectPassword);
+                    }
+                    Toast toast = Toast.makeText(context, message, Toast.LENGTH_LONG);
+                    toast.show();
+
+                }
+            });
+
+            return null;
+        }
     }
 
 }
