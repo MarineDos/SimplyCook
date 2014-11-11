@@ -1,3 +1,3 @@
 SimplyCook
 ==========
-A mobile application to manage food tastes
+A mobile application to manage food tastes.
