@@ -14,13 +14,13 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/SimplyCook" >
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/app_id" />
 
         <activity
-            android:name="simplycook.marinedos.com.simplycook.MainActivity"
+            android:name="simplycook.marinedos.com.simplycook.ConnectActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,6 +29,14 @@
             </intent-filter>
         </activity>
         <activity android:name="com.facebook.LoginActivity" />
+        <activity
+            android:name="simplycook.marinedos.com.simplycook.CreateAccountActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="simplycook.marinedos.com.simplycook.HomeActivity"
+            android:label="@string/title_activity_home" >
+        </activity>
     </application>
 
 </manifest>

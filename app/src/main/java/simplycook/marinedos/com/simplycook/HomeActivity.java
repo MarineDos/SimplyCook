@@ -1,9 +1,8 @@
 package simplycook.marinedos.com.simplycook;
 
+import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 
 
 public class HomeActivity extends ActionBarActivity {
@@ -11,7 +10,16 @@ public class HomeActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.home_activity);
+        if(savedInstanceState == null) {
+            // Create fragment
+            Fragment fragment = new HomeFragment();
+
+            // Load fragment in the Activity
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.home_activity, fragment)
+                    .commit();
+        }
     }
 
 
