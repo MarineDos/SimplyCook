@@ -9538,6 +9538,8 @@ left
             <file
                 path="D:\Documents\Dev\SimplyCook\app\src\main\res\values\strings.xml"
                 qualifiers="" >
+                <string name="searchTitle" >Recherche
+                </string>
                 <string name="buttonCreateAccount" >Créer un compte
                 </string>
                 <string name="errorMessage_emailAlreadyUsed" >L\'adresse mail est déjà utilisée.
@@ -9562,7 +9564,11 @@ left
                 </string>
                 <string name="titleLoginPopup" >Connexion
                 </string>
+                <string name="title_activity_favoris" >Mes favoris
+                </string>
                 <string name="hintPassword" >Mot de passe
+                </string>
+                <string name="comparaisonTitle" >Comparaison
                 </string>
                 <string name="hello_world" >Hello world!
                 </string>
@@ -9572,11 +9578,17 @@ left
                 </string>
                 <string name="usernameLoginPopup" >Identifiant
                 </string>
+                <string name="title_activity_profil" >Mon profil
+                </string>
                 <string name="action_settings" >Settings
                 </string>
                 <string name="app_name" >SimplyCook
                 </string>
+                <string name="favorisTitle" >Mes favoris
+                </string>
                 <string name="hintFirstName" >Prénom
+                </string>
+                <string name="title_activity_comparaison" >Comparaison
                 </string>
                 <string name="buttonLogInFacebook" >Connexion avec Facebook
                 </string>
@@ -9585,6 +9597,10 @@ left
                 <string name="title_activity_create_account" >CreateAccountActivity
                 </string>
                 <string name="hintLastName" >Nom
+                </string>
+                <string name="title_activity_search" >Recherche
+                </string>
+                <string name="profilTitle" >Mon profil
                 </string>
                 <string name="positiveLoginPopup" >Se connecter
                 </string>
@@ -9644,6 +9660,66 @@ left
             <file
                 name="home_activity"
                 path="D:\Documents\Dev\SimplyCook\app\src\main\res\layout\home_activity.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="profil_activity"
+                path="D:\Documents\Dev\SimplyCook\app\src\main\res\layout\profil_activity.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="profil"
+                path="D:\Documents\Dev\SimplyCook\app\src\main\res\menu\profil.xml"
+                qualifiers=""
+                type="menu" />
+            <file
+                name="profil_fragment"
+                path="D:\Documents\Dev\SimplyCook\app\src\main\res\layout\profil_fragment.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="favoris_activity"
+                path="D:\Documents\Dev\SimplyCook\app\src\main\res\layout\favoris_activity.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="favoris"
+                path="D:\Documents\Dev\SimplyCook\app\src\main\res\menu\favoris.xml"
+                qualifiers=""
+                type="menu" />
+            <file
+                name="favoris_fragment"
+                path="D:\Documents\Dev\SimplyCook\app\src\main\res\layout\favoris_fragment.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="comparaison_fragment"
+                path="D:\Documents\Dev\SimplyCook\app\src\main\res\layout\comparaison_fragment.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="comparaison_activity"
+                path="D:\Documents\Dev\SimplyCook\app\src\main\res\layout\comparaison_activity.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="comparaison"
+                path="D:\Documents\Dev\SimplyCook\app\src\main\res\menu\comparaison.xml"
+                qualifiers=""
+                type="menu" />
+            <file
+                name="search_fragment"
+                path="D:\Documents\Dev\SimplyCook\app\src\main\res\layout\search_fragment.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="search"
+                path="D:\Documents\Dev\SimplyCook\app\src\main\res\menu\search.xml"
+                qualifiers=""
+                type="menu" />
+            <file
+                name="search_activity"
+                path="D:\Documents\Dev\SimplyCook\app\src\main\res\layout\search_activity.xml"
                 qualifiers=""
                 type="layout" />
         </source>

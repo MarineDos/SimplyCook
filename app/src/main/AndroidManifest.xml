@@ -31,6 +31,22 @@
             android:name=".HomeActivity"
             android:label="@string/title_activity_home" >
         </activity>
+        <activity
+            android:name=".ProfilActivity"
+            android:label="@string/title_activity_profil" >
+        </activity>
+        <activity
+            android:name=".FavorisActivity"
+            android:label="@string/title_activity_favoris" >
+        </activity>
+        <activity
+            android:name=".ComparaisonActivity"
+            android:label="@string/title_activity_comparaison" >
+        </activity>
+        <activity
+            android:name=".SearchActivity"
+            android:label="@string/title_activity_search" >
+        </activity>
     </application>
 
 </manifest>

@@ -16,7 +16,15 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:layout_weight="1"
-            android:background="#111">
+            android:background="#DF5D2E">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/profilTitle"
+                android:gravity="center"
+                android:textSize="25dp"
+                android:id="@+id/profil_btn"/>
 
         </LinearLayout>
 
@@ -25,7 +33,15 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:layout_weight="1"
-            android:background="#eee">
+            android:background="#FFB43E">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/favorisTitle"
+                android:textSize="25dp"
+                android:gravity="center"
+                android:id="@+id/favoris_btn"/>
 
         </LinearLayout>
 
@@ -42,7 +58,16 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:layout_weight="1"
-            android:background="#ed6d00">
+            android:background="#A4C972"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/comparaisonTitle"
+                android:textSize="25dp"
+                android:gravity="center"
+                android:id="@+id/comparaison_btn"/>
 
         </LinearLayout>
 
@@ -51,7 +76,15 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:layout_weight="1"
-            android:background="#27b">
+            android:background="#6BB38E">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/searchTitle"
+                android:textSize="25dp"
+                android:gravity="center"
+                android:id="@+id/search_btn"/>
         </LinearLayout>
 
     </LinearLayout>

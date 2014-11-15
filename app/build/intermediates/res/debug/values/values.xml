@@ -704,12 +704,14 @@
     <!-- From: file:/D:/Documents/Dev/SimplyCook/app/src/main/res/values/strings.xml -->
     <eat-comment />
 
+    <string name="comparaisonTitle">Comparaison</string>
     <string name="errorEmailRequired">Un email est requis</string>
     <string name="errorFirstNameRequired">Un prénom est requis</string>
     <string name="errorLastNameRequired">Un nom de famille est requis</string>
     <string name="errorMessage_emailAlreadyUsed">L\'adresse mail est déjà utilisée.</string>
     <string name="errorMessage_incorrectPassword">La combinaison email / mot de passe est incorrect.</string>
     <string name="errorPasswordRequired">Un mot de passe est requis</string>
+    <string name="favorisTitle">Mes favoris</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="hello_world">Hello world!</string>
     <string name="hintFirstName">Prénom</string>
@@ -720,10 +722,16 @@
     <string name="negativeLoginPopup">Annuler</string>
     <string name="passwordLoginPopup">Mot de passe</string>
     <string name="positiveLoginPopup">Se connecter</string>
+    <string name="profilTitle">Mon profil</string>
+    <string name="searchTitle">Recherche</string>
     <string name="titleCreateAccount">Créer votre compte</string>
     <string name="titleLoginPopup">Connexion</string>
+    <string name="title_activity_comparaison">Comparaison</string>
     <string name="title_activity_create_account">CreateAccountActivity</string>
+    <string name="title_activity_favoris">Mes favoris</string>
     <string name="title_activity_home">Accueil</string>
+    <string name="title_activity_profil">Mon profil</string>
+    <string name="title_activity_search">Recherche</string>
     <string name="usernameLoginPopup">Identifiant</string>
     <!-- From: file:/D:/Documents/Dev/SimplyCook/app/src/main/res/values/styles.xml -->
     <eat-comment />
