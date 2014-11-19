@@ -4,6 +4,8 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -28,6 +30,8 @@ import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
 
+import java.io.InputStream;
+import java.net.URL;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -141,7 +145,7 @@ public class ConnectFragment extends Fragment{
             Log.i(TAG, "Logged in...");
 
             // Request user data
-            Request.executeMeRequestAsync(session, new Request.GraphUserCallback() {
+            Request.newMeRequest(session, new Request.GraphUserCallback() {
 
                 @Override
                 public void onCompleted(final GraphUser user, final Response response) {
@@ -199,7 +203,7 @@ public class ConnectFragment extends Fragment{
                         });
                     }
                 }
-            });
+            }).executeAsync();
         } else if (state.isClosed()) {
             Log.i(TAG, "Logged out...");
 

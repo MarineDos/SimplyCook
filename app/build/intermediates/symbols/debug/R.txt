@@ -364,7 +364,7 @@ int id action_context_bar 0x7f070028
 int id action_menu_divider 0x7f070020
 int id action_menu_presenter 0x7f070021
 int id action_mode_close_button 0x7f07002f
-int id action_settings 0x7f070076
+int id action_settings 0x7f070078
 int id activity_chooser_view_content 0x7f070030
 int id always 0x7f07000f
 int id authButton 0x7f070062
@@ -442,6 +442,8 @@ int id normal 0x7f070000
 int id password 0x7f07006c
 int id picker_subtitle 0x7f070056
 int id profil_btn 0x7f07006f
+int id profil_img 0x7f070076
+int id profil_name 0x7f070077
 int id progress_circular 0x7f070023
 int id progress_horizontal 0x7f070024
 int id radio 0x7f07003a

@@ -1229,7 +1229,7 @@ containing a value of this type.
         public static final int action_menu_divider=0x7f070020;
         public static final int action_menu_presenter=0x7f070021;
         public static final int action_mode_close_button=0x7f07002f;
-        public static final int action_settings=0x7f070076;
+        public static final int action_settings=0x7f070078;
         public static final int activity_chooser_view_content=0x7f070030;
         public static final int always=0x7f07000f;
         public static final int authButton=0x7f070062;
@@ -1307,6 +1307,8 @@ containing a value of this type.
         public static final int password=0x7f07006c;
         public static final int picker_subtitle=0x7f070056;
         public static final int profil_btn=0x7f07006f;
+        public static final int profil_img=0x7f070076;
+        public static final int profil_name=0x7f070077;
         public static final int progress_circular=0x7f070023;
         public static final int progress_horizontal=0x7f070024;
         public static final int radio=0x7f07003a;
