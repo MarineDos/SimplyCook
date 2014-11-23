@@ -9626,6 +9626,15 @@ left
                 <style name="SimplyCook.landscape" >
                 </style>
 
+                <style name="SimplyCook.noActionBar" >
+                    <item name="windowActionBar">
+false
+                    </item>
+                    <item name="android:windowNoTitle">
+true
+                    </item>
+                </style>
+
                 <style
                     name="SimplyCook"
                     parent="Theme.AppCompat.Light.DarkActionBar" >

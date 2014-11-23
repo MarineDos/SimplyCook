@@ -751,6 +751,11 @@
         <item name="android:background">@drawable/background_bis</item>
     </style>
 
+    <style name="SimplyCook.noActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
     <style name="SimplyCook.title">
         <item name="android:color">#ffffff</item>
         <item name="android:textSize">20dp</item>

@@ -5,6 +5,11 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <style name="SimplyCook.noActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
     <style name="SimplyCook.mainBackground">
         <item name="android:background">@drawable/background_bis</item>
     </style>

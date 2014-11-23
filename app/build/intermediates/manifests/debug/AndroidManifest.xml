@@ -21,7 +21,8 @@
 
         <activity
             android:name="simplycook.marinedos.com.simplycook.ConnectActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:theme="@style/SimplyCook.noActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
