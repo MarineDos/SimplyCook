@@ -35,6 +35,9 @@
     <string name="errorFirstNameRequired">Un prénom est requis</string>
     <string name="errorLastNameRequired">Un nom de famille est requis</string>
     <string name="errorEmailRequired">Un email est requis</string>
+    <string name="errorMessage_needInternetConnection">Une connexion internet est requise</string>
+
+
     <string name="title_activity_home">Accueil</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
 

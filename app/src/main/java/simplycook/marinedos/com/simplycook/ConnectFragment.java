@@ -8,9 +8,11 @@ import android.os.AsyncTask;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -299,6 +301,8 @@ public class ConnectFragment extends Fragment{
                     switch(codeError){
                         case -16:
                             message = context.getString(R.string.errorMessage_incorrectPassword);
+                        case -24:
+                            message = context.getString(R.string.errorMessage_needInternetConnection);
                     }
                     Toast toast = Toast.makeText(context, message, Toast.LENGTH_LONG);
                     toast.show();

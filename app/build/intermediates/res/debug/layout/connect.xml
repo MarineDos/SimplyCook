@@ -2,69 +2,91 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:fb="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     style="@style/SimplyCook.mainBackground">
 
-    <ImageView
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:src="@drawable/simply_cook"
+        android:layout_height="match_parent"
+        android:minWidth="30dp"
         android:layout_weight="1"
-        android:baselineAlignBottom="false"
-        android:contentDescription="@string/app_name"/>
+        android:orientation="vertical"></LinearLayout>
 
     <LinearLayout
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_weight="1"
-        android:layout_gravity="center_horizontal">
+        android:layout_weight="1">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:id="@+id/login_content">
-
-            <com.facebook.widget.LoginButton
-                android:id="@+id/authButton"
-                android:inputType="none"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                fb:login_text="@string/buttonLogInFacebook"
-                fb:logout_text="@string/buttonLogOutFacebook"/>
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:text="@string/buttonLogIn"
-                android:id="@+id/btn_login"/>
-
-            <Button
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:text="@string/buttonCreateAccount"
-                android:id="@+id/btn_create_account"/>
-
-
-        </LinearLayout>
-
-
-        <ProgressBar
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:minWidth="150dp"
-            android:minHeight="150dp"
-            android:visibility="gone"
-            android:id="@+id/login_loader"/>
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/logo_SimplyCook"
+            android:src="@drawable/simply_cook"
+            android:layout_weight="1"
+            android:baselineAlignBottom="false"
+            android:contentDescription="@string/app_name"/>
 
+        <LinearLayout
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_gravity="center_horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:id="@+id/login_content">
+
+                <com.facebook.widget.LoginButton
+                    android:id="@+id/authButton"
+                    android:inputType="none"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    fb:login_text="@string/buttonLogInFacebook"
+                    fb:logout_text="@string/buttonLogOutFacebook"/>
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="@string/buttonLogIn"
+                    android:id="@+id/btn_login"/>
+
+                <Button
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:text="@string/buttonCreateAccount"
+                    android:id="@+id/btn_create_account"/>
+
+
+            </LinearLayout>
+
+
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:minWidth="150dp"
+                android:minHeight="150dp"
+                android:visibility="gone"
+                android:id="@+id/login_loader"/>
+
+        </LinearLayout>
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:minWidth="30dp"
+        android:layout_weight="1"
+        android:orientation="vertical"></LinearLayout>
 
 </LinearLayout><!-- From: file:/D:/Documents/Dev/SimplyCook/app/src/main/res/layout/connect.xml -->
