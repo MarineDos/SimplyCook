@@ -9748,6 +9748,11 @@ true
                 path="D:\Documents\Dev\SimplyCook\app\src\main\res\drawable-mdpi\simply_cook.png"
                 qualifiers="mdpi-v4"
                 type="drawable" />
+            <file
+                name="home_fragment"
+                path="D:\Documents\Dev\SimplyCook\app\src\main\res\layout-land\home_fragment.xml"
+                qualifiers="land"
+                type="layout" />
         </source>
         <source path="D:\Documents\Dev\SimplyCook\app\build\generated\res\rs\debug" />
         <source path="D:\Documents\Dev\SimplyCook\app\build\generated\res\generated\debug" />
