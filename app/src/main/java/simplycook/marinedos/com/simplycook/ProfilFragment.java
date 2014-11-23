@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.facebook.model.GraphUser;
 import com.firebase.client.AuthData;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
@@ -24,9 +23,6 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
-/**
- * Created by Marine on 15/11/2014.
- */
 public class ProfilFragment extends Fragment {
     private final Firebase ref = new Firebase("https://simplycook.firebaseio.com");
     private TextView profilName;
@@ -48,7 +44,7 @@ public class ProfilFragment extends Fragment {
         if (authData != null) {
 
             // If user if connected with Facebook, get his profil image
-            if(authData.getProvider() == "facebook"){
+            if(authData.getProvider().equals("facebook")){
                 // Get profil image
                 String userId = authData.getProviderData().get("id").toString();
                 getFbImageTask getTask = new getFbImageTask();
@@ -109,9 +105,8 @@ public class ProfilFragment extends Fragment {
                         + userId + "/picture?width=500&height=500");
 
                 InputStream in = (InputStream) imgUrl.getContent();
-                Bitmap bitmap = BitmapFactory.decodeStream(in);
 
-                return bitmap;
+                return BitmapFactory.decodeStream(in);
             } catch (Exception e) {
                 e.printStackTrace();
             }

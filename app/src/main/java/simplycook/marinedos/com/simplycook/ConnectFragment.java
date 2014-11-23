@@ -32,9 +32,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created by Marine on 25/10/2014.
- */
 public class ConnectFragment extends Fragment{
     // Elements
     private LoginButton authButton;
@@ -59,15 +56,29 @@ public class ConnectFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.connect, container, false);
 
+        // If user is already connect with Firebase, disconnect
+        AuthData authData = ref.getAuth();
+        if (authData != null) {
+            // If facebook connexion, disconnect
+            if(authData.getProvider().equals("facebook")){
+                Session session = Session.getActiveSession();
+                if(session != null ){
+                    if (!session.isClosed()) {
+                        session.closeAndClearTokenInformation();
+                    }
+                }
+            }
+            ref.unauth();
+        }
+
         // Facebook authentification button
         authButton = (LoginButton) view.findViewById(R.id.authButton);
         authButton.setFragment(this);
         authButton.setReadPermissions(Arrays.asList("public_profile", "email"));
 
+        // Hide loader, show content
         mLoginContent = view.findViewById(R.id.login_content);
         mLoginLoader = view.findViewById(R.id.login_loader);
-
-        // Hide loader, show content
         Anim.hide(getActivity(), mLoginLoader);
 
         // Normal login button

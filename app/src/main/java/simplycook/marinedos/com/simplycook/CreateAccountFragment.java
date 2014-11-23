@@ -20,9 +20,6 @@ import com.firebase.client.FirebaseError;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created by Marine on 03/11/2014.
- */
 public class CreateAccountFragment extends Fragment{
     private Button mCreateAccount_btn;
     private TextView mFirstName_input, mLastName_input, mEmail_input, mPassword_input;

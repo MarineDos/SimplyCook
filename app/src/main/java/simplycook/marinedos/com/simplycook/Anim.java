@@ -4,9 +4,7 @@ import android.content.Context;
 import android.view.View;
 import android.view.animation.AnimationUtils;
 
-/**
- * Created by Marine on 11/11/2014.
- */
+
 public class Anim {
 
     public static void hide(Context context, final View view) {

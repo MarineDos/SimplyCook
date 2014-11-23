@@ -6,9 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-/**
- * Created by Marine on 15/11/2014.
- */
 public class FavorisFragment  extends Fragment {
 
     @Override
