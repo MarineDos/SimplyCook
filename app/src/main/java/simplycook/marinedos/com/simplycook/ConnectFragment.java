@@ -4,8 +4,6 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -30,8 +28,6 @@ import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
 
-import java.io.InputStream;
-import java.net.URL;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -42,8 +38,8 @@ import java.util.Map;
 public class ConnectFragment extends Fragment{
     // Elements
     private LoginButton authButton;
-    private View mPopViewContent;
-    private View mPopViewLoader;
+    private View mLoginContent;
+    private View mLoginLoader;
     private  View mPopupView;
     private AlertDialog mDialog;
     private LogInTask mLoginTask;
@@ -68,6 +64,12 @@ public class ConnectFragment extends Fragment{
         authButton.setFragment(this);
         authButton.setReadPermissions(Arrays.asList("public_profile", "email"));
 
+        mLoginContent = view.findViewById(R.id.login_content);
+        mLoginLoader = view.findViewById(R.id.login_loader);
+
+        // Hide loader, show content
+        Anim.hide(getActivity(), mLoginLoader);
+
         // Normal login button
         mLogin_btn = (Button) view.findViewById(R.id.btn_login);
         mLogin_btn.setOnClickListener(new View.OnClickListener() {
@@ -79,16 +81,17 @@ public class ConnectFragment extends Fragment{
 
                 mPopupView = inflater.inflate(R.layout.login_dialog, null);
 
-                // Hide loader, show content
-                mPopViewContent = mPopupView.findViewById(R.id.login_content);
-                mPopViewLoader = mPopupView.findViewById(R.id.login_loader);
-                Anim.hide(getActivity(), mPopViewLoader);
-
                 builder.setView(mPopupView)
                         .setMessage(R.string.messageLoginPopup)
                         .setTitle(R.string.titleLoginPopup)
                         .setPositiveButton(R.string.positiveLoginPopup, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
+                                Anim.show(getActivity(), mLoginLoader);
+                                Anim.hide(getActivity(), mLoginContent);
+
+                                // Launch log in task
+                                mLoginTask = new LogInTask();
+                                mLoginTask.execute();
                             }
                         })
                         .setNegativeButton(R.string.negativeLoginPopup, new DialogInterface.OnClickListener() {
@@ -100,18 +103,12 @@ public class ConnectFragment extends Fragment{
                 mDialog.show();
 
                 // Prevent positive button to dismiss popup
-                Button theButton = mDialog.getButton(DialogInterface.BUTTON_POSITIVE);
+                /*Button theButton = mDialog.getButton(DialogInterface.BUTTON_POSITIVE);
                 theButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Anim.hide(getActivity(), mPopViewContent);
-                        Anim.show(getActivity(), mPopViewLoader);
-
-                        // Launch log in task
-                        mLoginTask = new LogInTask();
-                        mLoginTask.execute();
                     }
-                });
+                });*/
 
             }
         });
@@ -272,8 +269,8 @@ public class ConnectFragment extends Fragment{
                 @Override
                 public void onAuthenticated(AuthData authData) {
                     // Change activity to home page
-                    Anim.show(getActivity(), mPopViewContent);
-                    Anim.hide(getActivity(), mPopViewLoader);
+                    Anim.show(getActivity(), mLoginContent);
+                    Anim.hide(getActivity(), mLoginLoader);
                     mDialog.cancel();
                     Intent intent = new Intent(getActivity(), HomeActivity.class);
                     startActivity(intent);
@@ -281,8 +278,8 @@ public class ConnectFragment extends Fragment{
 
                 @Override
                 public void onAuthenticationError(FirebaseError firebaseError) {
-                    Anim.show(getActivity(), mPopViewContent);
-                    Anim.hide(getActivity(), mPopViewLoader);
+                    Anim.show(getActivity(), mLoginContent);
+                    Anim.hide(getActivity(), mLoginLoader);
 
                     Context context = getActivity();
                     System.out.println("Firebase error : " + firebaseError.getCode());
