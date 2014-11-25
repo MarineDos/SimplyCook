@@ -9448,13 +9448,28 @@ left
                 qualifiers="hdpi-v4"
                 type="drawable" />
             <file
+                name="simply_cook"
+                path="D:\Documents\Dev\SimplyCook\app\src\main\res\drawable-hdpi\simply_cook.png"
+                qualifiers="hdpi-v4"
+                type="drawable" />
+            <file
                 name="ic_launcher"
                 path="D:\Documents\Dev\SimplyCook\app\src\main\res\drawable-mdpi\ic_launcher.png"
                 qualifiers="mdpi-v4"
                 type="drawable" />
             <file
+                name="simply_cook"
+                path="D:\Documents\Dev\SimplyCook\app\src\main\res\drawable-mdpi\simply_cook.png"
+                qualifiers="mdpi-v4"
+                type="drawable" />
+            <file
                 name="ic_launcher"
                 path="D:\Documents\Dev\SimplyCook\app\src\main\res\drawable-xhdpi\ic_launcher.png"
+                qualifiers="xhdpi-v4"
+                type="drawable" />
+            <file
+                name="simply_cook"
+                path="D:\Documents\Dev\SimplyCook\app\src\main\res\drawable-xhdpi\simply_cook.png"
                 qualifiers="xhdpi-v4"
                 type="drawable" />
             <file
@@ -9478,8 +9493,18 @@ left
                 qualifiers="xxhdpi-v4"
                 type="drawable" />
             <file
+                name="default_profil"
+                path="D:\Documents\Dev\SimplyCook\app\src\main\res\drawable-xxhdpi\default_profil.png"
+                qualifiers="xxhdpi-v4"
+                type="drawable" />
+            <file
                 name="ic_launcher"
                 path="D:\Documents\Dev\SimplyCook\app\src\main\res\drawable-xxhdpi\ic_launcher.png"
+                qualifiers="xxhdpi-v4"
+                type="drawable" />
+            <file
+                name="like"
+                path="D:\Documents\Dev\SimplyCook\app\src\main\res\drawable-xxhdpi\like.png"
                 qualifiers="xxhdpi-v4"
                 type="drawable" />
             <file
@@ -9487,6 +9512,16 @@ left
                 path="D:\Documents\Dev\SimplyCook\app\src\main\res\drawable-xxhdpi\simply_cook.png"
                 qualifiers="xxhdpi-v4"
                 type="drawable" />
+            <file
+                name="comparaison_activity"
+                path="D:\Documents\Dev\SimplyCook\app\src\main\res\layout\comparaison_activity.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="comparaison_fragment"
+                path="D:\Documents\Dev\SimplyCook\app\src\main\res\layout\comparaison_fragment.xml"
+                qualifiers=""
+                type="layout" />
             <file
                 name="connect"
                 path="D:\Documents\Dev\SimplyCook\app\src\main\res\layout\connect.xml"
@@ -9503,8 +9538,58 @@ left
                 qualifiers=""
                 type="layout" />
             <file
+                name="favoris_activity"
+                path="D:\Documents\Dev\SimplyCook\app\src\main\res\layout\favoris_activity.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="favoris_fragment"
+                path="D:\Documents\Dev\SimplyCook\app\src\main\res\layout\favoris_fragment.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="home_activity"
+                path="D:\Documents\Dev\SimplyCook\app\src\main\res\layout\home_activity.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="home_fragment"
+                path="D:\Documents\Dev\SimplyCook\app\src\main\res\layout\home_fragment.xml"
+                qualifiers=""
+                type="layout" />
+            <file
                 name="login_dialog"
                 path="D:\Documents\Dev\SimplyCook\app\src\main\res\layout\login_dialog.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="profil_activity"
+                path="D:\Documents\Dev\SimplyCook\app\src\main\res\layout\profil_activity.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="profil_fragment"
+                path="D:\Documents\Dev\SimplyCook\app\src\main\res\layout\profil_fragment.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="profil_list_group"
+                path="D:\Documents\Dev\SimplyCook\app\src\main\res\layout\profil_list_group.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="profil_list_item"
+                path="D:\Documents\Dev\SimplyCook\app\src\main\res\layout\profil_list_item.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="search_activity"
+                path="D:\Documents\Dev\SimplyCook\app\src\main\res\layout\search_activity.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="search_fragment"
+                path="D:\Documents\Dev\SimplyCook\app\src\main\res\layout\search_fragment.xml"
                 qualifiers=""
                 type="layout" />
             <file
@@ -9513,8 +9598,23 @@ left
                 qualifiers="land"
                 type="layout" />
             <file
+                name="home_fragment"
+                path="D:\Documents\Dev\SimplyCook\app\src\main\res\layout-land\home_fragment.xml"
+                qualifiers="land"
+                type="layout" />
+            <file
+                name="comparaison"
+                path="D:\Documents\Dev\SimplyCook\app\src\main\res\menu\comparaison.xml"
+                qualifiers=""
+                type="menu" />
+            <file
                 name="create_account"
                 path="D:\Documents\Dev\SimplyCook\app\src\main\res\menu\create_account.xml"
+                qualifiers=""
+                type="menu" />
+            <file
+                name="favoris"
+                path="D:\Documents\Dev\SimplyCook\app\src\main\res\menu\favoris.xml"
                 qualifiers=""
                 type="menu" />
             <file
@@ -9525,6 +9625,16 @@ left
             <file
                 name="main"
                 path="D:\Documents\Dev\SimplyCook\app\src\main\res\menu\main.xml"
+                qualifiers=""
+                type="menu" />
+            <file
+                name="profil"
+                path="D:\Documents\Dev\SimplyCook\app\src\main\res\menu\profil.xml"
+                qualifiers=""
+                type="menu" />
+            <file
+                name="search"
+                path="D:\Documents\Dev\SimplyCook\app\src\main\res\menu\search.xml"
                 qualifiers=""
                 type="menu" />
             <file
@@ -9623,9 +9733,6 @@ left
                     </item>
                 </style>
 
-                <style name="SimplyCook.landscape" >
-                </style>
-
                 <style name="SimplyCook.noActionBar" >
                     <item name="windowActionBar">
 false
@@ -9633,6 +9740,9 @@ false
                     <item name="android:windowNoTitle">
 true
                     </item>
+                </style>
+
+                <style name="SimplyCook.landscape" >
                 </style>
 
                 <style
@@ -9663,111 +9773,6 @@ true
                 <dimen name="activity_horizontal_margin" >64dp
                 </dimen>
             </file>
-            <file
-                name="home_fragment"
-                path="D:\Documents\Dev\SimplyCook\app\src\main\res\layout\home_fragment.xml"
-                qualifiers=""
-                type="layout" />
-            <file
-                name="home_activity"
-                path="D:\Documents\Dev\SimplyCook\app\src\main\res\layout\home_activity.xml"
-                qualifiers=""
-                type="layout" />
-            <file
-                name="profil_activity"
-                path="D:\Documents\Dev\SimplyCook\app\src\main\res\layout\profil_activity.xml"
-                qualifiers=""
-                type="layout" />
-            <file
-                name="profil"
-                path="D:\Documents\Dev\SimplyCook\app\src\main\res\menu\profil.xml"
-                qualifiers=""
-                type="menu" />
-            <file
-                name="profil_fragment"
-                path="D:\Documents\Dev\SimplyCook\app\src\main\res\layout\profil_fragment.xml"
-                qualifiers=""
-                type="layout" />
-            <file
-                name="favoris_activity"
-                path="D:\Documents\Dev\SimplyCook\app\src\main\res\layout\favoris_activity.xml"
-                qualifiers=""
-                type="layout" />
-            <file
-                name="favoris"
-                path="D:\Documents\Dev\SimplyCook\app\src\main\res\menu\favoris.xml"
-                qualifiers=""
-                type="menu" />
-            <file
-                name="favoris_fragment"
-                path="D:\Documents\Dev\SimplyCook\app\src\main\res\layout\favoris_fragment.xml"
-                qualifiers=""
-                type="layout" />
-            <file
-                name="comparaison_fragment"
-                path="D:\Documents\Dev\SimplyCook\app\src\main\res\layout\comparaison_fragment.xml"
-                qualifiers=""
-                type="layout" />
-            <file
-                name="comparaison_activity"
-                path="D:\Documents\Dev\SimplyCook\app\src\main\res\layout\comparaison_activity.xml"
-                qualifiers=""
-                type="layout" />
-            <file
-                name="comparaison"
-                path="D:\Documents\Dev\SimplyCook\app\src\main\res\menu\comparaison.xml"
-                qualifiers=""
-                type="menu" />
-            <file
-                name="search_fragment"
-                path="D:\Documents\Dev\SimplyCook\app\src\main\res\layout\search_fragment.xml"
-                qualifiers=""
-                type="layout" />
-            <file
-                name="search"
-                path="D:\Documents\Dev\SimplyCook\app\src\main\res\menu\search.xml"
-                qualifiers=""
-                type="menu" />
-            <file
-                name="search_activity"
-                path="D:\Documents\Dev\SimplyCook\app\src\main\res\layout\search_activity.xml"
-                qualifiers=""
-                type="layout" />
-            <file
-                name="simply_cook"
-                path="D:\Documents\Dev\SimplyCook\app\src\main\res\drawable-xhdpi\simply_cook.png"
-                qualifiers="xhdpi-v4"
-                type="drawable" />
-            <file
-                name="simply_cook"
-                path="D:\Documents\Dev\SimplyCook\app\src\main\res\drawable-hdpi\simply_cook.png"
-                qualifiers="hdpi-v4"
-                type="drawable" />
-            <file
-                name="simply_cook"
-                path="D:\Documents\Dev\SimplyCook\app\src\main\res\drawable-mdpi\simply_cook.png"
-                qualifiers="mdpi-v4"
-                type="drawable" />
-            <file
-                name="home_fragment"
-                path="D:\Documents\Dev\SimplyCook\app\src\main\res\layout-land\home_fragment.xml"
-                qualifiers="land"
-                type="layout" />
-            <file
-                name="profil_list_item"
-                path="D:\Documents\Dev\SimplyCook\app\src\main\res\layout\profil_list_item.xml"
-                qualifiers=""
-                type="layout" />
-            <file
-                name="profil_list_group"
-                path="D:\Documents\Dev\SimplyCook\app\src\main\res\layout\profil_list_group.xml"
-                qualifiers=""
-                type="layout" />
-            <file
-                name="like"
-                path="D:\Documents\Dev\SimplyCook\app\src\main\res\drawable-xxhdpi\like.png"
-                qualifiers="xxhdpi-v4"
-                type="drawable" />
         </source>
         <source path="D:\Documents\Dev\SimplyCook\app\build\generated\res\rs\debug" />
         <source path="D:\Documents\Dev\SimplyCook\app\build\generated\res\generated\debug" />

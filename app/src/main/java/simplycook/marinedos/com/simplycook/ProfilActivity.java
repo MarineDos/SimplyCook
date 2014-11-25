@@ -54,46 +54,56 @@ public class ProfilActivity extends ActionBarActivity {
 
         // Header
         profilName = (TextView)findViewById(R.id.profil_name);
+        String search;
 
         AuthData authData = ref.getAuth();
         if (authData != null) {
 
             // If user if connected with Facebook, get his profil image
             if(authData.getProvider().equals("facebook")){
+                search = "id";
                 // Get profil image
                 String userId = authData.getProviderData().get("id").toString();
                 getFbImageTask getTask = new getFbImageTask();
                 getTask.execute(userId);
-
-                // Search in firebase data to get name of the user
-                ref.child("/users/")
-                        .startAt(userId)
-                        .endAt(userId)
-                        .addListenerForSingleValueEvent(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(DataSnapshot snapshot) {
-                                boolean exists = (snapshot.getValue() != null);
-                                if(!exists) {
-                                    System.out.println("User doesn't exist");
-                                } else {
-                                    System.out.println("User exist");
-                                    Map<String, Object> user = (Map<String, Object>)snapshot.getValue();
-                                    Set set = user.keySet();
-                                    Iterator iter = set.iterator();
-                                    Map<String, Object> value = (Map<String, Object>)user.get(iter.next());
-
-                                    String name = value.get("firstName").toString() + " " + value.get("lastName").toString();
-                                    profilName.setText(name);
-                                }
-                            }
-
-                            @Override
-                            public void onCancelled(FirebaseError firebaseError) {
-
-                            }
-                        });
+            }else{
+                // Put default image
+                search = "email";
+                ImageView image = (ImageView)findViewById(R.id.profil_img);
+                image.setImageResource(R.drawable.default_profil);
 
             }
+
+
+            String userId = authData.getProviderData().get(search).toString();
+            System.out.println(userId);
+            // Search in firebase data to get name of the user
+            ref.child("/users/")
+                    .startAt(userId)
+                    .endAt(userId)
+                    .addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot snapshot) {
+                            boolean exists = (snapshot.getValue() != null);
+                            if(!exists) {
+                                System.out.println("User doesn't exist");
+                            } else {
+                                System.out.println("User exist");
+                                Map<String, Object> user = (Map<String, Object>)snapshot.getValue();
+                                Set set = user.keySet();
+                                Iterator iter = set.iterator();
+                                Map<String, Object> value = (Map<String, Object>)user.get(iter.next());
+
+                                String name = value.get("firstName").toString() + " " + value.get("lastName").toString();
+                                profilName.setText(name);
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(FirebaseError firebaseError) {
+
+                        }
+                    });
 
         }
     }
@@ -144,7 +154,7 @@ public class ProfilActivity extends ActionBarActivity {
             try {
                 // Load image from graph facebook api
                 URL imgUrl = new URL("https://graph.facebook.com/"
-                        + userId + "/picture?type=square");
+                        + userId + "/picture?width=128&height=128");
 
                 System.out.println(imgUrl);
 
