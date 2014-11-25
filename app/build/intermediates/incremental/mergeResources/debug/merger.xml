@@ -9763,6 +9763,11 @@ true
                 path="D:\Documents\Dev\SimplyCook\app\src\main\res\layout\profil_list_group.xml"
                 qualifiers=""
                 type="layout" />
+            <file
+                name="like"
+                path="D:\Documents\Dev\SimplyCook\app\src\main\res\drawable-xxhdpi\like.png"
+                qualifiers="xxhdpi-v4"
+                type="drawable" />
         </source>
         <source path="D:\Documents\Dev\SimplyCook\app\build\generated\res\rs\debug" />
         <source path="D:\Documents\Dev\SimplyCook\app\build\generated\res\generated\debug" />
