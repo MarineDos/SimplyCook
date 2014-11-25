@@ -182,6 +182,7 @@ public class ConnectFragment extends Fragment{
                                                 if(!exists){
                                                     // Create user
                                                     Map<String, String> newUser = new HashMap<String, String>();
+                                                    newUser.put("id", user.getId());
                                                     newUser.put("firstName", user.getFirstName());
                                                     newUser.put("lastName", user.getLastName());
                                                     newUser.put("email", user.getProperty("email").toString());
