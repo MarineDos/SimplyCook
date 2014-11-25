@@ -6,9 +6,12 @@ import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.View;
 import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.firebase.client.AuthData;
 import com.firebase.client.DataSnapshot;
@@ -30,7 +33,7 @@ public class ProfilActivity extends ActionBarActivity {
     private ExpandableListAdapter listAdapter;
     private ExpandableListView expListView;
     private List<String> listDataHeader;
-    private HashMap<String, List<String>> listDataChild;
+    private HashMap<String, List<Taste>> listDataChild;
     private final Firebase ref = new Firebase("https://simplycook.firebaseio.com");
     private TextView profilName;
 
@@ -48,6 +51,27 @@ public class ProfilActivity extends ActionBarActivity {
 
         // List
         expListView = (ExpandableListView) findViewById(R.id.expandableListView_food);
+        expListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+
+            @Override
+            public boolean onChildClick(ExpandableListView parent, View v,
+                                        int groupPosition, int childPosition, long id) {
+                Taste selectedTaste = listDataChild.get(listDataHeader.get(groupPosition)).get(childPosition);
+
+                if(!selectedTaste.getComment().equals("")){
+                    Toast toast = Toast.makeText(
+                            getApplicationContext(),
+                            selectedTaste.getName() + " : " + selectedTaste.getComment(),
+                            Toast.LENGTH_LONG
+                    );
+                    toast.setGravity(Gravity.CENTER, 0, 0);
+                    toast.show();
+
+                }
+                return false;
+            }
+        });
+
         prepareListData();
         listAdapter = new ExpandableListAdapter(this, listDataHeader, listDataChild);
         expListView.setAdapter(listAdapter);
@@ -110,7 +134,7 @@ public class ProfilActivity extends ActionBarActivity {
 
     private void prepareListData() {
         listDataHeader = new ArrayList<String>();
-        listDataChild = new HashMap<String, List<String>>();
+        listDataChild = new HashMap<String, List<Taste>>();
 
         // Adding child data
         listDataHeader.add("Viande");
@@ -118,24 +142,45 @@ public class ProfilActivity extends ActionBarActivity {
         listDataHeader.add("Légume");
 
         // Adding child data
-        List<String> viande = new ArrayList<String>();
-        viande.add("Boeuf");
-        viande.add("Agneau");
-        viande.add("Cheval");
-        viande.add("Poulet");
+        List<Taste> viande = new ArrayList<Taste>();
+        viande.add(new Taste("Boeuf", 1, "Surtout en sauce"));
+        viande.add(new Taste("Agneau", 1, ""));
+        viande.add(new Taste("Cheval", 1, ""));
+        viande.add(new Taste("Poulet", 1, ""));
 
-        List<String> poisson = new ArrayList<String>();
-        poisson.add("Cabillaud");
-        poisson.add("Saumon");
-        poisson.add("Bar");
+        List<Taste> poisson = new ArrayList<Taste>();
+        poisson.add(new Taste("Cabillaud", 1, ""));
+        poisson.add(new Taste("Saumon", 1, "Que le saumon fumé"));
+        poisson.add(new Taste("Bar", 1, "Je me souviens plus..."));
 
-        List<String> legume = new ArrayList<String>();
-        legume.add("Carotte");
-        legume.add("Courgette");
+        List<Taste> legume = new ArrayList<Taste>();
+        legume.add(new Taste("Carotte", 1, "C'est pour ça que je suis aimable"));
+        legume.add(new Taste("Courgette", 1, ""));
 
         listDataChild.put(listDataHeader.get(0), viande);
         listDataChild.put(listDataHeader.get(1), poisson);
         listDataChild.put(listDataHeader.get(2), legume);
+    }
+
+    class Taste{
+        private String m_name;
+        private String m_comment;
+        private int m_like;
+
+        public Taste(String name, int like, String comment){
+            m_name = name;
+            m_comment = comment;
+            m_like = like;
+        }
+        public String getName(){
+            return m_name;
+        }
+        public String getComment(){
+            return m_comment;
+        }
+        public int getLike(){
+            return m_like;
+        }
     }
 
     class getFbImageTask extends AsyncTask<String, Void, Bitmap> {
