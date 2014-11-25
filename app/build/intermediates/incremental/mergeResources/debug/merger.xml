@@ -9753,6 +9753,16 @@ true
                 path="D:\Documents\Dev\SimplyCook\app\src\main\res\layout-land\home_fragment.xml"
                 qualifiers="land"
                 type="layout" />
+            <file
+                name="profil_list_item"
+                path="D:\Documents\Dev\SimplyCook\app\src\main\res\layout\profil_list_item.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="profil_list_group"
+                path="D:\Documents\Dev\SimplyCook\app\src\main\res\layout\profil_list_group.xml"
+                qualifiers=""
+                type="layout" />
         </source>
         <source path="D:\Documents\Dev\SimplyCook\app\build\generated\res\rs\debug" />
         <source path="D:\Documents\Dev\SimplyCook\app\build\generated\res\generated\debug" />

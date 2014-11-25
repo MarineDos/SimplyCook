@@ -1229,7 +1229,7 @@ containing a value of this type.
         public static final int action_menu_divider=0x7f070020;
         public static final int action_menu_presenter=0x7f070021;
         public static final int action_mode_close_button=0x7f07002f;
-        public static final int action_settings=0x7f070079;
+        public static final int action_settings=0x7f07007c;
         public static final int activity_chooser_view_content=0x7f070030;
         public static final int always=0x7f07000f;
         public static final int authButton=0x7f070064;
@@ -1282,6 +1282,7 @@ containing a value of this type.
         public static final int email=0x7f07006e;
         public static final int end=0x7f07000c;
         public static final int expand_activities_button=0x7f070031;
+        public static final int expandableListView_food=0x7f070079;
         public static final int expanded_menu=0x7f070037;
         public static final int favoris_btn=0x7f070073;
         public static final int firstName=0x7f07006c;
@@ -1295,6 +1296,8 @@ containing a value of this type.
         public static final int inline=0x7f070018;
         public static final int large=0x7f07001e;
         public static final int lastName=0x7f07006d;
+        public static final int lblListHeader=0x7f07007a;
+        public static final int lblListItem=0x7f07007b;
         public static final int left=0x7f07001b;
         public static final int listMode=0x7f070001;
         public static final int list_item=0x7f070034;
@@ -1396,9 +1399,11 @@ containing a value of this type.
         public static final int login_dialog=0x7f030030;
         public static final int profil_activity=0x7f030031;
         public static final int profil_fragment=0x7f030032;
-        public static final int search_activity=0x7f030033;
-        public static final int search_fragment=0x7f030034;
-        public static final int support_simple_spinner_dropdown_item=0x7f030035;
+        public static final int profil_list_group=0x7f030033;
+        public static final int profil_list_item=0x7f030034;
+        public static final int search_activity=0x7f030035;
+        public static final int search_fragment=0x7f030036;
+        public static final int support_simple_spinner_dropdown_item=0x7f030037;
     }
     public static final class menu {
         public static final int comparaison=0x7f0c0000;

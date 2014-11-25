@@ -364,7 +364,7 @@ int id action_context_bar 0x7f070028
 int id action_menu_divider 0x7f070020
 int id action_menu_presenter 0x7f070021
 int id action_mode_close_button 0x7f07002f
-int id action_settings 0x7f070079
+int id action_settings 0x7f07007c
 int id activity_chooser_view_content 0x7f070030
 int id always 0x7f07000f
 int id authButton 0x7f070064
@@ -417,6 +417,7 @@ int id edit_query 0x7f07003b
 int id email 0x7f07006e
 int id end 0x7f07000c
 int id expand_activities_button 0x7f070031
+int id expandableListView_food 0x7f070079
 int id expanded_menu 0x7f070037
 int id favoris_btn 0x7f070073
 int id firstName 0x7f07006c
@@ -430,6 +431,8 @@ int id image 0x7f070032
 int id inline 0x7f070018
 int id large 0x7f07001e
 int id lastName 0x7f07006d
+int id lblListHeader 0x7f07007a
+int id lblListItem 0x7f07007b
 int id left 0x7f07001b
 int id listMode 0x7f070001
 int id list_item 0x7f070034
@@ -527,9 +530,11 @@ int layout home_fragment 0x7f03002f
 int layout login_dialog 0x7f030030
 int layout profil_activity 0x7f030031
 int layout profil_fragment 0x7f030032
-int layout search_activity 0x7f030033
-int layout search_fragment 0x7f030034
-int layout support_simple_spinner_dropdown_item 0x7f030035
+int layout profil_list_group 0x7f030033
+int layout profil_list_item 0x7f030034
+int layout search_activity 0x7f030035
+int layout search_fragment 0x7f030036
+int layout support_simple_spinner_dropdown_item 0x7f030037
 int menu comparaison 0x7f0c0000
 int menu create_account 0x7f0c0001
 int menu favoris 0x7f0c0002
