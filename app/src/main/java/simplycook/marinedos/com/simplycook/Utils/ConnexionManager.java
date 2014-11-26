@@ -34,6 +34,7 @@ public class ConnexionManager {
 
             // Redirect to login page
             Intent intent = new Intent(context, ConnectActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             context.startActivity(intent);
         }
     }
