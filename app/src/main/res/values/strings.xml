@@ -30,6 +30,7 @@
 
     <!-- Error message -->
     <string name="errorMessage_emailAlreadyUsed">L\'adresse mail est déjà utilisée.</string>
+    <string name="errorMessage_incorrectEmail">L\'adresse mail est incorrect</string>
     <string name="errorMessage_incorrectPassword">La combinaison email / mot de passe est incorrect.</string>
     <string name="errorPasswordRequired">Un mot de passe est requis</string>
     <string name="errorFirstNameRequired">Un prénom est requis</string>

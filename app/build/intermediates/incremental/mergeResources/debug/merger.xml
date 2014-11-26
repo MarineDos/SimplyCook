@@ -9648,6 +9648,8 @@ left
                 </string>
                 <string name="title_activity_favoris" >Mes favoris
                 </string>
+                <string name="errorMessage_incorrectEmail" >L\'adresse mail est incorrect
+                </string>
                 <string name="hintPassword" >Mot de passe
                 </string>
                 <string name="comparaisonTitle" >Comparaison

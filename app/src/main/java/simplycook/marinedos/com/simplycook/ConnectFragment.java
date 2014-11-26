@@ -8,6 +8,7 @@ import android.os.AsyncTask;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -191,6 +192,8 @@ public class ConnectFragment extends Fragment{
                             public void onAuthenticationError(FirebaseError firebaseError) {
                                 // There was an error
                                 Log.i(TAG, "Logging with Firebase make an error");
+                                System.out.println(firebaseError.getCode());
+                                System.out.println(firebaseError.getMessage());
                             }
                         });
                     }
@@ -275,15 +278,19 @@ public class ConnectFragment extends Fragment{
 
                     Context context = getActivity();
                     System.out.println("Firebase error : " + firebaseError.getCode());
+                    System.out.println("Firebase error : " + firebaseError.getMessage());
                     int codeError = firebaseError.getCode();
                     String message = "";
                     switch(codeError){
-                        case -16:
-                            message = context.getString(R.string.errorMessage_incorrectPassword);
+                        case -15:
+                            message = context.getString(R.string.errorMessage_incorrectEmail); break;
+                        case -16 :
+                            message = context.getString(R.string.errorMessage_incorrectPassword); break;
                         case -24:
-                            message = context.getString(R.string.errorMessage_needInternetConnection);
+                            message = context.getString(R.string.errorMessage_needInternetConnection); break;
                     }
-                    Toast toast = Toast.makeText(context, message, Toast.LENGTH_LONG);
+                    Toast toast = Toast.makeText(context, message, Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.CENTER, 0, 0);
                     toast.show();
 
                 }
