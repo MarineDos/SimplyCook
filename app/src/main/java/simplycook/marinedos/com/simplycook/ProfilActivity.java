@@ -148,14 +148,14 @@ public class ProfilActivity extends ActionBarActivity {
         // Adding child data
         List<Taste> viande = new ArrayList<Taste>();
         viande.add(new Taste("Boeuf", 1, "Surtout en sauce"));
-        viande.add(new Taste("Agneau", 1, ""));
-        viande.add(new Taste("Cheval", 1, ""));
+        viande.add(new Taste("Agneau", -1, ""));
+        viande.add(new Taste("Cheval", 0, ""));
         viande.add(new Taste("Poulet", 1, ""));
 
         List<Taste> poisson = new ArrayList<Taste>();
         poisson.add(new Taste("Cabillaud", 1, ""));
-        poisson.add(new Taste("Saumon", 1, "Que le saumon fumé"));
-        poisson.add(new Taste("Bar", 1, "Je me souviens plus..."));
+        poisson.add(new Taste("Saumon", 0, "Que le saumon fumé"));
+        poisson.add(new Taste("Bar", 0, "Je me souviens plus..."));
 
         List<Taste> legume = new ArrayList<Taste>();
         legume.add(new Taste("Carotte", 1, "C'est pour ça que je suis aimable"));

@@ -11,6 +11,7 @@ package simplycook.marinedos.com.simplycook;
         import android.view.View;
         import android.view.ViewGroup;
         import android.widget.BaseExpandableListAdapter;
+        import android.widget.ImageView;
         import android.widget.TextView;
 
 public class ExpandableListAdapter extends BaseExpandableListAdapter {
@@ -42,7 +43,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     public View getChildView(int groupPosition, final int childPosition,
                              boolean isLastChild, View convertView, ViewGroup parent) {
 
-        final ProfilActivity.Taste childText = (ProfilActivity.Taste) getChild(groupPosition, childPosition);
+        final ProfilActivity.Taste childTaste = (ProfilActivity.Taste) getChild(groupPosition, childPosition);
 
         if (convertView == null) {
             LayoutInflater infalInflater = (LayoutInflater) this._context
@@ -53,7 +54,21 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         TextView txtListChild = (TextView) convertView
                 .findViewById(R.id.lblListItem);
 
-        txtListChild.setText(childText.getName());
+        txtListChild.setText(childTaste.getName());
+
+        ImageView iconListChild = (ImageView) convertView.findViewById(R.id.iconListImage);
+        switch(childTaste.getLike()){
+            case -1:
+                iconListChild.setImageResource(R.drawable.unlike);
+                break;
+            case 0:
+                iconListChild.setImageResource(R.drawable.bof);
+                break;
+            case 1:
+                iconListChild.setImageResource(R.drawable.like);
+                break;
+        }
+
         return convertView;
     }
 
