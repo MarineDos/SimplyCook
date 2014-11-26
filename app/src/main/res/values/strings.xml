@@ -51,4 +51,7 @@
     <string name="title_activity_comparaison">Comparaison</string>
     <string name="title_activity_search">Recherche</string>
 
+    <!-- Action -->
+    <string name="action_disconnect">Déconnexion</string>
+
 </resources>

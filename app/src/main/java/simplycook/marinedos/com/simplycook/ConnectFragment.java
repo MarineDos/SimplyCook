@@ -1,6 +1,5 @@
 package simplycook.marinedos.com.simplycook;
 
-import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -9,11 +8,9 @@ import android.os.AsyncTask;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -34,6 +31,9 @@ import com.firebase.client.ValueEventListener;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+
+import simplycook.marinedos.com.simplycook.Utils.Anim;
+import simplycook.marinedos.com.simplycook.Utils.ConnexionManager;
 
 public class ConnectFragment extends Fragment{
     // Elements
@@ -60,19 +60,7 @@ public class ConnectFragment extends Fragment{
         final View view = inflater.inflate(R.layout.connect, container, false);
 
         // If user is already connect with Firebase, disconnect
-        AuthData authData = ref.getAuth();
-        if (authData != null) {
-            // If facebook connexion, disconnect
-            if(authData.getProvider().equals("facebook")){
-                Session session = Session.getActiveSession();
-                if(session != null ){
-                    if (!session.isClosed()) {
-                        session.closeAndClearTokenInformation();
-                    }
-                }
-            }
-            ref.unauth();
-        }
+        ConnexionManager.disconnect(getActivity());
 
         // Facebook authentification button
         authButton = (LoginButton) view.findViewById(R.id.authButton);
@@ -115,14 +103,6 @@ public class ConnectFragment extends Fragment{
                         });
                 mDialog = builder.create();
                 mDialog.show();
-
-                // Prevent positive button to dismiss popup
-                /*Button theButton = mDialog.getButton(DialogInterface.BUTTON_POSITIVE);
-                theButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                    }
-                });*/
 
             }
         });
@@ -217,10 +197,7 @@ public class ConnectFragment extends Fragment{
                 }
             }).executeAsync();
         } else if (state.isClosed()) {
-            Log.i(TAG, "Logged out...");
-
-            // Unlog from Firebase
-            ref.unauth();
+            ConnexionManager.disconnect(getActivity());
         }
     }
 

@@ -9603,38 +9603,8 @@ left
                 qualifiers="land"
                 type="layout" />
             <file
-                name="comparaison"
-                path="D:\Documents\Dev\SimplyCook\app\src\main\res\menu\comparaison.xml"
-                qualifiers=""
-                type="menu" />
-            <file
-                name="create_account"
-                path="D:\Documents\Dev\SimplyCook\app\src\main\res\menu\create_account.xml"
-                qualifiers=""
-                type="menu" />
-            <file
-                name="favoris"
-                path="D:\Documents\Dev\SimplyCook\app\src\main\res\menu\favoris.xml"
-                qualifiers=""
-                type="menu" />
-            <file
-                name="home"
-                path="D:\Documents\Dev\SimplyCook\app\src\main\res\menu\home.xml"
-                qualifiers=""
-                type="menu" />
-            <file
                 name="main"
                 path="D:\Documents\Dev\SimplyCook\app\src\main\res\menu\main.xml"
-                qualifiers=""
-                type="menu" />
-            <file
-                name="profil"
-                path="D:\Documents\Dev\SimplyCook\app\src\main\res\menu\profil.xml"
-                qualifiers=""
-                type="menu" />
-            <file
-                name="search"
-                path="D:\Documents\Dev\SimplyCook\app\src\main\res\menu\search.xml"
                 qualifiers=""
                 type="menu" />
             <file
@@ -9695,6 +9665,8 @@ left
                 <string name="action_settings" >Settings
                 </string>
                 <string name="app_name" >SimplyCook
+                </string>
+                <string name="action_disconnect" >Déconnexion
                 </string>
                 <string name="favorisTitle" >Mes favoris
                 </string>
