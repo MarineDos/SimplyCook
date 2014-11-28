@@ -134,71 +134,8 @@ public class ConnectFragment extends Fragment{
 
         if (state.isOpened()) {
             // Logged in
-            Log.i(TAG, "Logged in...");
+            ConnexionManager.connectFirebaseWithFacebook(session, getActivity());
 
-            // Request user data
-            Request.newMeRequest(session, new Request.GraphUserCallback() {
-
-                @Override
-                public void onCompleted(final GraphUser user, final Response response) {
-                    if (user != null) {
-
-                        // Connect with Firebase
-                        ref.authWithOAuthToken("facebook", session.getAccessToken(), new Firebase.AuthResultHandler() {
-                            @Override
-                            public void onAuthenticated(AuthData authData) {
-                                // The Facebook user is now authenticated with Firebase
-                                Log.i(TAG, "Logged with Firebase");
-
-                                // Check if user is in database
-                                final String id = (String)(authData.getProviderData().get("id"));
-                                ref.child("/users/")
-                                        .startAt(id)
-                                        .endAt(id)
-                                        .addListenerForSingleValueEvent(new ValueEventListener() {
-                                            @Override
-                                            public void onDataChange(DataSnapshot snapshot) {
-
-                                                boolean exists = (snapshot.getValue() != null);
-                                                if(!exists){
-                                                    // Create user
-                                                    Map<String, String> newUser = new HashMap<String, String>();
-                                                    newUser.put("id", user.getId());
-                                                    newUser.put("firstName", user.getFirstName());
-                                                    newUser.put("lastName", user.getLastName());
-                                                    newUser.put("email", user.getProperty("email").toString());
-
-                                                    Firebase newRef = ref.child("/users/").push();
-                                                    newRef.setValue(newUser, id);
-
-                                                    // Change activity to home page
-                                                    Intent intent = new Intent(getActivity(), HomeActivity.class);
-                                                    startActivity(intent);
-                                                }else{
-                                                    System.out.println("User already exists : " + id);
-
-                                                    Intent intent = new Intent(getActivity(), HomeActivity.class);
-                                                    startActivity(intent);
-                                                }
-                                            }
-
-                                            @Override
-                                            public void onCancelled(FirebaseError firebaseError) {
-                                            }
-                                        });
-                            }
-
-                            @Override
-                            public void onAuthenticationError(FirebaseError firebaseError) {
-                                // There was an error
-                                Log.i(TAG, "Logging with Firebase make an error");
-                                System.out.println(firebaseError.getCode());
-                                System.out.println(firebaseError.getMessage());
-                            }
-                        });
-                    }
-                }
-            }).executeAsync();
         } else if (state.isClosed()) {
             ConnexionManager.disconnect(getActivity());
         }
@@ -267,6 +204,7 @@ public class ConnectFragment extends Fragment{
                     Anim.show(getActivity(), mLoginContent);
                     Anim.hide(getActivity(), mLoginLoader);
                     mDialog.cancel();
+                    ConnexionManager.storeUser();
                     Intent intent = new Intent(getActivity(), HomeActivity.class);
                     startActivity(intent);
                 }
