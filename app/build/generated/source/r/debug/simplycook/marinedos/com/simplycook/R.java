@@ -1228,7 +1228,7 @@ containing a value of this type.
         public static final int action_bar_subtitle=0x7f07002e;
         public static final int action_bar_title=0x7f07002d;
         public static final int action_context_bar=0x7f070028;
-        public static final int action_disconnect=0x7f07007d;
+        public static final int action_disconnect=0x7f07007c;
         public static final int action_menu_divider=0x7f070020;
         public static final int action_menu_presenter=0x7f070021;
         public static final int action_mode_close_button=0x7f07002f;
@@ -1284,7 +1284,7 @@ containing a value of this type.
         public static final int email=0x7f07006e;
         public static final int end=0x7f07000c;
         public static final int expand_activities_button=0x7f070031;
-        public static final int expandableListView_food=0x7f070079;
+        public static final int expandableListView_food=0x7f07007b;
         public static final int expanded_menu=0x7f070037;
         public static final int favoris_btn=0x7f070073;
         public static final int firstName=0x7f07006c;
@@ -1292,15 +1292,15 @@ containing a value of this type.
         public static final int homeAsUp=0x7f070005;
         public static final int home_activity=0x7f070071;
         public static final int icon=0x7f070035;
-        public static final int iconListImage=0x7f07007b;
+        public static final int iconListImage=0x7f070079;
         public static final int identifiant=0x7f070076;
         public static final int ifRoom=0x7f07000e;
         public static final int image=0x7f070032;
         public static final int inline=0x7f070018;
         public static final int large=0x7f07001e;
         public static final int lastName=0x7f07006d;
-        public static final int lblListHeader=0x7f07007a;
-        public static final int lblListItem=0x7f07007c;
+        public static final int lblListHeader=0x7f070078;
+        public static final int lblListItem=0x7f07007a;
         public static final int left=0x7f07001b;
         public static final int listMode=0x7f070001;
         public static final int list_item=0x7f070034;
@@ -1311,11 +1311,10 @@ containing a value of this type.
         public static final int never=0x7f07000d;
         public static final int none=0x7f070009;
         public static final int normal=0x7f070000;
+        public static final int pager=0x7f070077;
         public static final int password=0x7f07006f;
         public static final int picker_subtitle=0x7f070056;
         public static final int profil_btn=0x7f070072;
-        public static final int profil_img=0x7f070077;
-        public static final int profil_name=0x7f070078;
         public static final int progress_circular=0x7f070023;
         public static final int progress_horizontal=0x7f070024;
         public static final int radio=0x7f07003a;
@@ -1401,12 +1400,15 @@ containing a value of this type.
         public static final int home_fragment=0x7f03002f;
         public static final int login_dialog=0x7f030030;
         public static final int profil_activity=0x7f030031;
-        public static final int profil_fragment=0x7f030032;
-        public static final int profil_list_group=0x7f030033;
-        public static final int profil_list_item=0x7f030034;
-        public static final int search_activity=0x7f030035;
-        public static final int search_fragment=0x7f030036;
-        public static final int support_simple_spinner_dropdown_item=0x7f030037;
+        public static final int profil_favorite_tab=0x7f030032;
+        public static final int profil_fragment=0x7f030033;
+        public static final int profil_list_group=0x7f030034;
+        public static final int profil_list_item=0x7f030035;
+        public static final int profil_managetaste_tab=0x7f030036;
+        public static final int profil_taste_tab=0x7f030037;
+        public static final int search_activity=0x7f030038;
+        public static final int search_fragment=0x7f030039;
+        public static final int support_simple_spinner_dropdown_item=0x7f03003a;
     }
     public static final class menu {
         public static final int main=0x7f0c0000;

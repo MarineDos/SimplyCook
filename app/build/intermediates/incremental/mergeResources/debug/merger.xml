@@ -9757,6 +9757,21 @@ true
                 path="D:\Documents\Dev\SimplyCook\app\src\main\res\drawable-xxhdpi\bof.png"
                 qualifiers="xxhdpi-v4"
                 type="drawable" />
+            <file
+                name="profil_managetaste_tab"
+                path="D:\Documents\Dev\SimplyCook\app\src\main\res\layout\profil_managetaste_tab.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="profil_favorite_tab"
+                path="D:\Documents\Dev\SimplyCook\app\src\main\res\layout\profil_favorite_tab.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="profil_taste_tab"
+                path="D:\Documents\Dev\SimplyCook\app\src\main\res\layout\profil_taste_tab.xml"
+                qualifiers=""
+                type="layout" />
         </source>
         <source path="D:\Documents\Dev\SimplyCook\app\build\generated\res\rs\debug" />
         <source path="D:\Documents\Dev\SimplyCook\app\build\generated\res\generated\debug" />

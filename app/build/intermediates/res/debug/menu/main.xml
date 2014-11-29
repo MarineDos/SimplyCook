@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools" >
     <item android:id="@+id/action_disconnect"
         android:title="@string/action_disconnect"
-        app:showAsAction="ifRoom"
-        android:icon="@drawable/abc_ic_clear_search_api_holo_light" />
+        app:showAsAction="never" />
 </menu>
 <!-- From: file:/D:/Documents/Dev/SimplyCook/app/src/main/res/menu/main.xml -->

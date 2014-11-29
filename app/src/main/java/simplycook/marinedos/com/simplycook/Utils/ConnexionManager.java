@@ -190,6 +190,7 @@ public class ConnexionManager {
 
                                                 // Change activity to home page
                                                 Intent intent = new Intent(context, HomeActivity.class);
+                                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                                 context.startActivity(intent);
                                             } else {
                                                 System.out.println("User already exists : " + id);
@@ -197,6 +198,7 @@ public class ConnexionManager {
                                                 storeUser();
 
                                                 Intent intent = new Intent(context, HomeActivity.class);
+                                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                                 context.startActivity(intent);
                                             }
                                         }
