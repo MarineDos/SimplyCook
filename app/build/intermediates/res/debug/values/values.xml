@@ -667,6 +667,7 @@
     <string name="action_settings">Settings</string>
     <string name="app_id">703060996447482</string>
     <string name="app_name">SimplyCook</string>
+    <string name="buttonAdd">Ajouter</string>
     <string name="buttonCreateAccount">Créer un compte</string>
     <string name="buttonLogIn">Connexion</string>
     <string name="buttonLogInFacebook">Connexion avec Facebook</string>
@@ -735,6 +736,7 @@
     <string name="title_activity_home">Accueil</string>
     <string name="title_activity_profil">Mon profil</string>
     <string name="title_activity_search">Recherche</string>
+    <string name="title_add_tastes">Ajouter un goût</string>
     <string name="usernameLoginPopup">Identifiant</string>
     <!-- From: file:/D:/Documents/Dev/SimplyCook/app/src/main/res/values/styles.xml -->
     <eat-comment />

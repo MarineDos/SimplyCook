@@ -9662,6 +9662,8 @@ left
                 </string>
                 <string name="usernameLoginPopup" >Identifiant
                 </string>
+                <string name="title_add_tastes" >Ajouter un goût
+                </string>
                 <string name="title_activity_profil" >Mon profil
                 </string>
                 <string name="action_settings" >Settings
@@ -9669,6 +9671,8 @@ left
                 <string name="app_name" >SimplyCook
                 </string>
                 <string name="action_disconnect" >Déconnexion
+                </string>
+                <string name="buttonAdd" >Ajouter
                 </string>
                 <string name="favorisTitle" >Mes favoris
                 </string>

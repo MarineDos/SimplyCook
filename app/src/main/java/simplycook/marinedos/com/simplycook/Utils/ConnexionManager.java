@@ -19,6 +19,7 @@ import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
+import com.firebase.client.core.Path;
 
 import java.io.InputStream;
 import java.net.URL;
@@ -222,5 +223,47 @@ public class ConnexionManager {
         }).executeAsync();
     }
 
+    public static void addTaste(final Taste taste, final String category){
+        String search;
+        AuthData authData = ref.getAuth();
+        if (authData != null) {
 
+            // If user if connected with Facebook
+            if (authData.getProvider().equals("facebook")) {
+                User.connexionMode = "facebook";
+                search = "id";
+            } else {
+                User.connexionMode = authData.getProvider();
+                search = "email";
+            }
+
+            String userId = authData.getProviderData().get(search).toString();
+            // Search in firebase data to get name of the user
+            ref.child("/users/")
+                    .startAt(userId)
+                    .endAt(userId)
+                    .addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            Map<String, Object> user = (Map<String, Object>)dataSnapshot.getValue();
+                            Set set = user.keySet();
+                            Iterator iter = set.iterator();
+
+                            Map<String, String> newTaste = new HashMap<String, String>();
+                            newTaste.put("like", Integer.toString(taste.getLike()));
+                            newTaste.put("comment", taste.getComment());
+
+                            String id = iter.next().toString();
+
+                            ref.child("/users/" + id + "/" + "/tastes/" + taste.getName()).setValue(newTaste);
+                            ref.child("/users/" + id + "/" + "/tastes/" + taste.getName()).setPriority(category);
+                        }
+
+                        @Override
+                        public void onCancelled(FirebaseError firebaseError) {
+
+                        }
+                    });
+        }
+    }
 }

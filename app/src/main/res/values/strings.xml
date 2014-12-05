@@ -11,6 +11,7 @@
     <string name="buttonLogInFacebook">Connexion avec Facebook</string>
     <string name="buttonLogOutFacebook">Déconnexion</string>
     <string name="buttonCreateAccount">Créer un compte</string>
+    <string name="buttonAdd">Ajouter</string>
 
     <!-- - Pop up connexion -->
     <string name="messageLoginPopup">Entrez votre identifiant et votre mot de passe</string>
@@ -51,6 +52,7 @@
     <string name="title_activity_favoris">Mes favoris</string>
     <string name="title_activity_comparaison">Comparaison</string>
     <string name="title_activity_search">Recherche</string>
+    <string name="title_add_tastes">Ajouter un goût</string>
 
     <!-- Action -->
     <string name="action_disconnect">Déconnexion</string>
