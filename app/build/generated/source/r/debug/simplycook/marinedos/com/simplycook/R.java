@@ -1188,7 +1188,7 @@ containing a value of this type.
         public static final int com_facebook_list_section_header_background=0x7f020070;
         public static final int com_facebook_loginbutton_silver=0x7f020071;
         public static final int com_facebook_logo=0x7f020072;
-        public static final int com_facebook_picker_default_separator_color=0x7f020090;
+        public static final int com_facebook_picker_default_separator_color=0x7f020091;
         public static final int com_facebook_picker_item_background=0x7f020073;
         public static final int com_facebook_picker_list_focused=0x7f020074;
         public static final int com_facebook_picker_list_longpressed=0x7f020075;
@@ -1215,9 +1215,10 @@ containing a value of this type.
         public static final int com_facebook_usersettingsfragment_background_gradient=0x7f02008a;
         public static final int default_profil=0x7f02008b;
         public static final int ic_launcher=0x7f02008c;
-        public static final int like=0x7f02008d;
-        public static final int simply_cook=0x7f02008e;
-        public static final int unlike=0x7f02008f;
+        public static final int info=0x7f02008d;
+        public static final int like=0x7f02008e;
+        public static final int simply_cook=0x7f02008f;
+        public static final int unlike=0x7f020090;
     }
     public static final class id {
         public static final int action_bar=0x7f070027;
@@ -1228,7 +1229,7 @@ containing a value of this type.
         public static final int action_bar_subtitle=0x7f07002e;
         public static final int action_bar_title=0x7f07002d;
         public static final int action_context_bar=0x7f070028;
-        public static final int action_disconnect=0x7f07007c;
+        public static final int action_disconnect=0x7f07007e;
         public static final int action_menu_divider=0x7f070020;
         public static final int action_menu_presenter=0x7f070021;
         public static final int action_mode_close_button=0x7f07002f;
@@ -1284,7 +1285,7 @@ containing a value of this type.
         public static final int email=0x7f07006e;
         public static final int end=0x7f07000c;
         public static final int expand_activities_button=0x7f070031;
-        public static final int expandableListView_food=0x7f07007b;
+        public static final int expandableListView_food=0x7f07007d;
         public static final int expanded_menu=0x7f070037;
         public static final int favoris_btn=0x7f070073;
         public static final int firstName=0x7f07006c;
@@ -1292,7 +1293,8 @@ containing a value of this type.
         public static final int homeAsUp=0x7f070005;
         public static final int home_activity=0x7f070071;
         public static final int icon=0x7f070035;
-        public static final int iconListImage=0x7f070079;
+        public static final int iconInfoImage=0x7f07007c;
+        public static final int iconListImage=0x7f07007a;
         public static final int identifiant=0x7f070076;
         public static final int ifRoom=0x7f07000e;
         public static final int image=0x7f070032;
@@ -1300,10 +1302,11 @@ containing a value of this type.
         public static final int large=0x7f07001e;
         public static final int lastName=0x7f07006d;
         public static final int lblListHeader=0x7f070078;
-        public static final int lblListItem=0x7f07007a;
+        public static final int lblListItem=0x7f07007b;
         public static final int left=0x7f07001b;
         public static final int listMode=0x7f070001;
         public static final int list_item=0x7f070034;
+        public static final int list_item_taste=0x7f070079;
         public static final int login_content=0x7f070063;
         public static final int login_loader=0x7f070067;
         public static final int logo_SimplyCook=0x7f070062;

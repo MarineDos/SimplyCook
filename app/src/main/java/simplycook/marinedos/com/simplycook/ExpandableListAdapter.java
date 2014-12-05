@@ -12,6 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class ExpandableListAdapter extends BaseExpandableListAdapter {
@@ -67,6 +69,12 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
             case 1:
                 iconListChild.setImageResource(R.drawable.like);
                 break;
+        }
+
+        if(childTaste.getComment().equals("")){
+            System.out.println("Add for " + childTaste.getName());
+            ImageView info = (ImageView) convertView.findViewById(R.id.iconInfoImage);
+            info.setVisibility(View.INVISIBLE);
         }
 
         return convertView;
