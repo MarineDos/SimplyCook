@@ -15,7 +15,7 @@ public class ConnectActivity extends FragmentActivity {
         // Init Firebase
         Firebase.setAndroidContext(this);
 
-        if (savedInstanceState == null) {
+        if ( savedInstanceState == null ) {
             // Add the fragment on initial activity setup
             connectFragment = new ConnectFragment();
             getSupportFragmentManager()

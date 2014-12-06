@@ -3,13 +3,12 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 20
     buildToolsVersion '20.0.0'
-
     defaultConfig {
-        applicationId "simplycook.marinedos.com.simplycook"
+        applicationId 'simplycook.marinedos.com.simplycook'
         minSdkVersion 11
         targetSdkVersion 20
         versionCode 1
-        versionName "1.0"
+        versionName '1.0'
     }
     buildTypes {
         release {
@@ -21,6 +20,8 @@ android {
         exclude 'META-INF/LICENSE'
         exclude 'META-INF/LICENSE-FIREBASE.txt'
         exclude 'META-INF/NOTICE'
+    }
+    productFlavors {
     }
 }
 

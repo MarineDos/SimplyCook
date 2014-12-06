@@ -1,0 +1,103 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="simplycook.marinedos.com.simplycook.HomeFragment"
+    android:orientation="vertical"
+    android:background="@drawable/background_bis">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:baselineAligned="false"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:padding="20sp">
+            <!-- DF5D2E -->
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/profilTitle"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:background="#99ffffff"
+                android:id="@+id/profil_btn"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:padding="20sp">
+            <!-- FFB43E -->
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/favorisTitle"
+                android:textSize="20sp"
+                android:background="#99ffffff"
+                android:gravity="center"
+                android:id="@+id/favoris_btn"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:baselineAligned="false"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="20sp">
+            <!-- A4C972 -->
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/comparaisonTitle"
+                android:textSize="20sp"
+                android:background="#99ffffff"
+                android:gravity="center"
+                android:id="@+id/comparaison_btn"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:padding="20sp">
+            <!-- 6BB38E -->
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/searchTitle"
+                android:textSize="20sp"
+                android:background="#99ffffff"
+                android:gravity="center"
+                android:id="@+id/search_btn"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout><!-- From: file:/D:/Travail/Programmation/Android/SimplyCook/app/src/main/res/layout/home_fragment.xml -->

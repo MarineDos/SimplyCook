@@ -31,4 +31,4 @@
             android:layout_marginBottom="16dp"
             android:hint="@string/passwordLoginPopup"/></LinearLayout>
 
-</LinearLayout><!-- From: file:/D:/Documents/Dev/SimplyCook/app/src/main/res/layout/login_dialog.xml -->
+</LinearLayout><!-- From: file:/D:/Travail/Programmation/Android/SimplyCook/app/src/main/res/layout/login_dialog.xml -->

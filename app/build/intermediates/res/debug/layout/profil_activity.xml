@@ -1,0 +1,6 @@
+<android.support.v4.view.ViewPager xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/pager"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+</android.support.v4.view.ViewPager>
+<!-- From: file:/D:/Travail/Programmation/Android/SimplyCook/app/src/main/res/layout/profil_activity.xml -->

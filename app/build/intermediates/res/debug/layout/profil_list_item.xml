@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="55dip"
+    android:orientation="horizontal"
+    android:id="@+id/list_item_taste">
+
+    <ImageView
+        android:id="@+id/iconListImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="?android:attr/expandableListPreferredChildPaddingLeft"
+        android:paddingRight="0dp"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="0.1"
+        android:src="@drawable/like"/>
+
+    <TextView
+        android:id="@+id/lblListItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="17dip"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:layout_gravity="center_vertical"
+        android:paddingLeft="5dp"
+        android:layout_weight="0.8"
+        android:paddingRight="0dp"/>
+
+    <ImageView
+        android:id="@+id/iconInfoImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="?android:attr/expandableListPreferredChildPaddingLeft"
+        android:paddingRight="0dp"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="0.1"
+        android:src="@drawable/info"/>
+
+</LinearLayout><!-- From: file:/D:/Travail/Programmation/Android/SimplyCook/app/src/main/res/layout/profil_list_item.xml -->
