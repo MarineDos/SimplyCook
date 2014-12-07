@@ -255,8 +255,8 @@ public class ConnexionManager {
 
                             String id = iter.next().toString();
 
-                            ref.child("/users/" + id + "/" + "/tastes/" + taste.getName()).setValue(newTaste);
-                            ref.child("/users/" + id + "/" + "/tastes/" + taste.getName()).setPriority(category);
+                            ref.child("/users/" + id + "/" + "tastes/" + taste.getName()).setValue(newTaste, category);
+                            //ref.child("/users/" + id + "/" + "tastes/" + taste.getName()).setPriority(category);
                         }
 
                         @Override

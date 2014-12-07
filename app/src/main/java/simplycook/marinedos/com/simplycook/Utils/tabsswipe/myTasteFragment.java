@@ -13,11 +13,17 @@ import android.view.ViewGroup;
 import android.widget.ExpandableListView;
 import android.widget.Toast;
 
+import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
 
 public class myTasteFragment extends Fragment {
     private ExpandableListAdapter listAdapter;
@@ -57,12 +63,66 @@ public class myTasteFragment extends Fragment {
         });
 
         prepareListData();
+        //prepareListData_debug();
         listAdapter = new ExpandableListAdapter(getActivity(), listDataHeader, listDataChild);
         expListView.setAdapter(listAdapter);
 
         return rootView;
     }
-    private void prepareListData() {
+
+    private void prepareListData()
+    {
+        listDataHeader = new ArrayList<String>();
+        listDataChild = new HashMap<String, List<Taste>>();
+
+        // Get all category of food
+        ref.child("/category").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // For each category
+                for(DataSnapshot category : dataSnapshot.getChildren()){
+                    // Get it's name
+                    final String categoryName = category.child("name").getValue(String.class);
+                    final List<Taste> listOfTaste = new ArrayList<Taste>();
+                    // Get all tastes of the current user for the category
+                    // TO DO : replace the value of user by it's id
+                    ref.child("/users/-JcZQea614i2BYjNTAtd/tastes")
+                            .startAt(categoryName)
+                            .endAt(categoryName)
+                            .addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(DataSnapshot dataSnapshot) {
+                                    // If there is value
+                                    if(dataSnapshot.getValue() != null) {
+                                        listDataHeader.add(categoryName);
+                                        // For each taste get it's name, like and comment and add it to the listOfTaste.
+                                        for (DataSnapshot food : dataSnapshot.getChildren()) {
+                                            String foodName = food.getKey();
+                                            int foodLike = food.child("like").getValue(Integer.class);
+                                            String foodComment = food.child("comment").getValue(String.class);
+                                            listOfTaste.add(new Taste(foodName, foodLike, foodComment));
+                                        }
+                                        listDataChild.put(categoryName, listOfTaste);
+                                    }
+                                }
+
+                                @Override
+                                public void onCancelled(FirebaseError firebaseError) {
+
+                                }
+                            });
+                }
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
+        });
+    }
+
+    // Debug
+    private void prepareListData_debug() {
         listDataHeader = new ArrayList<String>();
         listDataChild = new HashMap<String, List<Taste>>();
 

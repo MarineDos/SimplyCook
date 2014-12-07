@@ -63,7 +63,6 @@ public class manageTasteFragment extends Fragment {
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
 
                 String selectedCategory = spinnerCategory.getSelectedItem().toString();
-                System.out.println("COuouc : " + selectedCategory);
                 ref.child("/food/" + selectedCategory).addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {

@@ -53,16 +53,12 @@
                     fb:logout_text="@string/buttonLogOutFacebook"/>
 
                 <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
+                    style="@style/SimplyCook.button"
                     android:text="@string/buttonLogIn"
                     android:id="@+id/btn_login"/>
 
                 <Button
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="end"
+                    style="@style/SimplyCook.buttonMargin"
                     android:text="@string/buttonCreateAccount"
                     android:id="@+id/btn_create_account"/>
 

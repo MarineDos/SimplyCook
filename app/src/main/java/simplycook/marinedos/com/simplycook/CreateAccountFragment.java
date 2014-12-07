@@ -8,25 +8,32 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.firebase.client.AuthData;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 import simplycook.marinedos.com.simplycook.Utils.Anim;
+import simplycook.marinedos.com.simplycook.Utils.ConnexionManager;
 
 public class CreateAccountFragment extends Fragment{
     private Button mCreateAccount_btn;
     private TextView mFirstName_input, mLastName_input, mEmail_input, mPassword_input;
     private CreateAccountTask mCreateAccountTask;
     private View mCreateAccountContent, mCreateAccountLoader;
+    private LogInTask mLoginTask;
+    private final Firebase ref = new Firebase("https://simplycook.firebaseio.com");
 
     @Override
     public View onCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -108,10 +115,8 @@ public class CreateAccountFragment extends Fragment{
         @Override
         protected Void doInBackground(Void... params) {
             final Context context = getActivity();
-
-            final Firebase ref = new Firebase("https://simplycook.firebaseio.com");
-            String email = mEmail_input.getText().toString();
-            String password = mPassword_input.getText().toString();
+            final String email = mEmail_input.getText().toString();
+            final String password = mPassword_input.getText().toString();
 
             // Try to create User
             ref.createUser(email, password, new Firebase.ResultHandler() {
@@ -129,9 +134,15 @@ public class CreateAccountFragment extends Fragment{
                     Anim.hide(context, mCreateAccountLoader);
 
                     // Go back to login page
-                    Intent intent = new Intent(getActivity(), ConnectActivity.class);
-                    startActivity(intent);
+                   // Intent intent = new Intent(getActivity(), ConnectActivity.class);
+                   // startActivity(intent);
 
+                    // Launch log in task
+                    ArrayList<String> passing = new ArrayList<String>();
+                    passing.add(email);
+                    passing.add(password);
+                    mLoginTask = new LogInTask();
+                    mLoginTask.execute(passing);
                 }
 
                 @Override
@@ -143,6 +154,8 @@ public class CreateAccountFragment extends Fragment{
                             message = context.getString(R.string.errorMessage_emailAlreadyUsed);
                             mEmail_input.setError(context.getString(R.string.errorMessage_emailAlreadyUsed));
                             mEmail_input.setText("");
+                        case -24:
+                            message = context.getString(R.string.errorMessage_needInternetConnection); break;
                     }
 
                     Anim.hide(context, mCreateAccountLoader);
@@ -162,6 +175,48 @@ public class CreateAccountFragment extends Fragment{
 
                 }
             });
+            return null;
+        }
+    }
+
+    class LogInTask extends AsyncTask<ArrayList<String>, Void, Void>{
+
+        @Override
+        protected Void doInBackground(ArrayList<String>... params) {
+            // Log in the user
+            ArrayList<String> passed = params[0];
+            String email = passed.get(0);
+            String password = passed.get(1);
+
+            ref.authWithPassword(email, password, new Firebase.AuthResultHandler() {
+                @Override
+                public void onAuthenticated(AuthData authData) {
+                    // Change activity to home page
+                    ConnexionManager.storeUser();
+                    Intent intent = new Intent(getActivity(), HomeActivity.class);
+                    startActivity(intent);
+                }
+
+                @Override
+                public void onAuthenticationError(FirebaseError firebaseError) {
+                    Context context = getActivity();
+                    System.out.println("Firebase error : " + firebaseError.getCode());
+                    System.out.println("Firebase error : " + firebaseError.getMessage());
+                    int codeError = firebaseError.getCode();
+                    String message = "";
+                    switch(codeError){
+                        case -24:
+                            message = context.getString(R.string.errorMessage_needInternetConnection); break;
+                    }
+                    Toast toast = Toast.makeText(context, message, Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.CENTER, 0, 0);
+                    toast.show();
+
+                    Intent intent = new Intent(getActivity(), CreateAccountActivity.class);
+                    startActivity(intent);
+                }
+            });
+
             return null;
         }
     }

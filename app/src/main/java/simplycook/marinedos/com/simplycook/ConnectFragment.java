@@ -33,7 +33,7 @@ public class ConnectFragment extends Fragment{
     private LoginButton authButton;
     private View mLoginContent;
     private View mLoginLoader;
-    private  View mPopupView;
+    private View mPopupView;
     private AlertDialog mDialog;
     private LogInTask mLoginTask;
 
