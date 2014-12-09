@@ -196,7 +196,7 @@ public class ConnectFragment extends Fragment{
                     Anim.show(getActivity(), mLoginContent);
                     Anim.hide(getActivity(), mLoginLoader);
                     mDialog.cancel();
-                    ConnexionManager.storeUser();
+                    ConnexionManager.searchAndStroreUser();
                     Intent intent = new Intent(getActivity(), HomeActivity.class);
                     startActivity(intent);
                 }
@@ -216,6 +216,8 @@ public class ConnectFragment extends Fragment{
                             message = context.getString(R.string.errorMessage_incorrectEmail); break;
                         case -16 :
                             message = context.getString(R.string.errorMessage_incorrectPassword); break;
+                        case -17 :
+                            message = context.getString(R.string.errorMessage_userDoesNotExist); break;
                         case -24:
                             message = context.getString(R.string.errorMessage_needInternetConnection); break;
                     }

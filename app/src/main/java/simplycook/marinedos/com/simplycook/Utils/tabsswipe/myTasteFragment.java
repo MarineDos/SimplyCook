@@ -2,6 +2,7 @@ package simplycook.marinedos.com.simplycook.Utils.tabsswipe;
 
 import simplycook.marinedos.com.simplycook.ExpandableListAdapter;
 import simplycook.marinedos.com.simplycook.R;
+import simplycook.marinedos.com.simplycook.Utils.ConnexionManager;
 import simplycook.marinedos.com.simplycook.Utils.Taste;
 
 import android.os.Bundle;
@@ -83,18 +84,29 @@ public class myTasteFragment extends Fragment {
                 for(DataSnapshot category : dataSnapshot.getChildren()){
                     // Get it's name
                     final String categoryName = category.child("name").getValue(String.class);
-                    final List<Taste> listOfTaste = new ArrayList<Taste>();
+
                     // Get all tastes of the current user for the category
-                    // TO DO : replace the value of user by it's id
-                    ref.child("/users/-JcZQea614i2BYjNTAtd/tastes")
+                    ref.child("/users/" + ConnexionManager.User.firebaseId + "/tastes")
                             .startAt(categoryName)
                             .endAt(categoryName)
                             .addValueEventListener(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(DataSnapshot dataSnapshot) {
                                     // If there is value
-                                    if(dataSnapshot.getValue() != null) {
-                                        listDataHeader.add(categoryName);
+                                    if (dataSnapshot.getValue() != null) {
+                                        if(listDataHeader.size() == 0){
+                                            listDataHeader.add(categoryName);
+                                        }
+                                        for(int i = 0; i < listDataHeader.size(); ++i){
+                                            if(listDataHeader.get(i).equals(categoryName)){
+                                                // Category name already existe so stop
+                                                break;
+                                            }else{
+                                                // Category name doesn't exist so add it
+                                                listDataHeader.add(categoryName);
+                                            }
+                                        }
+                                        List<Taste> listOfTaste = new ArrayList<Taste>();
                                         // For each taste get it's name, like and comment and add it to the listOfTaste.
                                         for (DataSnapshot food : dataSnapshot.getChildren()) {
                                             String foodName = food.getKey();
@@ -103,10 +115,9 @@ public class myTasteFragment extends Fragment {
                                             listOfTaste.add(new Taste(foodName, foodLike, foodComment));
                                         }
                                         listDataChild.put(categoryName, listOfTaste);
-                                    }
 
-                                    listAdapter = new ExpandableListAdapter(getActivity(), listDataHeader, listDataChild);
-                                    expListView.setAdapter(listAdapter);
+                                        listAdapter.notifyDataSetChanged();
+                                    }
                                 }
 
                                 @Override

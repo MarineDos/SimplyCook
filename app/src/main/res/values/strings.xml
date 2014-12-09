@@ -38,6 +38,7 @@
     <string name="errorLastNameRequired">Un nom de famille est requis</string>
     <string name="errorEmailRequired">Un email est requis</string>
     <string name="errorMessage_needInternetConnection">Une connexion internet est requise</string>
+    <string name="errorMessage_userDoesNotExist">L\'email ne correspond à aucun utilisateur</string>
 
 
     <string name="title_activity_home">Accueil</string>

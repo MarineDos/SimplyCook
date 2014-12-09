@@ -131,6 +131,10 @@ public class CreateAccountFragment extends Fragment{
                     Firebase newRef = ref.child("/users/").push();
                     newRef.setValue(newUser, mEmail_input.getText().toString());
 
+                    newUser.put("firebaseId", newRef.getKey().toString());
+                    newUser.put("connexionMode", "password");
+                    ConnexionManager.storeUser(newUser);
+
                     Anim.hide(context, mCreateAccountLoader);
 
                     // Go back to login page
@@ -192,7 +196,6 @@ public class CreateAccountFragment extends Fragment{
                 @Override
                 public void onAuthenticated(AuthData authData) {
                     // Change activity to home page
-                    ConnexionManager.storeUser();
                     Intent intent = new Intent(getActivity(), HomeActivity.class);
                     startActivity(intent);
                 }

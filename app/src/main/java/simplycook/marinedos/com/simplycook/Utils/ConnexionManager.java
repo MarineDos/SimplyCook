@@ -39,15 +39,36 @@ public class ConnexionManager {
         public static String firstName;
         public static String lastName;
         public static String connexionMode;
+        public static String firebaseId;
         public static int imageRessource;
         public static Bitmap imageBitmap;
     }
 
-    public static void storeUser(){
+    public static void storeUser(Map<String, String> newUser){
+
+        AuthData authData = ref.getAuth();
+
+        User.connexionMode = newUser.get("connexionMode");
+        if(User.connexionMode.equals("facebook")){
+            String userId = authData.getProviderData().get("id").toString();
+            getFbImageTask getTask = new getFbImageTask();
+            getTask.execute(userId);
+        }else{
+            User.imageRessource = R.drawable.default_profil;
+        }
+
+        User.firstName = newUser.get("firstName");
+        User.lastName = newUser.get("lastName");
+
+        System.out.println("Stored id : " + newUser.get("firebaseId"));
+        User.firebaseId = newUser.get("firebaseId");
+
+    }
+
+    public static void searchAndStroreUser(){
         String search;
         AuthData authData = ref.getAuth();
         if (authData != null) {
-
             // If user if connected with Facebook, get his profil image
             if(authData.getProvider().equals("facebook")){
                 User.connexionMode = "facebook";
@@ -82,6 +103,10 @@ public class ConnexionManager {
                                 Iterator iter = set.iterator();
                                 Map<String, Object> value = (Map<String, Object>)user.get(iter.next());
 
+                                for(DataSnapshot keys : snapshot.getChildren()){
+                                    User.firebaseId = keys.getKey();
+                                }
+
                                 User.firstName =  value.get("firstName").toString();
                                 User.lastName = value.get("lastName").toString();
                             }
@@ -95,6 +120,7 @@ public class ConnexionManager {
 
         }
     }
+
     static class getFbImageTask extends AsyncTask<String, Void, Bitmap> {
 
         @Override
@@ -185,21 +211,19 @@ public class ConnexionManager {
                                                 Firebase newRef = ref.child("/users/").push();
                                                 newRef.setValue(newUser, id);
 
-                                                storeUser();
+                                                newUser.put("connexionMode", "facebook");
+                                                newUser.put("firebaseId", newRef.getKey().toString());
 
-                                                // Change activity to home page
-                                                Intent intent = new Intent(context, HomeActivity.class);
-                                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                                context.startActivity(intent);
+                                                storeUser(newUser);
                                             } else {
                                                 System.out.println("User already exists : " + id);
-
-                                                storeUser();
-
-                                                Intent intent = new Intent(context, HomeActivity.class);
-                                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                                context.startActivity(intent);
+                                                searchAndStroreUser();
                                             }
+
+                                            // Change activity to home page
+                                            Intent intent = new Intent(context, HomeActivity.class);
+                                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                            context.startActivity(intent);
                                         }
 
                                         @Override
