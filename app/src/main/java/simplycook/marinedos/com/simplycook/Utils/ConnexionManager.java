@@ -112,8 +112,6 @@ public class ConnexionManager {
                 URL imgUrl = new URL("https://graph.facebook.com/"
                         + userId + "/picture?width=128&height=128");
 
-                System.out.println(imgUrl);
-
                 InputStream in = (InputStream) imgUrl.getContent();
 
                 return BitmapFactory.decodeStream(in);

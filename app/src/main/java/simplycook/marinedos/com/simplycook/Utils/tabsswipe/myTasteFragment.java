@@ -104,6 +104,9 @@ public class myTasteFragment extends Fragment {
                                         }
                                         listDataChild.put(categoryName, listOfTaste);
                                     }
+
+                                    listAdapter = new ExpandableListAdapter(getActivity(), listDataHeader, listDataChild);
+                                    expListView.setAdapter(listAdapter);
                                 }
 
                                 @Override

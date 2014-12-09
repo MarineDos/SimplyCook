@@ -72,7 +72,6 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         }
 
         if(childTaste.getComment().equals("")){
-            System.out.println("Add for " + childTaste.getName());
             ImageView info = (ImageView) convertView.findViewById(R.id.iconInfoImage);
             info.setVisibility(View.INVISIBLE);
         }

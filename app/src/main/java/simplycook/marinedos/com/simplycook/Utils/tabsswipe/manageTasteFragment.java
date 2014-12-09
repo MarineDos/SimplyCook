@@ -67,7 +67,6 @@ public class manageTasteFragment extends Fragment {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         ArrayList<String> tab = new ArrayList();
-                        System.out.println(dataSnapshot.getValue());
 
                         for(DataSnapshot food : dataSnapshot.getChildren()){
                             tab.add(food.child("name").getValue(String.class));
@@ -100,7 +99,6 @@ public class manageTasteFragment extends Fragment {
                 String category = spinnerCategory.getSelectedItem().toString();
                 String food = spinnerFood.getSelectedItem().toString();
                 String comment = commentArea.getText().toString();
-                System.out.println("Add food : " + food);
 
                 if(!food.equals("") && !category.equals("")){
                     int selectedId = radioGroup.getCheckedRadioButtonId();
@@ -117,10 +115,9 @@ public class manageTasteFragment extends Fragment {
                             break;
                     }
 
-                    System.out.println("Ready to add");
-
                     Taste newTaste = new Taste(food, taste, comment);
                     ConnexionManager.addTaste(newTaste, category);
+
                 }
             }
         });
