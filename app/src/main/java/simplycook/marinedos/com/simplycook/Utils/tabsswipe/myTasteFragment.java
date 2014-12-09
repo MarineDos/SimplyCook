@@ -12,6 +12,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.firebase.client.DataSnapshot;
@@ -67,6 +69,17 @@ public class myTasteFragment extends Fragment {
         //prepareListData_debug();
         listAdapter = new ExpandableListAdapter(getActivity(), listDataHeader, listDataChild);
         expListView.setAdapter(listAdapter);
+
+        // Profil
+        TextView name = (TextView) rootView.findViewById(R.id.profil_name);
+        name.setText(ConnexionManager.User.firstName + " " + ConnexionManager.User.lastName);
+        ImageView img = (ImageView) rootView.findViewById(R.id.profil_img);
+        if(ConnexionManager.User.connexionMode.equals("facebook")){
+            img.setImageBitmap(ConnexionManager.User.imageBitmap);
+        }else{
+            img.setImageResource(ConnexionManager.User.imageRessource);
+        }
+
 
         return rootView;
     }
