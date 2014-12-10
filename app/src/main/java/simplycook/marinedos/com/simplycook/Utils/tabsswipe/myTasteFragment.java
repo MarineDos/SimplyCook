@@ -109,15 +109,15 @@ public class myTasteFragment extends Fragment {
                                     if (dataSnapshot.getValue() != null) {
                                         if(listDataHeader.size() == 0){
                                             listDataHeader.add(categoryName);
-                                        }
-                                        for(int i = 0; i < listDataHeader.size(); ++i){
-                                            if(listDataHeader.get(i).equals(categoryName)){
-                                                // Category name already existe so stop
-                                                break;
-                                            }else{
-                                                // Category name doesn't exist so add it
-                                                listDataHeader.add(categoryName);
+                                        }else{
+                                            for (int i = 0; i < listDataHeader.size(); ++i) {
+                                                if (listDataHeader.get(i).equals(categoryName)) {
+                                                    // Category name already existe so delete the older
+                                                    listDataHeader.remove(i);
+                                                    break;
+                                                }
                                             }
+                                            listDataHeader.add(categoryName);
                                         }
                                         List<Taste> listOfTaste = new ArrayList<Taste>();
                                         // For each taste get it's name, like and comment and add it to the listOfTaste.
