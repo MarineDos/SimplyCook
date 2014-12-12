@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import simplycook.marinedos.com.simplycook.R;
 import simplycook.marinedos.com.simplycook.Utils.ConnexionManager;
 import simplycook.marinedos.com.simplycook.Utils.Taste;
+import simplycook.marinedos.com.simplycook.Utils.TasteManager;
 
 public class manageTasteFragment extends Fragment {
 
@@ -116,7 +117,7 @@ public class manageTasteFragment extends Fragment {
                     }
 
                     Taste newTaste = new Taste(food, taste, comment);
-                    ConnexionManager.addTaste(newTaste, category);
+                    TasteManager.addTaste(newTaste, category);
 
                 }
             }
