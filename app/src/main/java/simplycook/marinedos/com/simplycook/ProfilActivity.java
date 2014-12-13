@@ -19,11 +19,19 @@ public class ProfilActivity extends FragmentActivity implements ActionBar.TabLis
     private TabsPagerAdapter mAdapter;
     private ActionBar actionBar;
     private String[] tabs = { "Mes goûts", "Gérer mes goûts" };
+    public String userFirebaseId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.profil_activity);
+
+        // Get user
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            userFirebaseId = extras.getString("firebaseId");
+            System.out.println(userFirebaseId);
+        }
 
         // Initilization
         viewPager = (ViewPager) findViewById(R.id.pager);
@@ -88,6 +96,10 @@ public class ProfilActivity extends FragmentActivity implements ActionBar.TabLis
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public String getFirebaseId(){
+        return userFirebaseId;
     }
 
 }
