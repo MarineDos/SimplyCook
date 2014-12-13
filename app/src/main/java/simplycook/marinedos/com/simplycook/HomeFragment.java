@@ -31,7 +31,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 // Go to profil Activity
-                Intent intent = new Intent(getActivity(), ProfilActivity.class);
+                Intent intent = new Intent(getActivity(), MyProfilActivity.class);
                 startActivity(intent);
             }
         });

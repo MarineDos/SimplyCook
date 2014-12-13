@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="simplycook.marinedos.com.simplycook.ProfilActivity$PlaceholderFragment">
+    tools:context="simplycook.marinedos.com.simplycook.MyProfilActivity$PlaceholderFragment">
 
 </LinearLayout>
 <!-- From: file:/D:/Documents/Dev/SimplyCook/app/src/main/res/layout/profil_fragment.xml -->

@@ -39,7 +39,7 @@
             android:label="@string/title_activity_home" >
         </activity>
         <activity
-            android:name="simplycook.marinedos.com.simplycook.ProfilActivity"
+            android:name="simplycook.marinedos.com.simplycook.MyProfilActivity"
             android:label="@string/title_activity_profil" >
         </activity>
         <activity

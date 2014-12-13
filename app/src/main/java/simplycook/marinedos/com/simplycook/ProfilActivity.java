@@ -8,19 +8,9 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
-
-import com.firebase.client.DataSnapshot;
-import com.firebase.client.Firebase;
-import com.firebase.client.FirebaseError;
-import com.firebase.client.ValueEventListener;
-
-import java.util.ArrayList;
-import java.util.Arrays;
 
 import simplycook.marinedos.com.simplycook.Utils.ConnexionManager;
-import simplycook.marinedos.com.simplycook.Utils.tabsswipe.TabsPagerAdapter;
+import simplycook.marinedos.com.simplycook.Utils.tabsSwipeUserProfil.TabsPagerAdapter;
 
 
 public class ProfilActivity extends FragmentActivity implements ActionBar.TabListener {

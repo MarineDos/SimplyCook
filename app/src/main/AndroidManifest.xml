@@ -32,7 +32,7 @@
             android:label="@string/title_activity_home" >
         </activity>
         <activity
-            android:name=".ProfilActivity"
+            android:name=".MyProfilActivity"
             android:label="@string/title_activity_profil" >
         </activity>
         <activity
