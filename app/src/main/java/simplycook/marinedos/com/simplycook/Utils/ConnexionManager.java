@@ -5,10 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.media.Image;
 import android.os.AsyncTask;
-import android.util.Log;
-import android.widget.ImageView;
 
 import com.facebook.Request;
 import com.facebook.Response;
@@ -19,7 +16,6 @@ import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
-import com.firebase.client.core.Path;
 
 import java.io.InputStream;
 import java.net.URL;
@@ -35,33 +31,26 @@ import simplycook.marinedos.com.simplycook.R;
 public class ConnexionManager {
 
     private static final Firebase ref = new Firebase("https://simplycook.firebaseio.com");
-    public static class User{
-        public static String firstName;
-        public static String lastName;
-        public static String connexionMode;
-        public static String firebaseId;
-        public static int imageRessource;
-        public static Bitmap imageBitmap;
-    }
+    public static User user = new User();
 
     public static void storeUser(Map<String, String> newUser){
 
         AuthData authData = ref.getAuth();
 
-        User.connexionMode = newUser.get("connexionMode");
-        if(User.connexionMode.equals("facebook")){
+        user.connexionMode = newUser.get("connexionMode");
+        if(user.connexionMode.equals("facebook")){
             String userId = authData.getProviderData().get("id").toString();
             getFbImageTask getTask = new getFbImageTask();
             getTask.execute(userId);
         }else{
-            User.imageRessource = R.drawable.default_profil;
+            user.imageRessource = R.drawable.default_profil;
         }
 
-        User.firstName = newUser.get("firstName");
-        User.lastName = newUser.get("lastName");
+        user.firstName = newUser.get("firstName");
+        user.lastName = newUser.get("lastName");
 
         System.out.println("Stored id : " + newUser.get("firebaseId"));
-        User.firebaseId = newUser.get("firebaseId");
+        user.firebaseId = newUser.get("firebaseId");
 
     }
 
@@ -71,17 +60,17 @@ public class ConnexionManager {
         if (authData != null) {
             // If user if connected with Facebook, get his profil image
             if(authData.getProvider().equals("facebook")){
-                User.connexionMode = "facebook";
+                user.connexionMode = "facebook";
                 search = "id";
                 // Get profil image
                 String userId = authData.getProviderData().get("id").toString();
                 getFbImageTask getTask = new getFbImageTask();
                 getTask.execute(userId);
             }else{
-                User.connexionMode = authData.getProvider();
+                user.connexionMode = authData.getProvider();
                 search = "email";
                 // Put default image
-                User.imageRessource = R.drawable.default_profil;
+                user.imageRessource = R.drawable.default_profil;
 
             }
 
@@ -98,17 +87,17 @@ public class ConnexionManager {
                                 System.out.println("User doesn't exist");
                             } else {
                                 System.out.println("User exist");
-                                Map<String, Object> user = (Map<String, Object>)snapshot.getValue();
-                                Set set = user.keySet();
+                                Map<String, Object> userInfo = (Map<String, Object>)snapshot.getValue();
+                                Set set = userInfo.keySet();
                                 Iterator iter = set.iterator();
-                                Map<String, Object> value = (Map<String, Object>)user.get(iter.next());
+                                Map<String, Object> value = (Map<String, Object>)userInfo.get(iter.next());
 
                                 for(DataSnapshot keys : snapshot.getChildren()){
-                                    User.firebaseId = keys.getKey();
+                                    user.firebaseId = keys.getKey();
                                 }
 
-                                User.firstName =  value.get("firstName").toString();
-                                User.lastName = value.get("lastName").toString();
+                                user.firstName =  value.get("firstName").toString();
+                                user.lastName = value.get("lastName").toString();
                             }
                         }
 
@@ -127,7 +116,7 @@ public class ConnexionManager {
         protected void onPostExecute(Bitmap bitmap) {
             // Set image to the ImageView
             super.onPostExecute(bitmap);
-            User.imageBitmap = bitmap;
+            user.imageBitmap = bitmap;
         }
 
         @Override
