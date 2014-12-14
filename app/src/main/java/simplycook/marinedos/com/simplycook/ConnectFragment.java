@@ -37,7 +37,6 @@ public class ConnectFragment extends Fragment{
     private AlertDialog mDialog;
     private LogInTask mLoginTask;
 
-    private static final String TAG = "ConnectFragment";
     private UiLifecycleHelper uiHelper;
     private Button mLogin_btn, mNew_account_btn;
     private final Firebase ref = new Firebase("https://simplycook.firebaseio.com");

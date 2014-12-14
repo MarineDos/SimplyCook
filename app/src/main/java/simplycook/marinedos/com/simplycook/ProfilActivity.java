@@ -98,8 +98,4 @@ public class ProfilActivity extends FragmentActivity implements ActionBar.TabLis
         return super.onOptionsItemSelected(item);
     }
 
-    public String getFirebaseId(){
-        return userFirebaseId;
-    }
-
 }

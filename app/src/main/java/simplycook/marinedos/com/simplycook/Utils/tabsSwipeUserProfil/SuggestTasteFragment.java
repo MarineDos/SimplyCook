@@ -26,6 +26,7 @@ import simplycook.marinedos.com.simplycook.Utils.TasteManager;
 public class SuggestTasteFragment extends Fragment {
 
     private final Firebase ref = new Firebase("https://simplycook.firebaseio.com");
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

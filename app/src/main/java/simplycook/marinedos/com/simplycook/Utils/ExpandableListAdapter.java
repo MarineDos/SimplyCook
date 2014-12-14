@@ -1,7 +1,6 @@
 package simplycook.marinedos.com.simplycook.Utils;
 
 import simplycook.marinedos.com.simplycook.R;
-import simplycook.marinedos.com.simplycook.Utils.Taste;
 
 import java.util.HashMap;
 import java.util.List;
@@ -13,8 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class ExpandableListAdapter extends BaseExpandableListAdapter {

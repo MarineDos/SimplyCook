@@ -201,7 +201,7 @@ public class ConnexionManager {
                                                 newRef.setValue(newUser, id);
 
                                                 newUser.put("connexionMode", "facebook");
-                                                newUser.put("firebaseId", newRef.getKey().toString());
+                                                newUser.put("firebaseId", newRef.getKey());
 
                                                 storeUser(newUser);
                                             } else {

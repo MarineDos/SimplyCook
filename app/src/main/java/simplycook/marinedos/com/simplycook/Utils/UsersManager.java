@@ -14,10 +14,8 @@ import com.firebase.client.ValueEventListener;
 
 import java.io.InputStream;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Objects;
 
 import simplycook.marinedos.com.simplycook.R;
 

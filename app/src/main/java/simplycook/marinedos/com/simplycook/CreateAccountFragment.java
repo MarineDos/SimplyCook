@@ -131,7 +131,7 @@ public class CreateAccountFragment extends Fragment{
                     Firebase newRef = ref.child("/users/").push();
                     newRef.setValue(newUser, mEmail_input.getText().toString());
 
-                    newUser.put("firebaseId", newRef.getKey().toString());
+                    newUser.put("firebaseId", newRef.getKey());
                     newUser.put("connexionMode", "password");
                     ConnexionManager.storeUser(newUser);
 
@@ -158,6 +158,7 @@ public class CreateAccountFragment extends Fragment{
                             message = context.getString(R.string.errorMessage_emailAlreadyUsed);
                             mEmail_input.setError(context.getString(R.string.errorMessage_emailAlreadyUsed));
                             mEmail_input.setText("");
+                            break;
                         case -24:
                             message = context.getString(R.string.errorMessage_needInternetConnection); break;
                     }

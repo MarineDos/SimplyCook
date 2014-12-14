@@ -40,7 +40,7 @@ public class manageTasteFragment extends Fragment {
         ref.child("/category").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                ArrayList<String> tab = new ArrayList();
+                ArrayList<String> tab = new ArrayList<String>();
 
                 for(DataSnapshot category : dataSnapshot.getChildren()){
                     tab.add(category.child("name").getValue(String.class));
@@ -65,7 +65,7 @@ public class manageTasteFragment extends Fragment {
                 ref.child("/food/" + selectedCategory).addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        ArrayList<String> tab = new ArrayList();
+                        ArrayList<String> tab = new ArrayList<String>();
 
                         for(DataSnapshot food : dataSnapshot.getChildren()){
                             tab.add(food.child("name").getValue(String.class));

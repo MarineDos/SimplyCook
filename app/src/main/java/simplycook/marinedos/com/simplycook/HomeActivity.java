@@ -6,14 +6,10 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.firebase.client.Firebase;
-
 import simplycook.marinedos.com.simplycook.Utils.ConnexionManager;
 
 
 public class HomeActivity extends ActionBarActivity {
-
-    private final Firebase ref = new Firebase("https://simplycook.firebaseio.com");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

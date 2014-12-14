@@ -2,7 +2,6 @@ package simplycook.marinedos.com.simplycook.Utils.tabsSwipeUserProfil;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,7 +20,6 @@ import java.util.List;
 import simplycook.marinedos.com.simplycook.ProfilActivity;
 import simplycook.marinedos.com.simplycook.Utils.ExpandableListAdapter;
 import simplycook.marinedos.com.simplycook.R;
-import simplycook.marinedos.com.simplycook.Utils.ConnexionManager;
 import simplycook.marinedos.com.simplycook.Utils.Taste;
 import simplycook.marinedos.com.simplycook.Utils.TasteManager;
 import simplycook.marinedos.com.simplycook.Utils.UsersManager;
@@ -31,7 +29,6 @@ public class TasteFragment extends Fragment {
     private ExpandableListView expListView;
     private List<String> listDataHeader;
     private HashMap<String, List<Taste>> listDataChild;
-    private final Firebase ref = new Firebase("https://simplycook.firebaseio.com");
     private String userFirebaseId;
 
     @Override
@@ -77,14 +74,6 @@ public class TasteFragment extends Fragment {
         TextView nameView = (TextView) rootView.findViewById(R.id.profil_name);
         ImageView imgView = (ImageView) rootView.findViewById(R.id.profil_img);
         UsersManager.updateProfil(userFirebaseId, nameView, imgView);
-        /*
-        name.setText(ConnexionManager.user.firstName + " " + ConnexionManager.user.lastName);
-
-        if(ConnexionManager.user.connexionMode.equals("facebook")){
-            img.setImageBitmap(ConnexionManager.user.imageBitmap);
-        }else{
-            img.setImageResource(ConnexionManager.user.imageRessource);
-        }*/
 
 
         return rootView;

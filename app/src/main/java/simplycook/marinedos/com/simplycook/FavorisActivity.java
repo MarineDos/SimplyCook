@@ -2,18 +2,14 @@ package simplycook.marinedos.com.simplycook;
 
 import android.support.v4.app.ListFragment;
 import android.support.v7.app.ActionBarActivity;
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.SimpleCursorAdapter;
 
 import simplycook.marinedos.com.simplycook.Utils.ConnexionManager;
 
 
 public class FavorisActivity extends ActionBarActivity {
-
-    SimpleCursorAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

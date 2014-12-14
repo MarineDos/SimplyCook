@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,7 +49,7 @@ public class FavorisFragment extends ListFragment {
 
     public void onListItemClick(ListView l, View v, int pos, long id) {
         super.onListItemClick(l, v, pos, id);
-        User user = (User) mAdapter.getItem(pos);
+        User user = mAdapter.getItem(pos);
 
         Intent intent = new Intent(getActivity(), ProfilActivity.class);
         intent.putExtra("firebaseId", user.firebaseId);
