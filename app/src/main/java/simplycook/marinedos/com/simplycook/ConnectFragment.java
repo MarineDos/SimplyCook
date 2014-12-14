@@ -63,6 +63,7 @@ public class ConnectFragment extends Fragment{
         mLoginContent = view.findViewById(R.id.login_content);
         mLoginLoader = view.findViewById(R.id.login_loader);
         Anim.hide(getActivity(), mLoginLoader);
+        Anim.show(getActivity(), mLoginContent);
 
         // Normal login button
         mLogin_btn = (Button) view.findViewById(R.id.btn_login);
@@ -125,6 +126,8 @@ public class ConnectFragment extends Fragment{
 
         if (state.isOpened()) {
             // Logged in
+            Anim.hide(getActivity(), mLoginContent);
+            Anim.show(getActivity(), mLoginLoader);
             ConnexionManager.connectFirebaseWithFacebook(session, getActivity());
 
         } else if (state.isClosed()) {
@@ -197,6 +200,7 @@ public class ConnectFragment extends Fragment{
                     mDialog.cancel();
                     ConnexionManager.searchAndStroreUser();
                     Intent intent = new Intent(getActivity(), HomeActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                 }
 
