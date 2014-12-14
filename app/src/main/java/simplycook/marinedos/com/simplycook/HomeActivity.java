@@ -18,6 +18,8 @@ public class HomeActivity extends ActionBarActivity {
         if(savedInstanceState == null) {
             // Create fragment
             Fragment fragment = new HomeFragment();
+            fragment.setHasOptionsMenu(true);
+            fragment.setMenuVisibility(true);
 
             // Load fragment in the Activity
             getSupportFragmentManager().beginTransaction()
@@ -27,8 +29,9 @@ public class HomeActivity extends ActionBarActivity {
     }
 
 
-    @Override
+    /*@Override
     public boolean onCreateOptionsMenu(Menu menu) {
+
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
@@ -42,5 +45,5 @@ public class HomeActivity extends ActionBarActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
-    }
+    }*/
 }

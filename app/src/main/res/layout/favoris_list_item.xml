@@ -5,8 +5,8 @@
     android:layout_height="match_parent">
 
     <ImageView android:id="@+id/favoris_profil_img"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="64sp"
+        android:layout_height="64sp"
         android:layout_margin="20dp"/>
 
     <TextView android:id="@+id/favoris_profil_name"
