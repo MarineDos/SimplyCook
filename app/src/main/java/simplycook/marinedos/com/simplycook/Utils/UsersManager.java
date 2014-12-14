@@ -16,6 +16,7 @@ import java.io.InputStream;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import simplycook.marinedos.com.simplycook.R;
 
@@ -63,7 +64,7 @@ public class UsersManager {
         return users;
     }
 
-    static class getFbImageTaskAndNotify extends AsyncTask<HashMap<String, User>, Void, Bitmap> {
+    public static class getFbImageTaskAndNotify extends AsyncTask<HashMap<String, User>, Void, Bitmap> {
         public String userId;
         public User newUser;
 
@@ -120,7 +121,8 @@ public class UsersManager {
             }
         });
     }
-    static class getFbImageTask extends AsyncTask<HashMap<String, ImageView>, Void, Bitmap> {
+
+    public static class getFbImageTask extends AsyncTask<HashMap<String, ImageView>, Void, Bitmap> {
         public String userId;
         public ImageView imgView;
 
@@ -149,6 +151,66 @@ public class UsersManager {
             }
             return null;
         }
+    }
+
+    public static void addFavoris(final String firebaseId, final ImageView favorisImg){
+
+        System.out.println("Add to favorite");
+        ref.child("/users/" + ConnexionManager.user.firebaseId + "/favorites")
+                .startAt(firebaseId)
+                .endAt(firebaseId)
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+
+                        if (dataSnapshot.getValue() == null) {
+                            // add favorite
+                            favorisImg.setImageResource(R.drawable.star_yellow);
+
+                            Map<String, String> newFavoris = new HashMap<String, String>();
+                            newFavoris.put("firebaseId", firebaseId);
+
+                            Firebase newRef = ref.child("/users/" + ConnexionManager.user.firebaseId + "/favorites").push();
+                            newRef.setValue(newFavoris, firebaseId);
+                        }else{
+                            //Delete from favorites
+                            favorisImg.setImageResource(R.drawable.star);
+                            for (DataSnapshot favorite : dataSnapshot.getChildren()) {
+                                String key = favorite.getKey();
+                                Firebase refFavorite = ref.child("/users/" + ConnexionManager.user.firebaseId + "/favorites/" + key);
+                                refFavorite.removeValue();
+                            }
+
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(FirebaseError firebaseError) {
+
+                    }
+                });
+    }
+
+    public static void updateIfFavoris(final String firebaseId, final ImageView favorisImg){
+        ref.child("/users/" + ConnexionManager.user.firebaseId + "/favorites")
+                .startAt(firebaseId)
+                .endAt(firebaseId)
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.getValue() != null) {
+                            // add favorite
+                            favorisImg.setImageResource(R.drawable.star_yellow);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(FirebaseError firebaseError) {
+
+                    }
+                });
     }
 
 }

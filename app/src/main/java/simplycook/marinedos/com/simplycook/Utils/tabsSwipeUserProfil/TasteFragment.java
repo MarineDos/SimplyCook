@@ -4,14 +4,13 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.firebase.client.Firebase;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -72,8 +71,19 @@ public class TasteFragment extends Fragment {
 
         // Profil
         TextView nameView = (TextView) rootView.findViewById(R.id.profil_name);
-        ImageView imgView = (ImageView) rootView.findViewById(R.id.profil_img);
+        final ImageView imgView = (ImageView) rootView.findViewById(R.id.profil_img);
         UsersManager.updateProfil(userFirebaseId, nameView, imgView);
+
+        // add to favorite
+        final ImageView favorisImg = (ImageView) rootView.findViewById(R.id.favoris_img);
+        UsersManager.updateIfFavoris(userFirebaseId, favorisImg);
+        favorisImg.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                UsersManager.addFavoris(userFirebaseId, favorisImg);
+                return false;
+            }
+        });
 
 
         return rootView;

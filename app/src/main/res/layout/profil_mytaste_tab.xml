@@ -15,23 +15,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/profil_img"
-            android:layout_margin="20dp"
-            android:layout_weight="0.1"/>
+            android:layout_margin="20dp"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/profil_name"
             android:layout_marginLeft="20dp"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="0.8"/>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/favoris_img"
-            android:src="@drawable/star"
-            android:layout_margin="20dp"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="0.1"/>
+            android:layout_gravity="center_vertical"/>
 
 
     </LinearLayout>

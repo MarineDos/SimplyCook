@@ -18,14 +18,13 @@ public class ProfilActivity extends FragmentActivity implements ActionBar.TabLis
     private ViewPager viewPager;
     private TabsPagerAdapter mAdapter;
     private ActionBar actionBar;
-    private String[] tabs = { getResources().getString(R.string.title_histastes), getResources().getString(R.string.title_suggest_tastes) };
     public String userFirebaseId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.profil_activity);
-
+        String[] tabs = { getResources().getString(R.string.title_histastes), getResources().getString(R.string.title_suggest_tastes) };
         // Get user
         Bundle extras = getIntent().getExtras();
         if (extras != null) {

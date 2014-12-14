@@ -102,8 +102,6 @@ public class manageTasteFragment extends Fragment {
                 String comment = commentArea.getText().toString();
                 int selectedId = radioGroup.getCheckedRadioButtonId();
 
-                System.out.println(selectedId);
-
                 if(!food.equals("") && !category.equals("") && selectedId != -1){
                     int taste = 0;
                     switch (selectedId){
@@ -124,7 +122,7 @@ public class manageTasteFragment extends Fragment {
                     radioGroup.clearCheck();
                     commentArea.setText("");
 
-                    String message = food + " a été ajouté à vos goûts.";
+                    String message = food + " a été ajouté / modifié.";
                     Toast toast = Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT);
                     toast.setGravity(Gravity.CENTER, 0, 0);
                     toast.show();
