@@ -2,10 +2,10 @@
 <merger version="2" >
 
     <dataSet config="main" >
-        <source path="D:\Travail\Programmation\Android\SimplyCook\facebook\src\main\assets" />
+        <source path="D:\Documents\Dev\SimplyCook\facebook\src\main\assets" />
     </dataSet>
     <dataSet config="debug" >
-        <source path="D:\Travail\Programmation\Android\SimplyCook\facebook\src\debug\assets" />
+        <source path="D:\Documents\Dev\SimplyCook\facebook\src\debug\assets" />
     </dataSet>
 
 </merger>
