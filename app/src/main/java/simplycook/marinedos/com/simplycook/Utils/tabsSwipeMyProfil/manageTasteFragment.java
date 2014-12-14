@@ -2,6 +2,7 @@ package simplycook.marinedos.com.simplycook.Utils.tabsSwipeMyProfil;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
@@ -98,9 +100,11 @@ public class manageTasteFragment extends Fragment {
                 String category = spinnerCategory.getSelectedItem().toString();
                 String food = spinnerFood.getSelectedItem().toString();
                 String comment = commentArea.getText().toString();
+                int selectedId = radioGroup.getCheckedRadioButtonId();
 
-                if(!food.equals("") && !category.equals("")){
-                    int selectedId = radioGroup.getCheckedRadioButtonId();
+                System.out.println(selectedId);
+
+                if(!food.equals("") && !category.equals("") && selectedId != -1){
                     int taste = 0;
                     switch (selectedId){
                         case R.id.radioButton_like:
@@ -116,6 +120,14 @@ public class manageTasteFragment extends Fragment {
 
                     Taste newTaste = new Taste(food, taste, comment);
                     TasteManager.addTaste(newTaste, category);
+
+                    radioGroup.clearCheck();
+                    commentArea.setText("");
+
+                    String message = food + " a été ajouté à vos goûts.";
+                    Toast toast = Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.CENTER, 0, 0);
+                    toast.show();
 
                 }
             }

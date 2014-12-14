@@ -18,7 +18,7 @@ public class ProfilActivity extends FragmentActivity implements ActionBar.TabLis
     private ViewPager viewPager;
     private TabsPagerAdapter mAdapter;
     private ActionBar actionBar;
-    private String[] tabs = { "Mes goûts", "Gérer mes goûts" };
+    private String[] tabs = { getResources().getString(R.string.title_histastes), getResources().getString(R.string.title_suggest_tastes) };
     public String userFirebaseId;
 
     @Override

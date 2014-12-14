@@ -18,11 +18,11 @@ public class MyProfilActivity extends FragmentActivity implements ActionBar.TabL
     private ViewPager viewPager;
     private TabsPagerAdapter mAdapter;
     private ActionBar actionBar;
-    private String[] tabs = { "Mes goûts", "Gérer mes goûts", "Mes favoris" };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        String[] tabs = { getResources().getString(R.string.title_mytastes), getResources().getString(R.string.title_manage_tastes), getResources().getString(R.string.title_activity_favoris) };
         setContentView(R.layout.profil_activity);
 
         // Initilization

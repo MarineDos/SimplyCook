@@ -28,7 +28,6 @@ public class myTasteFragment extends Fragment {
     private ExpandableListView expListView;
     private List<String> listDataHeader;
     private HashMap<String, List<Taste>> listDataChild;
-    private final Firebase ref = new Firebase("https://simplycook.firebaseio.com");
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

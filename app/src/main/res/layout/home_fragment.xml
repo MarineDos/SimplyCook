@@ -37,7 +37,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/profilTitle"
+                    android:text="@string/title_myprofil"
                     android:gravity="center"
                     android:textSize="20dp"/>
 
@@ -70,7 +70,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/favorisTitle"
+                    android:text="@string/title_myfavoris"
                     android:textSize="20dp"
                     android:gravity="center"/>
             </LinearLayout>
@@ -111,7 +111,7 @@
                 <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/comparaisonTitle"
+                android:text="@string/title_comparaison"
                 android:textSize="20dp"
                 android:gravity="center"/>
 
@@ -144,7 +144,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/searchTitle"
+                    android:text="@string/title_search"
                     android:textSize="20dp"
                     android:paddingTop="10dp"
                     android:gravity="center"/>
