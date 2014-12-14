@@ -18,17 +18,32 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:layout_weight="1"
-            android:padding="20sp">
-            <!-- DF5D2E -->
+            android:padding="20dp">
 
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="@string/profilTitle"
-                android:gravity="center"
-                android:textSize="20sp"
                 android:background="#99ffffff"
-                android:id="@+id/profil_btn"/>
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:id="@+id/profil_btn">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/profil"
+                    android:gravity="center"
+                    android:layout_gravity="center_vertical"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/profilTitle"
+                    android:gravity="center"
+                    android:textSize="20dp"/>
+
+
+            </LinearLayout>
 
         </LinearLayout>
 
@@ -37,17 +52,29 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:layout_weight="1"
-            android:padding="20sp">
-            <!-- FFB43E -->
+            android:padding="20dp">
 
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="@string/favorisTitle"
-                android:textSize="20sp"
                 android:background="#99ffffff"
+                android:orientation="horizontal"
                 android:gravity="center"
-                android:id="@+id/favoris_btn"/>
+                android:id="@+id/favoris_btn">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/favoris"
+                    android:layout_gravity="center_vertical"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/favorisTitle"
+                    android:textSize="20dp"
+                    android:gravity="center"/>
+            </LinearLayout>
 
         </LinearLayout>
 
@@ -66,17 +93,30 @@
             android:orientation="vertical"
             android:layout_weight="1"
             android:gravity="center"
-            android:padding="20sp">
-            <!-- A4C972 -->
+            android:padding="20dp">
 
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="@string/comparaisonTitle"
-                android:textSize="20sp"
                 android:background="#99ffffff"
+                android:orientation="horizontal"
                 android:gravity="center"
-                android:id="@+id/comparaison_btn"/>
+                android:id="@+id/comparaison_btn">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/scales"
+                    android:layout_gravity="center_vertical"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/comparaisonTitle"
+                    android:textSize="20dp"
+                    android:gravity="center"/>
+
+            </LinearLayout>
 
         </LinearLayout>
 
@@ -85,17 +125,31 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:layout_weight="1"
-            android:padding="20sp">
-            <!-- 6BB38E -->
+            android:padding="20dp">
 
-            <TextView
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="@string/searchTitle"
-                android:textSize="20sp"
                 android:background="#99ffffff"
+                android:orientation="horizontal"
                 android:gravity="center"
-                android:id="@+id/search_btn"/>
+                android:id="@+id/search_btn">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/search"
+                    android:layout_gravity="center_vertical"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/searchTitle"
+                    android:textSize="20dp"
+                    android:gravity="center"/>
+
+            </LinearLayout>
         </LinearLayout>
 
     </LinearLayout>
