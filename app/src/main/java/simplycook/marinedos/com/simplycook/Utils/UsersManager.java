@@ -26,26 +26,26 @@ public class UsersManager {
     private static List<User> users;
     private static ArrayAdapter<User> listAdapter;
 
-    public static List<User> updateAllUsersList(final ArrayAdapter<User> adapter, final List<User> usersList){
+    public static List<User> updateAllUsersList(final ArrayAdapter<User> adapter, final List<User> usersList) {
         users = usersList;
         listAdapter = adapter;
         ref.child("/users").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                if(dataSnapshot.getValue() != null){
+                if (dataSnapshot.getValue() != null) {
                     for (DataSnapshot user : dataSnapshot.getChildren()) {
                         User newUser = new User();
                         newUser.firebaseId = user.getKey();
                         newUser.firstName = user.child("firstName").getValue(String.class);
                         newUser.lastName = user.child("lastName").getValue(String.class);
-                        if(user.child("id").getValue() != null){
+                        if (user.child("id").getValue() != null) {
                             newUser.connexionMode = "facebook";
                             getFbImageTaskAndNotify getTask = new getFbImageTaskAndNotify();
                             HashMap<String, User> userImage = new HashMap<String, User>();
                             userImage.put(user.child("id").getValue().toString(), newUser);
                             getTask.execute(userImage);
 
-                        }else{
+                        } else {
                             newUser.connexionMode = "password";
                             newUser.imageRessource = R.drawable.default_profil;
                             usersList.add(newUser);
@@ -98,18 +98,18 @@ public class UsersManager {
         }
     }
 
-    public static void updateProfil(String userFirebaseId, final TextView nameView, final ImageView imgView){
+    public static void updateProfil(String userFirebaseId, final TextView nameView, final ImageView imgView) {
         ref.child("/users/" + userFirebaseId).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                if(dataSnapshot.getValue() != null){
-                    nameView.setText( dataSnapshot.child("firstName").getValue(String.class) + " " +  dataSnapshot.child("lastName").getValue(String.class));
-                    if(dataSnapshot.child("id").getValue() != null){
-                       getFbImageTask getTask = new getFbImageTask();
-                       HashMap<String, ImageView> userImage = new HashMap<String, ImageView>();
-                       userImage.put(dataSnapshot.child("id").getValue().toString(), imgView);
-                       getTask.execute(userImage);
-                    }else{
+                if (dataSnapshot.getValue() != null) {
+                    nameView.setText(dataSnapshot.child("firstName").getValue(String.class) + " " + dataSnapshot.child("lastName").getValue(String.class));
+                    if (dataSnapshot.child("id").getValue() != null) {
+                        getFbImageTask getTask = new getFbImageTask();
+                        HashMap<String, ImageView> userImage = new HashMap<String, ImageView>();
+                        userImage.put(dataSnapshot.child("id").getValue().toString(), imgView);
+                        getTask.execute(userImage);
+                    } else {
                         imgView.setImageResource(R.drawable.default_profil);
                     }
                 }
@@ -153,7 +153,7 @@ public class UsersManager {
         }
     }
 
-    public static void addFavoris(final String firebaseId, final ImageView favorisImg){
+    public static void addFavoris(final String firebaseId, final ImageView favorisImg) {
 
         System.out.println("Add to favorite");
         ref.child("/users/" + ConnexionManager.user.firebaseId + "/favorites")
@@ -173,7 +173,7 @@ public class UsersManager {
 
                             Firebase newRef = ref.child("/users/" + ConnexionManager.user.firebaseId + "/favorites").push();
                             newRef.setValue(newFavoris, firebaseId);
-                        }else{
+                        } else {
                             //Delete from favorites
                             favorisImg.setImageResource(R.drawable.star);
                             for (DataSnapshot favorite : dataSnapshot.getChildren()) {
@@ -192,7 +192,7 @@ public class UsersManager {
                 });
     }
 
-    public static void updateIfFavoris(final String firebaseId, final ImageView favorisImg){
+    public static void updateIfFavoris(final String firebaseId, final ImageView favorisImg) {
         ref.child("/users/" + ConnexionManager.user.firebaseId + "/favorites")
                 .startAt(firebaseId)
                 .endAt(firebaseId)
@@ -213,4 +213,53 @@ public class UsersManager {
                 });
     }
 
+    public static List<User> updateAFavorisUsersList(final ArrayAdapter<User> adapter, final List<User> usersList) {
+        users = usersList;
+        listAdapter = adapter;
+        ref.child("/users/" + ConnexionManager.user.firebaseId + "/favorites/").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.getValue() != null) {
+                    // Get firebase id of favorites
+                    for (DataSnapshot user : dataSnapshot.getChildren()) {
+                        final User newUser = new User();
+                        newUser.firebaseId = user.child("firebaseId").getValue(String.class);
+                        ref.child("/users/" + newUser.firebaseId).addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                if (dataSnapshot.getValue() != null) {
+                                    newUser.firstName = dataSnapshot.child("firstName").getValue(String.class);
+                                    newUser.lastName = dataSnapshot.child("lastName").getValue(String.class);
+                                    if (dataSnapshot.child("id").getValue() != null) {
+                                        newUser.connexionMode = "facebook";
+                                        getFbImageTaskAndNotify getTask = new getFbImageTaskAndNotify();
+                                        HashMap<String, User> userImage = new HashMap<String, User>();
+                                        userImage.put(dataSnapshot.child("id").getValue().toString(), newUser);
+                                        getTask.execute(userImage);
+
+                                    } else {
+                                        newUser.connexionMode = "password";
+                                        newUser.imageRessource = R.drawable.default_profil;
+                                        usersList.add(newUser);
+                                    }
+
+                                    adapter.notifyDataSetChanged();
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(FirebaseError firebaseError) {
+                            }
+                        });
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+            }
+        });
+
+        return users;
+    }
 }
