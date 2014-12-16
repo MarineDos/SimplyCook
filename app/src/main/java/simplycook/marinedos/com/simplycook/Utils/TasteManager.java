@@ -1,5 +1,7 @@
 package simplycook.marinedos.com.simplycook.Utils;
 
+import android.widget.ExpandableListView;
+
 import com.firebase.client.AuthData;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
@@ -29,7 +31,7 @@ public class TasteManager {
         }
     }
 
-    public static void updateFoodList(final String userId, final List<String> listDataHeader, final HashMap<String, List<Taste>> listDataChild, final ExpandableListAdapter listAdapter) {
+    public static void updateFoodList(final String userId, final List<String> listDataHeader, final HashMap<String, List<Taste>> listDataChild, final ExpandableListAdapter listAdapter, final ExpandableListView expListView, final boolean expandList) {
         // Get all category of food
         ref.child("/category").addValueEventListener(new ValueEventListener() {
             @Override
@@ -69,6 +71,12 @@ public class TasteManager {
                                             listOfTaste.add(new Taste(foodName, foodLike, foodComment));
                                         }
                                         listDataChild.put(categoryName, listOfTaste);
+
+                                        if (expandList){
+                                            for (int i = 0; i < listDataHeader.size(); ++i) {
+                                                expListView.expandGroup(i);
+                                            }
+                                        }
 
                                         listAdapter.notifyDataSetChanged();
                                     }

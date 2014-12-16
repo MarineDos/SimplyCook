@@ -17,6 +17,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import simplycook.marinedos.com.simplycook.ProfilActivity;
+import simplycook.marinedos.com.simplycook.Utils.DeviceInformation;
 import simplycook.marinedos.com.simplycook.Utils.ExpandableListAdapter;
 import simplycook.marinedos.com.simplycook.R;
 import simplycook.marinedos.com.simplycook.Utils.Taste;
@@ -91,7 +92,7 @@ public class TasteFragment extends Fragment {
 
     private void prepareListData()
     {
-        TasteManager.updateFoodList(userFirebaseId,listDataHeader, listDataChild, listAdapter );
+        TasteManager.updateFoodList(userFirebaseId,listDataHeader, listDataChild, listAdapter, expListView, DeviceInformation.isTablet(getActivity()));
     }
 
     // Debug

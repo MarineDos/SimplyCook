@@ -1,5 +1,6 @@
 package simplycook.marinedos.com.simplycook.Utils.tabsSwipeMyProfil;
 
+import simplycook.marinedos.com.simplycook.Utils.DeviceInformation;
 import simplycook.marinedos.com.simplycook.Utils.ExpandableListAdapter;
 import simplycook.marinedos.com.simplycook.R;
 import simplycook.marinedos.com.simplycook.Utils.ConnexionManager;
@@ -81,8 +82,7 @@ public class myTasteFragment extends Fragment {
 
     private void prepareListData()
     {
-
-        TasteManager.updateFoodList(ConnexionManager.user.firebaseId,listDataHeader, listDataChild, listAdapter );
+        TasteManager.updateFoodList(ConnexionManager.user.firebaseId,listDataHeader, listDataChild, listAdapter, expListView, DeviceInformation.isTablet(getActivity()));
     }
 
     // Debug
