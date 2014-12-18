@@ -4,9 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ComparatorManager {
-    private static List<User> usersToCompare = new ArrayList<User>();
+    private static User[] usersToCompare = new User[4];
 
-    static public void addUser(User newUser){
-        usersToCompare.add(newUser);
+    static public void addUser(User newUser, int index){
+        usersToCompare[index] = newUser;
+    }
+
+    static public User[] getUsers(){
+        return usersToCompare;
     }
 }

@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="simplycook.marinedos.com.simplycook.ComparaisonActivity$PlaceholderFragment">
+    tools:context="simplycook.marinedos.com.simplycook.ComparaisonActivity$PlaceholderFragment"
+    android:id="@+id/comparaison_fragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -25,7 +26,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/add"
-                android:layout_gravity="center_horizontal"/>
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/user1img"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="20dp"
+                android:gravity="center"
+                android:visibility="gone"/>
 
         </LinearLayout>
 
@@ -43,6 +51,12 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/add"
                 android:layout_gravity="center_horizontal"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="20dp"
+                android:gravity="center"
+                android:visibility="gone"/>
 
         </LinearLayout>
 
@@ -69,6 +83,12 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/add"
                 android:layout_gravity="center_horizontal"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="20dp"
+                android:gravity="center"
+                android:visibility="gone"/>
 
 
         </LinearLayout>
@@ -87,6 +107,12 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/add"
                 android:layout_gravity="center_horizontal"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="20dp"
+                android:gravity="center"
+                android:visibility="gone"/>
         </LinearLayout>
 
     </LinearLayout>

@@ -9,6 +9,7 @@ import simplycook.marinedos.com.simplycook.R;
 import simplycook.marinedos.com.simplycook.Utils.ConnexionManager;
 
 public class ComparaisonAddFromFavoris extends ActionBarActivity {
+    public int index;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +21,11 @@ public class ComparaisonAddFromFavoris extends ActionBarActivity {
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.container, fragment)
                     .commit();
+        }
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            index = extras.getInt("index");
         }
     }
 

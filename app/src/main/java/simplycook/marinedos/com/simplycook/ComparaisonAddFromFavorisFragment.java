@@ -13,6 +13,7 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.List;
 
+import simplycook.marinedos.com.simplycook.Utils.ComparatorManager;
 import simplycook.marinedos.com.simplycook.Utils.FavorisArrayAdapter;
 import simplycook.marinedos.com.simplycook.Utils.User;
 import simplycook.marinedos.com.simplycook.Utils.UsersManager;
@@ -51,12 +52,8 @@ public class ComparaisonAddFromFavorisFragment extends ListFragment {
         super.onListItemClick(l, v, pos, id);
         User user = mAdapter.getItem(pos);
 
+        ComparatorManager.addUser(user, ((ComparaisonAddFromFavoris)getActivity()).index);
+
         getActivity().finish();
-
-        /*Intent intent = new Intent(getActivity(), ProfilActivity.class);
-        intent.putExtra("firebaseId", user.firebaseId);
-        getActivity().startActivity(intent);*/
-
-
     }
 }
