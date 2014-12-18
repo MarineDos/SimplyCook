@@ -1,23 +1,21 @@
 package simplycook.marinedos.com.simplycook;
 
-import android.support.v7.app.ActionBarActivity;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.LinearLayout;
-
+import simplycook.marinedos.com.simplycook.R;
 import simplycook.marinedos.com.simplycook.Utils.ConnexionManager;
 
-
-public class ComparaisonActivity extends ActionBarActivity {
+public class ComparaisonAddFromFavoris extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.comparaison_activity);
+        setContentView(R.layout.comparaison_add_from_favoris_activity);
         if (savedInstanceState == null) {
-            Fragment fragment = new ComparaisonFragment();
+            Fragment fragment = new ComparaisonAddFromFavorisFragment();
 
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.container, fragment)
@@ -25,8 +23,9 @@ public class ComparaisonActivity extends ActionBarActivity {
         }
     }
 
+
     @Override
-     public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
@@ -41,5 +40,4 @@ public class ComparaisonActivity extends ActionBarActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
 }

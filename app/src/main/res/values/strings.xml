@@ -39,8 +39,6 @@
     <string name="errorEmailRequired">Un email est requis</string>
     <string name="errorMessage_needInternetConnection">Une connexion internet est requise</string>
     <string name="errorMessage_userDoesNotExist">L\'email ne correspond à aucun utilisateur</string>
-
-
     <string name="title_activity_home">Accueil</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
@@ -58,11 +56,20 @@
     <string name="title_histastes">Ses goûts</string>
     <string name="title_mytastes">Mes goûts</string>
     <string name="title_manage_tastes">Gérer mes goûts</string>
+    <string name="choose_adding_comparation">Choisir depuis</string>
 
     <!-- Action -->
     <string name="action_disconnect">Déconnexion</string>
 
     <!-- Hint -->
     <string name="hintComment">Commentaire</string>
+
+    <!-- Array -->
+    <string-array name="list_add_from_comparaison">
+        <item>Favoris</item>
+        <item>Recherche</item>
+    </string-array>
+
+    <string name="title_activity_comparaison_add_from_favoris">Ajout des favoris</string>
 
 </resources>

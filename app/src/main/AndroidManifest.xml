@@ -15,10 +15,11 @@
 
         <activity
             android:name=".ConnectActivity"
-            android:theme ="@style/SimplyCook.noActionBar"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:theme="@style/SimplyCook.noActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -50,6 +51,10 @@
         <activity
             android:name=".ProfilActivity"
             android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".ComparaisonAddFromFavoris"
+            android:label="@string/title_activity_comparaison_add_from_favoris" >
         </activity>
     </application>
 
