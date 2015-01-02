@@ -52,8 +52,10 @@ public class ComparaisonAddFromFavorisFragment extends ListFragment {
         super.onListItemClick(l, v, pos, id);
         User user = mAdapter.getItem(pos);
 
-        ComparatorManager.addUser(user, ((ComparaisonAddFromFavoris)getActivity()).index);
+        boolean succeed = ComparatorManager.addUser(user, ((ComparaisonAddFromFavoris)getActivity()).index, getActivity());
 
-        getActivity().finish();
+        if(succeed){
+            getActivity().finish();
+        }
     }
 }
