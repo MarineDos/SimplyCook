@@ -45,6 +45,10 @@
             android:label="@string/title_activity_comparaison" >
         </activity>
         <activity
+            android:name=".ComparaisonChoiceActivity"
+            android:label="@string/title_activity_comparaison" >
+        </activity>
+        <activity
             android:name=".SearchActivity"
             android:label="@string/title_activity_search" >
         </activity>

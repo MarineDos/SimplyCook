@@ -155,7 +155,6 @@ public class UsersManager {
 
     public static void addFavoris(final String firebaseId, final ImageView favorisImg) {
 
-        System.out.println("Add to favorite");
         ref.child("/users/" + ConnexionManager.user.firebaseId + "/favorites")
                 .startAt(firebaseId)
                 .endAt(firebaseId)
@@ -165,7 +164,7 @@ public class UsersManager {
                     public void onDataChange(DataSnapshot dataSnapshot) {
 
                         if (dataSnapshot.getValue() == null) {
-                            // add favorite
+                            // add to favorite
                             favorisImg.setImageResource(R.drawable.star_yellow);
 
                             Map<String, String> newFavoris = new HashMap<String, String>();

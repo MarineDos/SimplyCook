@@ -55,7 +55,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 // Go to profil Activity
-                Intent intent = new Intent(getActivity(), ComparaisonActivity.class);
+                Intent intent = new Intent(getActivity(), ComparaisonChoiceActivity.class);
                 startActivity(intent);
             }
         });

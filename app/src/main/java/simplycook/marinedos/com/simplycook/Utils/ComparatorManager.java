@@ -9,6 +9,7 @@ import java.util.List;
 
 public class ComparatorManager {
     private static User[] usersToCompare = new User[4];
+    private static int usersToCompareNumber = 0;
 
     static public boolean addUser(User newUser, int index, Context context){
         boolean alreadyExist = false;
@@ -23,6 +24,7 @@ public class ComparatorManager {
 
         if(!alreadyExist){
             usersToCompare[index] = newUser;
+            ++usersToCompareNumber;
         }else{
             Toast toast = Toast.makeText(
                     context,
@@ -33,6 +35,10 @@ public class ComparatorManager {
             toast.show();
         }
         return !alreadyExist;
+    }
+
+    static public int getUsersNumber(){
+        return usersToCompareNumber;
     }
 
     static public User[] getUsers(){
