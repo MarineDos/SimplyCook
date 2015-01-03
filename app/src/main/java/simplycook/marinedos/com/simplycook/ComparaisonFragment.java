@@ -68,7 +68,7 @@ public class ComparaisonFragment extends Fragment {
         categoryIndex[0] = -1;
         numCategory[0] = 0;
 
-        ref.child("/category").addValueEventListener(new ValueEventListener() {
+        ref.child("/category").orderByChild("name").addValueEventListener(new ValueEventListener() {
 
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {

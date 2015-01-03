@@ -29,7 +29,7 @@ public class UsersManager {
     public static List<User> updateAllUsersList(final ArrayAdapter<User> adapter, final List<User> usersList) {
         users = usersList;
         listAdapter = adapter;
-        ref.child("/users").addListenerForSingleValueEvent(new ValueEventListener() {
+        ref.child("/users").orderByChild("lastName").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.getValue() != null) {

@@ -39,7 +39,7 @@ public class manageTasteFragment extends Fragment {
         // Populate catégorie
         final Spinner spinnerCategory= (Spinner) rootView.findViewById(R.id.category_spinner);
         // Get All categories
-        ref.child("/category").addValueEventListener(new ValueEventListener() {
+        ref.child("/category").orderByChild("name").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 ArrayList<String> tab = new ArrayList<String>();
@@ -64,7 +64,7 @@ public class manageTasteFragment extends Fragment {
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
 
                 String selectedCategory = spinnerCategory.getSelectedItem().toString();
-                ref.child("/food/" + selectedCategory).addValueEventListener(new ValueEventListener() {
+                ref.child("/food/" + selectedCategory).orderByChild("name").addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         ArrayList<String> tab = new ArrayList<String>();

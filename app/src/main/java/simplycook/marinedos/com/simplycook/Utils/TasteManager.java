@@ -33,13 +33,14 @@ public class TasteManager {
 
     public static void updateFoodList(final String userId, final List<String> listDataHeader, final HashMap<String, List<Taste>> listDataChild, final ExpandableListAdapter listAdapter, final ExpandableListView expListView, final boolean expandList) {
         // Get all category of food
-        ref.child("/category").addValueEventListener(new ValueEventListener() {
+        ref.child("/category").orderByChild("name").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // For each category
                 for (DataSnapshot category : dataSnapshot.getChildren()) {
                     // Get it's name
                     final String categoryName = category.child("name").getValue(String.class);
+                    System.out.println("Category : " + categoryName);
 
                     // Get all tastes of the current user for the category
                     ref.child("/users/" + userId + "/tastes")
