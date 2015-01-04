@@ -261,4 +261,18 @@ public class UsersManager {
 
         return users;
     }
+
+    public static void addMessageToUser(Taste taste, String category, String firebaseId){
+        Map<String, String> newMessage = new HashMap<String, String>();
+        newMessage.put("firstName", ConnexionManager.user.firstName);
+        newMessage.put("lastName", ConnexionManager.user.lastName);
+        newMessage.put("foodName", taste.getName());
+        newMessage.put("category", category);
+        newMessage.put("like", Integer.toString(taste.getLike()));
+        newMessage.put("comment", taste.getComment());
+
+        Firebase newRef = ref.child("/users/" + firebaseId + "/messages").push();
+
+        newRef.setValue(newMessage, category);
+    }
 }

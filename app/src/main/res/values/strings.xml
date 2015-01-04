@@ -12,6 +12,7 @@
     <string name="buttonLogOutFacebook">Déconnexion</string>
     <string name="buttonCreateAccount">Créer un compte</string>
     <string name="buttonAdd">Ajouter</string>
+    <string name="buttonSuggest">Suggérer</string>
 
     <!-- - Pop up connexion -->
     <string name="messageLoginPopup">Entrez votre identifiant et votre mot de passe</string>
