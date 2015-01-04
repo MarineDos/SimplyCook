@@ -22,7 +22,7 @@ public class MyProfilActivity extends FragmentActivity implements ActionBar.TabL
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        String[] tabs = { getResources().getString(R.string.title_mytastes), getResources().getString(R.string.title_manage_tastes), getResources().getString(R.string.title_activity_favoris) };
+        String[] tabs = { getResources().getString(R.string.title_mytastes), getResources().getString(R.string.title_manage_tastes), getResources().getString(R.string.title_activity_favoris), getResources().getString(R.string.title_mymessages) };
         setContentView(R.layout.profil_activity);
 
         // Initilization

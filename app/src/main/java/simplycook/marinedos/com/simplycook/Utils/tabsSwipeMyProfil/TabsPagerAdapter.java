@@ -18,11 +18,13 @@ public class TabsPagerAdapter extends FragmentPagerAdapter {
                 return new manageTasteFragment();
             case 2:
                 return new myFavoriteFragment();
+            case 3:
+                return new messagesFragment();
         }
         return null;
     }
     public int getCount() {
         // get item count - equal to number of tabs
-        return 3;
+        return 4;
     }
 }

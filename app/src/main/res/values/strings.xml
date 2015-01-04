@@ -46,6 +46,7 @@
     <!-- Title -->
     <string name="title_myprofil">Mon profil</string>
     <string name="title_myfavoris">Mes favoris</string>
+    <string name="title_mymessages">Mes messages</string>
     <string name="title_search">Recherche</string>
     <string name="title_comparaison">Comparaison</string>
     <string name="title_activity_profil">Mon profil</string>
