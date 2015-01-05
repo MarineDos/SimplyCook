@@ -21,6 +21,7 @@ import java.util.List;
 
 import simplycook.marinedos.com.simplycook.Utils.ComparatorItem;
 import simplycook.marinedos.com.simplycook.Utils.ComparatorManager;
+import simplycook.marinedos.com.simplycook.Utils.DeviceInformation;
 import simplycook.marinedos.com.simplycook.Utils.ExpandableListAdapter_Comparaison;
 import simplycook.marinedos.com.simplycook.Utils.Taste;
 import simplycook.marinedos.com.simplycook.Utils.TasteMultiLike;
@@ -197,6 +198,11 @@ public class ComparaisonFragment extends Fragment {
                     }
                 }
                 listDataChild.put(listDataHeader.get(localCategoryIndex), listTasteMultiLike);
+            }
+            if (DeviceInformation.isTablet(getActivity())){
+                for (int i = 0; i < listDataHeader.size(); ++i) {
+                    expListView.expandGroup(i);
+                }
             }
             listAdapter.notifyDataSetChanged();
 
