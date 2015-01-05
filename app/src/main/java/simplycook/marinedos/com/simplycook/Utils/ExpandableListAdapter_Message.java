@@ -9,7 +9,13 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
+
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 import simplycook.marinedos.com.simplycook.R;
@@ -20,6 +26,8 @@ public class ExpandableListAdapter_Message extends BaseExpandableListAdapter{
     private List<String> _listDataHeader; // header titles
     // child data in format of header title, child title
     private HashMap<String, List<TasteMessage>> _listDataChild;
+
+    private final Firebase ref = new Firebase("https://simplycook.firebaseio.com");
 
     public ExpandableListAdapter_Message(Context context, List<String> listDataHeader,
                                  HashMap<String, List<TasteMessage>> listChildData) {
@@ -40,7 +48,7 @@ public class ExpandableListAdapter_Message extends BaseExpandableListAdapter{
     }
 
     @Override
-    public View getChildView(int groupPosition, final int childPosition,
+    public View getChildView(final int groupPosition, final int childPosition,
                              boolean isLastChild, View convertView, ViewGroup parent) {
 
         final TasteMessage childTaste = (TasteMessage) getChild(groupPosition, childPosition);
@@ -76,6 +84,117 @@ public class ExpandableListAdapter_Message extends BaseExpandableListAdapter{
             ImageView info = (ImageView) convertView.findViewById(R.id.iconInfoImage);
             info.setVisibility(View.INVISIBLE);
         }*/
+
+        // Accept Button
+        ImageView accept_btn = (ImageView) convertView.findViewById(R.id.btn_accept);
+        accept_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //System.out.println("Clic on button accept : " + childTaste.foodName + " in " + getGroup(groupPosition).toString());
+                // Create taste and add to my taste
+                final String categoryName = getGroup(groupPosition).toString();
+                Taste newTaste = new Taste(childTaste.foodName, childTaste.like, childTaste.comment);
+                TasteManager.addTaste(newTaste, categoryName);
+
+                // Delete message
+                ref.child("users/" + ConnexionManager.user.firebaseId + "/messages")
+                        .startAt(categoryName)
+                        .endAt(categoryName)
+                        .addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                if(dataSnapshot != null){
+                                    for(DataSnapshot message : dataSnapshot.getChildren()){
+                                        if((message.child("foodName").getValue(String.class)).equals(childTaste.foodName)){
+                                            //System.out.println("I want to delete : " + message.child("foodName").getValue(String.class) + " = " + childTaste.foodName + " which key is " + message.getKey());
+
+                                            // Remove element from list
+                                            Iterator it = _listDataChild.get(categoryName).iterator();
+                                            while(it.hasNext()){
+                                                TasteMessage mess = (TasteMessage)it.next();
+                                                if(mess.foodName.equals(childTaste.foodName)){
+                                                    //System.out.println("Remove child from listDataChild : " + mess.foodName);
+                                                    it.remove();
+                                                }
+                                            }
+
+                                            // Remove element from header if needed
+                                            if(_listDataChild.get(categoryName).size() < 1){
+                                                //System.out.println("Remove header from listDataHeader : " + categoryName);
+                                                _listDataHeader.remove(categoryName);
+                                            }
+
+                                            notifyDataSetChanged();
+
+                                            // Remove element from firebase
+                                            Firebase refToDelete = ref.child("users/" + ConnexionManager.user.firebaseId + "/messages/" + message.getKey());
+                                            refToDelete.removeValue();
+                                        }
+                                    }
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(FirebaseError firebaseError) {
+
+                            }
+                        });
+            }
+        });
+
+        // Refuse Button
+        ImageView refuse_btn = (ImageView) convertView.findViewById(R.id.btn_refuse);
+        refuse_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //System.out.println("Clic on button refuse : " + childTaste.foodName + " in " + getGroup(groupPosition).toString());
+                final String categoryName = getGroup(groupPosition).toString();
+
+                // Delete message
+                ref.child("users/" + ConnexionManager.user.firebaseId + "/messages")
+                        .startAt(categoryName)
+                        .endAt(categoryName)
+                        .addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                if(dataSnapshot != null){
+                                    for(DataSnapshot message : dataSnapshot.getChildren()){
+                                        if((message.child("foodName").getValue(String.class)).equals(childTaste.foodName)){
+                                            //System.out.println("I want to delete : " + message.child("foodName").getValue(String.class) + " = " + childTaste.foodName + " which key is " + message.getKey());
+
+                                            // Remove element from list
+                                            Iterator it = _listDataChild.get(categoryName).iterator();
+                                            while(it.hasNext()){
+                                                TasteMessage mess = (TasteMessage)it.next();
+                                                if(mess.foodName.equals(childTaste.foodName)){
+                                                    //System.out.println("Remove child from listDataChild : " + mess.foodName);
+                                                    it.remove();
+                                                }
+                                            }
+
+                                            // Remove element from header if needed
+                                            if(_listDataChild.get(categoryName).size() < 1){
+                                                //System.out.println("Remove header from listDataHeader : " + categoryName);
+                                                _listDataHeader.remove(categoryName);
+                                            }
+
+                                            notifyDataSetChanged();
+
+                                            // Remove element from firebase
+                                            Firebase refToDelete = ref.child("users/" + ConnexionManager.user.firebaseId + "/messages/" + message.getKey());
+                                            refToDelete.removeValue();
+                                        }
+                                    }
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(FirebaseError firebaseError) {
+
+                            }
+                        });
+            }
+        });
 
         return convertView;
     }
