@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -17,7 +18,7 @@ import simplycook.marinedos.com.simplycook.Utils.User;
 public class ComparaisonChoiceFragment extends Fragment {
 
     private LinearLayout userAdd_bt[] = new LinearLayout[4];
-    private ImageView comparaison_btn;
+    private Button comparaison_btn;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -41,7 +42,7 @@ public class ComparaisonChoiceFragment extends Fragment {
             userAdd_bt[i].setOnClickListener(new FavorisListener(i, getActivity()));
         }
 
-        comparaison_btn = (ImageView) root.findViewById(R.id.compare_btn);
+        comparaison_btn = (Button) root.findViewById(R.id.compare_btn);
         comparaison_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
