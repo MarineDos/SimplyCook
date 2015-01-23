@@ -76,5 +76,6 @@
     </string-array>
 
     <string name="title_activity_comparaison_add_from_favoris">Ajout des favoris</string>
+    <string name="title_activity_comparaison_add_from_search">ComparaisonAddFromSearch</string>
 
 </resources>

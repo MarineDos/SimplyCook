@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.view.View;
 
 import simplycook.marinedos.com.simplycook.ComparaisonAddFromFavoris;
+import simplycook.marinedos.com.simplycook.ComparaisonAddFromSearch;
 import simplycook.marinedos.com.simplycook.R;
 
 public class FavorisListener implements View.OnClickListener {
@@ -31,6 +32,9 @@ public class FavorisListener implements View.OnClickListener {
                             mContext.startActivity(intent);
                         }else{
                             // Add from search
+                            Intent intent = new Intent(mContext, ComparaisonAddFromSearch.class);
+                            intent.putExtra("index", mIndex);
+                            mContext.startActivity(intent);
                         }
                     }
                 });

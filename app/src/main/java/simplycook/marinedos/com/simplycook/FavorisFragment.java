@@ -41,7 +41,7 @@ public class FavorisFragment extends ListFragment {
 
         List<User> users = new ArrayList<User>();
         mAdapter = new FavorisArrayAdapter(getActivity(), R.layout.favoris_list_item, users);
-        UsersManager.updateAllUsersList(mAdapter, users);
+        UsersManager.updateAFavorisUsersList(mAdapter, users);
 
         mListView = getListView();
         mListView.setAdapter(mAdapter);

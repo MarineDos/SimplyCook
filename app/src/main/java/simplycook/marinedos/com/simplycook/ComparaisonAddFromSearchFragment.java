@@ -5,7 +5,6 @@ import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -28,17 +27,19 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import simplycook.marinedos.com.simplycook.Utils.ComparatorManager;
 import simplycook.marinedos.com.simplycook.Utils.FavorisArrayAdapter;
 import simplycook.marinedos.com.simplycook.Utils.User;
 import simplycook.marinedos.com.simplycook.Utils.UsersManager;
 
-public class SearchFragment extends ListFragment {
-    private static final Firebase ref = new Firebase("https://simplycook.firebaseio.com");
-    private ListView mListView;
+public class ComparaisonAddFromSearchFragment extends ListFragment {
+
+    private static ListView mListView;
     private static ArrayAdapter<User> mAdapter;
-    private static List<User> users = new ArrayList<User>();
+    private static List<User> users;
     private ImageView searchButton;
     private EditText searchEditText;
+    private static final Firebase ref = new Firebase("https://simplycook.firebaseio.com");
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -46,19 +47,20 @@ public class SearchFragment extends ListFragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View root = inflater.inflate(R.layout.search_fragment, container, false);
-
-        return root;
+        return inflater.inflate(R.layout.comparaison_add_from_search_fragment, container, false);
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+    public void onActivityCreated(@Nullable Bundle savedInstanceState)
+    {
         super.onActivityCreated(savedInstanceState);
 
         View root = getView();
 
+        users = new ArrayList<User>();
         mAdapter = new FavorisArrayAdapter(getActivity(), R.layout.favoris_list_item, users);
 
         mListView = getListView();
@@ -83,6 +85,16 @@ public class SearchFragment extends ListFragment {
         });
     }
 
+    public void onListItemClick(ListView l, View v, int pos, long id) {
+        super.onListItemClick(l, v, pos, id);
+        User user = mAdapter.getItem(pos);
+
+        boolean succeed = ComparatorManager.addUser(user, ((ComparaisonAddFromSearch)getActivity()).index, getActivity());
+
+        if(succeed){
+            getActivity().finish();
+        }
+    }
     private void updateSearchList(){
         users.clear();
         // Launch search
@@ -175,6 +187,4 @@ public class SearchFragment extends ListFragment {
             return null;
         }
     }
-
-
 }
