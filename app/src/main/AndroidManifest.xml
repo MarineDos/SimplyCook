@@ -61,7 +61,6 @@
             android:label="@string/title_activity_comparaison_add_from_favoris" >
         </activity>
 
-
         <service android:name=".Utils.Service.SuggestNotificationService"></service>
     </application>
 
