@@ -5,8 +5,15 @@ import android.view.View;
 import android.view.animation.AnimationUtils;
 
 
+/** @brief	Class that manage a simple animation to display / hide content. */
 public class Anim {
 
+    /**
+     * @brief	Hide the given View.
+     *
+     * @param	context	The context of the View.
+     * @param	view   	The view to hide.
+     */
     public static void hide(Context context, final View view) {
 
         if (view.getVisibility() != View.GONE){
@@ -15,6 +22,12 @@ public class Anim {
         }
     }
 
+    /**
+     * @brief	Show the given View.
+     *
+     * @param	context	The context of the given View.
+     * @param	view   	The view to show.
+     */
     public static void show(Context context, final View view) {
 
         if (view.getVisibility() != View.VISIBLE){

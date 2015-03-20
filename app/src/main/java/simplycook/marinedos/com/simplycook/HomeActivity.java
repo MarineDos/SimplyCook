@@ -11,14 +11,25 @@ import simplycook.marinedos.com.simplycook.Utils.ConnexionManager;
 import simplycook.marinedos.com.simplycook.Utils.Service.SuggestNotificationService;
 
 
+/** @brief	The home activity. */
 public class HomeActivity extends ActionBarActivity {
 
+    /**
+     * @brief	Function called when activity is first created. Initialize the activity, create the
+     * 			fragment.
+     *
+     * @param	savedInstanceState	If the activity is being re-initialized after previously being
+     * 								shut down then this Bundle contains the data it most recently
+     * 								supplied in onSaveInstanceState(Bundle). Note: Otherwise it is
+     * 								null.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+		// Create the window view with the home_activity layout
         setContentView(R.layout.home_activity);
         if(savedInstanceState == null) {
-            // Create fragment
+            // Create the home fragment
             Fragment fragment = new HomeFragment();
             fragment.setHasOptionsMenu(true);
             fragment.setMenuVisibility(true);
