@@ -3,6 +3,7 @@ package simplycook.marinedos.com.simplycook.Utils;
 import java.util.ArrayList;
 
 public class ComparatorItem {
+	
     private User user;
     private ArrayList<Taste>[] comparatorList;
 
