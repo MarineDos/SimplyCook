@@ -11,7 +11,7 @@ import java.util.List;
  * 			this manager for comparaison. Comparaison is made in fragment / activity.
  */
 public class ComparatorManager {
-	
+
     /** @brief	The users to compare. Maximum 4 users */
     private static User[] usersToCompare = new User[4];
     /** @brief	The number of user actually in the array of users. */
@@ -57,6 +57,13 @@ public class ComparatorManager {
         return !alreadyExist;
     }
 
+    static public void removeUser(int index)
+    {
+        usersToCompare[index] = null;
+        if(usersToCompareNumber > 0){
+            --usersToCompareNumber;
+        }
+    }
     /**
      * @brief	Gets the number of users in the array.
      *

@@ -244,12 +244,13 @@ public class UsersManager {
     /**
      * @brief	Add the user define by the firebaseId to the Favorite of the current user.
      *
-     * @param	firebaseId	Identifier of the user in the firebase.
+     * @param	firebaseId	Identifier of the user we want to add as favorite in the firebase.
      * @param	favorisImg	The favoris image view.
      */
     public static void addFavoris(final String firebaseId, final ImageView favorisImg) {
-		// Get the user from Firebase by it firebaseId
-        ref.child("/users/" + ConnexionManager.user.firebaseId + "/favorites")
+        final String myUserFirebaseId = ConnexionManager.user.firebaseId;
+        // Get the user from Firebase by it firebaseId
+        ref.child("/users/" + myUserFirebaseId + "/favorites")
                 .startAt(firebaseId)
                 .endAt(firebaseId)
                 .addListenerForSingleValueEvent(new ValueEventListener() {
@@ -271,7 +272,7 @@ public class UsersManager {
                             newFavoris.put("firebaseId", firebaseId);
 
 							// Put the user in Firebase
-                            Firebase newRef = ref.child("/users/" + ConnexionManager.user.firebaseId + "/favorites").push();
+                            Firebase newRef = ref.child("/users/" + myUserFirebaseId + "/favorites").push();
                             newRef.setValue(newFavoris, firebaseId);
                         } else {
                             // Delete from favorites
@@ -280,7 +281,7 @@ public class UsersManager {
 							// For each favorite, find the one to delete and delete it
                             for (DataSnapshot favorite : dataSnapshot.getChildren()) {
                                 String key = favorite.getKey();
-                                Firebase refFavorite = ref.child("/users/" + ConnexionManager.user.firebaseId + "/favorites/" + key);
+                                Firebase refFavorite = ref.child("/users/" + myUserFirebaseId + "/favorites/" + key);
                                 refFavorite.removeValue();
                             }
 
@@ -299,8 +300,9 @@ public class UsersManager {
      * @param	favorisImg	The favoris image.
      */
     public static void updateIfFavoris(final String firebaseId, final ImageView favorisImg) {
+        final String myFirebaseId = ConnexionManager.user.firebaseId;
 		// Get the user from Firebase by it firebaseId
-        ref.child("/users/" + ConnexionManager.user.firebaseId + "/favorites")
+        ref.child("/users/" + myFirebaseId + "/favorites")
                 .startAt(firebaseId)
                 .endAt(firebaseId)
                 .addListenerForSingleValueEvent(new ValueEventListener() {
@@ -326,7 +328,8 @@ public class UsersManager {
     public static List<User> updateAFavorisUsersList(final Context context, final ArrayAdapter<User> adapter, final List<User> usersList, final ListView expListView, final ProgressBar loader) {
         users = usersList;
         listAdapter = adapter;
-        ref.child("/users/" + ConnexionManager.user.firebaseId + "/favorites/").addListenerForSingleValueEvent(new ValueEventListener() {
+        final String myFirebaseId = ConnexionManager.user.firebaseId;
+        ref.child("/users/" + myFirebaseId + "/favorites/").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.getValue() != null) {

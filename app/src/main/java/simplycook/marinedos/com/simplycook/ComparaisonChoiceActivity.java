@@ -46,7 +46,18 @@ public class ComparaisonChoiceActivity extends ActionBarActivity {
         fragment.updateList();
     }
 
-	/**
+    /**
+     * @brief Called when the fragment is visible to the user and actively running.
+     */
+    @Override
+    protected void onResume() {
+        super.onResume();
+        System.out.println("Resume Activity");
+        ComparaisonChoiceFragment fragment = (ComparaisonChoiceFragment)getSupportFragmentManager().findFragmentById(R.id.container);
+        fragment.updateList();
+    }
+
+    /**
      * @brief	Initialize the contents of the Activity's standard options menu. You should place
      * 			your menu items in to menu. This is only called once, the first time the options menu
      * 			is displayed.

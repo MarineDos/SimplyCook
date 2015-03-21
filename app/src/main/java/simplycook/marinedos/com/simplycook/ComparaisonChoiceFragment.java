@@ -12,7 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import simplycook.marinedos.com.simplycook.Utils.ComparatorManager;
-import simplycook.marinedos.com.simplycook.Utils.FavorisListener;
+import simplycook.marinedos.com.simplycook.Utils.ActionsAddForComparaisonToastListener;
 import simplycook.marinedos.com.simplycook.Utils.User;
 
 /** @brief	The comparaison choice fragment. Allow to choose user for taste comparaison */
@@ -34,7 +34,16 @@ public class ComparaisonChoiceFragment extends Fragment {
         super.onCreate(savedInstanceState);
     }
 
-	/**
+    /**
+     * @brief Called when the fragment is visible to the user and actively running.
+     */
+    @Override
+    public void onResume() {
+        super.onResume();
+        updateList();
+    }
+
+    /**
      * @brief	Function executed when the view is created. Called to have the fragment instantiate
      * 			its user interface view.
      *
@@ -63,7 +72,7 @@ public class ComparaisonChoiceFragment extends Fragment {
 
         // Add listener on buttons
         for(int i = 0; i < 4; ++i){
-            userAdd_bt[i].setOnClickListener(new FavorisListener(i, getActivity()));
+            userAdd_bt[i].setOnClickListener(new ActionsAddForComparaisonToastListener(i, getActivity()));
         }
 
 		// Get the comparaison submit button
@@ -100,10 +109,12 @@ public class ComparaisonChoiceFragment extends Fragment {
 		// For each user
         for(int i = 0; i < usersToCompare.length; ++i){
             User user = usersToCompare[i];
+
+            //Get the user add button
+            LinearLayout userAdd = userAdd_bt[i];
+            ImageView userAdd_img = (ImageView)userAdd.getChildAt(0);
             if(user != null){
-				// Get the user add button and remplace its image by the user profil's image
-                LinearLayout userAdd = userAdd_bt[i];
-                ImageView userAdd_img = (ImageView)userAdd.getChildAt(0);
+				// Remplace the user button image by the user profil's image
 
                 if(user.connexionMode.equals("facebook")){
                     userAdd_img.setImageBitmap(user.imageBitmap);
@@ -116,6 +127,10 @@ public class ComparaisonChoiceFragment extends Fragment {
                 TextView nameView = (TextView)userAdd.getChildAt(1);
                 nameView.setText(name);
                 nameView.setVisibility(View.VISIBLE);
+            }
+            else
+            {
+                userAdd_img.setImageResource(R.drawable.add);
             }
         }
 

@@ -152,14 +152,19 @@ public class ComparaisonAddFromSearchFragment extends ListFragment {
         // Launch search with the name passed in the search edit text
         final String searchName = searchEditText.getText().toString();
         if(searchName.length() != 0) {
-			// Get first name and last name
+            // Split name between first name and last name
             final String[] searchNameSplit;
             final String firstName;
             final String lastName;
+            // If there is a space, we search with first name and last name.
             if(searchName.contains(" ")){
                 searchNameSplit = searchName.split(" ");
                 firstName = searchNameSplit[0];
-                lastName = searchNameSplit[1];
+                // Need to test if we not just provide a space after the first name.
+                if(searchNameSplit.length > 1)
+                    lastName = searchNameSplit[1];
+                else
+                    lastName = "";
             }else{
                 firstName = searchName;
                 lastName = "";

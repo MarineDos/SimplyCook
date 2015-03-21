@@ -54,7 +54,7 @@ public class ConnexionManager {
 
     }
 
-    public static void searchAndStroreUser(){
+    public static void searchAndStoreUser(){
         String search;
         AuthData authData = ref.getAuth();
         if (authData != null) {
@@ -206,7 +206,7 @@ public class ConnexionManager {
                                                 storeUser(newUser);
                                             } else {
                                                 System.out.println("User already exists : " + id);
-                                                searchAndStroreUser();
+                                                searchAndStoreUser();
                                             }
 
                                             // Change activity to home page

@@ -297,7 +297,7 @@ public class ConnectFragment extends Fragment{
                     mDialog.cancel();
 
 					// Store the user in the connexion manager
-                    ConnexionManager.searchAndStroreUser();
+                    ConnexionManager.searchAndStoreUser();
 
 					// Change activity to home page
                     Intent intent = new Intent(getActivity(), HomeActivity.class);

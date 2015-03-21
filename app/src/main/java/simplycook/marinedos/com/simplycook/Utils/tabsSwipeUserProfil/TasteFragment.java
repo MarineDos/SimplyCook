@@ -39,7 +39,7 @@ public class TasteFragment extends Fragment {
 
         View rootView = inflater.inflate(R.layout.profil_taste_tab, container, false);
 
-        // Get user id
+        // Get the id of the user we want to add to favorite
         userFirebaseId = ((ProfilActivity)getActivity()).userFirebaseId;
 
         // Profil

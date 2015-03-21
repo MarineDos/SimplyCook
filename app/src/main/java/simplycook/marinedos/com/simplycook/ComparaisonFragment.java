@@ -201,14 +201,29 @@ public class ComparaisonFragment extends Fragment {
             for(int userIndex = 0; userIndex < listComparatorItem.size(); ++userIndex){
                 // Set the user's name we compared in the header of the view
                 TextView name;
-                switch (userIndex){
-                    case 0 : name = (TextView)getView().findViewById(R.id.profil_name1); break;
-                    case 1 : name = (TextView)getView().findViewById(R.id.profil_name2); break;
-                    case 2 : name = (TextView)getView().findViewById(R.id.profil_name3); break;
-                    case 3 : name = (TextView)getView().findViewById(R.id.profil_name4); break;
-                    default: name = (TextView)getView().findViewById(R.id.profil_name1); break;
+
+                try {
+                    switch (userIndex) {
+                        case 0:
+                            name = (TextView) getView().findViewById(R.id.profil_name1);
+                            break;
+                        case 1:
+                            name = (TextView) getView().findViewById(R.id.profil_name2);
+                            break;
+                        case 2:
+                            name = (TextView) getView().findViewById(R.id.profil_name3);
+                            break;
+                        case 3:
+                            name = (TextView) getView().findViewById(R.id.profil_name4);
+                            break;
+                        default:
+                            name = (TextView) getView().findViewById(R.id.profil_name1);
+                            break;
+                    }
+                    name.setText(listComparatorItem.get(userIndex).getUser().firstName);
+                } catch (NullPointerException e) {
+                    return;
                 }
-                name.setText(listComparatorItem.get(userIndex).getUser().firstName);
             }
 
 			// For all the category of food

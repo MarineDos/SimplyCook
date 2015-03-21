@@ -5,11 +5,10 @@ import java.util.ArrayList;
 public class ComparatorItem {
 	
     private User user;
-    private ArrayList<Taste>[] comparatorList;
+    private ArrayList<Taste>[] comparatorList = new ArrayList[12];
 
     public ComparatorItem(User newUser){
         user = newUser;
-        comparatorList = new ArrayList[12];
     }
 
     public ArrayList<Taste>[] getComparatorList(){
