@@ -42,8 +42,6 @@ public class ComparatorManager {
 		// If user don't exit, add it in the array of user
         if(!alreadyExist){
             usersToCompare[index] = newUser;
-			// Don't forget to increment the number of user to compare
-            ++usersToCompareNumber;
         }else{
 		// Else make a toast to advertise and show it
             Toast toast = Toast.makeText(
@@ -60,9 +58,6 @@ public class ComparatorManager {
     static public void removeUser(int index)
     {
         usersToCompare[index] = null;
-        if(usersToCompareNumber > 0){
-            --usersToCompareNumber;
-        }
     }
     /**
      * @brief	Gets the number of users in the array.
@@ -70,6 +65,14 @@ public class ComparatorManager {
      * @return	The number of users in the array.
      */
     static public int getUsersNumber(){
+        usersToCompareNumber = 0;
+        for(int i =0; i < 4; ++i)
+        {
+            if(usersToCompare[i] != null)
+            {
+                ++usersToCompareNumber;
+            }
+        }
         return usersToCompareNumber;
     }
 
