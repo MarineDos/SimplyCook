@@ -131,6 +131,8 @@ public class ComparaisonChoiceFragment extends Fragment {
             else
             {
                 userAdd_img.setImageResource(R.drawable.add);
+                TextView nameView = (TextView)userAdd.getChildAt(1);
+                nameView.setVisibility(View.GONE);
             }
         }
 
