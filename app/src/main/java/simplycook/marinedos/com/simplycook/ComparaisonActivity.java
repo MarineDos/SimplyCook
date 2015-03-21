@@ -1,17 +1,14 @@
 package simplycook.marinedos.com.simplycook;
 
+import android.content.pm.ActivityInfo;
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.os.Build;
 
 import simplycook.marinedos.com.simplycook.Utils.ConnexionManager;
+import simplycook.marinedos.com.simplycook.Utils.DeviceInformation;
 
 
 public class ComparaisonActivity extends ActionBarActivity {
@@ -27,6 +24,8 @@ public class ComparaisonActivity extends ActionBarActivity {
                     .add(R.id.container, fragment)
                     .commit();
         }
+
+        getActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override

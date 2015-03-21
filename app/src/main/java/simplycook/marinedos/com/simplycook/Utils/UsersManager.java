@@ -1,10 +1,14 @@
 package simplycook.marinedos.com.simplycook.Utils;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.widget.ArrayAdapter;
+import android.widget.ExpandableListView;
 import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.firebase.client.DataSnapshot;
@@ -99,9 +103,11 @@ public class UsersManager {
     }
 
     public static void updateProfil(String userFirebaseId, final TextView nameView, final ImageView imgView) {
+        System.out.println(userFirebaseId);
         ref.child("/users/" + userFirebaseId).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                System.out.println(dataSnapshot.getValue());
                 if (dataSnapshot.getValue() != null) {
                     nameView.setText(dataSnapshot.child("firstName").getValue(String.class) + " " + dataSnapshot.child("lastName").getValue(String.class));
                     if (dataSnapshot.child("id").getValue() != null) {
@@ -212,7 +218,7 @@ public class UsersManager {
                 });
     }
 
-    public static List<User> updateAFavorisUsersList(final ArrayAdapter<User> adapter, final List<User> usersList) {
+    public static List<User> updateAFavorisUsersList(final Context context, final ArrayAdapter<User> adapter, final List<User> usersList, final ListView expListView, final ProgressBar loader) {
         users = usersList;
         listAdapter = adapter;
         ref.child("/users/" + ConnexionManager.user.firebaseId + "/favorites/").addListenerForSingleValueEvent(new ValueEventListener() {
@@ -244,6 +250,9 @@ public class UsersManager {
 
                                     adapter.notifyDataSetChanged();
                                 }
+
+                                Anim.hide(context, loader);
+                                Anim.show(context, expListView);
                             }
 
                             @Override

@@ -5,7 +5,6 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import simplycook.marinedos.com.simplycook.R;
 import simplycook.marinedos.com.simplycook.Utils.ConnexionManager;
 
 public class ComparaisonAddFromFavoris extends ActionBarActivity {
@@ -27,6 +26,8 @@ public class ComparaisonAddFromFavoris extends ActionBarActivity {
         if (extras != null) {
             index = extras.getInt("index");
         }
+
+        getActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
 

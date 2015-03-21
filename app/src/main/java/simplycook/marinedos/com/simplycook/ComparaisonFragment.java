@@ -1,5 +1,6 @@
 package simplycook.marinedos.com.simplycook;
 
+import android.content.pm.ActivityInfo;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -131,7 +132,6 @@ public class ComparaisonFragment extends Fragment {
 
             }
         });
-
         return root;
     }
 

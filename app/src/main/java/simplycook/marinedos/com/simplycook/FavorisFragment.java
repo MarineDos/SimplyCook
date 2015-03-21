@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +21,7 @@ import simplycook.marinedos.com.simplycook.Utils.UsersManager;
 public class FavorisFragment extends ListFragment {
 
     private ListView mListView;
-    ArrayAdapter<User> mAdapter;
+    private ArrayAdapter<User> mAdapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -39,11 +40,13 @@ public class FavorisFragment extends ListFragment {
     {
         super.onActivityCreated(savedInstanceState);
 
-        List<User> users = new ArrayList<User>();
-        mAdapter = new FavorisArrayAdapter(getActivity(), R.layout.favoris_list_item, users);
-        UsersManager.updateAFavorisUsersList(mAdapter, users);
+        ProgressBar loader = (ProgressBar) getView().findViewById(R.id.loader);
 
+        List<User> users = new ArrayList<User>();
         mListView = getListView();
+        mAdapter = new FavorisArrayAdapter(getActivity(), R.layout.favoris_list_item, users);
+        UsersManager.updateAFavorisUsersList(getActivity(), mAdapter, users, mListView, loader);
+
         mListView.setAdapter(mAdapter);
     }
 

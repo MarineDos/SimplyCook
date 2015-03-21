@@ -20,5 +20,7 @@ public class CreateAccountActivity extends ActionBarActivity {
                     .add(R.id.create_account_activity, fragment)
                     .commit();
         }
+
+        getActionBar().setDisplayHomeAsUpEnabled(true);
     }
 }

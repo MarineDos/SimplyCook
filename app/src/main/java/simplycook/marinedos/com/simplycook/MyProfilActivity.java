@@ -58,6 +58,7 @@ public class MyProfilActivity extends FragmentActivity implements ActionBar.TabL
             public void onPageScrollStateChanged(int arg0) {
             }
         });
+        getActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override

@@ -11,10 +11,12 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,6 +29,7 @@ public class myTasteFragment extends Fragment {
     private ExpandableListView expListView;
     private List<String> listDataHeader;
     private HashMap<String, List<Taste>> listDataChild;
+    private ProgressBar loader;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -34,29 +37,41 @@ public class myTasteFragment extends Fragment {
 
         View rootView = inflater.inflate(R.layout.profil_mytaste_tab, container, false);
 
+        // Profil
+        TextView name = (TextView) rootView.findViewById(R.id.profil_name);
+        name.setText(ConnexionManager.user.firstName + " " + ConnexionManager.user.lastName);
+        ImageView img = (ImageView) rootView.findViewById(R.id.profil_img);
+        if (ConnexionManager.user.connexionMode.equals("facebook")) {
+            img.setImageBitmap(ConnexionManager.user.imageBitmap);
+        } else {
+            img.setImageResource(ConnexionManager.user.imageRessource);
+        }
 
         // List
+        loader = (ProgressBar) rootView.findViewById(R.id.loader);
         expListView = (ExpandableListView) rootView.findViewById(R.id.expandableListView_food);
-        expListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+        if (!DeviceInformation.isTablet(getActivity())){
+            expListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
 
-            @Override
-            public boolean onChildClick(ExpandableListView parent, View v,
-                                        int groupPosition, int childPosition, long id) {
-                Taste selectedTaste = listDataChild.get(listDataHeader.get(groupPosition)).get(childPosition);
+                @Override
+                public boolean onChildClick(ExpandableListView parent, View v,
+                                            int groupPosition, int childPosition, long id) {
+                    Taste selectedTaste = listDataChild.get(listDataHeader.get(groupPosition)).get(childPosition);
 
-                if(!selectedTaste.getComment().equals("")){
-                    Toast toast = Toast.makeText(
-                            getActivity(),
-                            selectedTaste.getName() + " : " + selectedTaste.getComment(),
-                            Toast.LENGTH_LONG
-                    );
-                    toast.setGravity(Gravity.CENTER, 0, 0);
-                    toast.show();
+                    if (!selectedTaste.getComment().equals("")) {
+                        Toast toast = Toast.makeText(
+                                getActivity(),
+                                selectedTaste.getName() + " : " + selectedTaste.getComment(),
+                                Toast.LENGTH_LONG
+                        );
+                        toast.setGravity(Gravity.CENTER, 0, 0);
+                        toast.show();
 
+                    }
+                    return false;
                 }
-                return false;
-            }
-        });
+            });
+        }
 
         listDataHeader = new ArrayList<String>();
         listDataChild = new HashMap<String, List<Taste>>();
@@ -66,23 +81,13 @@ public class myTasteFragment extends Fragment {
         prepareListData();
         //prepareListData_debug();
 
-        // Profil
-        TextView name = (TextView) rootView.findViewById(R.id.profil_name);
-        name.setText(ConnexionManager.user.firstName + " " + ConnexionManager.user.lastName);
-        ImageView img = (ImageView) rootView.findViewById(R.id.profil_img);
-        if(ConnexionManager.user.connexionMode.equals("facebook")){
-            img.setImageBitmap(ConnexionManager.user.imageBitmap);
-        }else{
-            img.setImageResource(ConnexionManager.user.imageRessource);
-        }
-
 
         return rootView;
     }
 
     private void prepareListData()
     {
-        TasteManager.updateFoodList(ConnexionManager.user.firebaseId,listDataHeader, listDataChild, listAdapter, expListView, DeviceInformation.isTablet(getActivity()));
+        TasteManager.updateFoodList(getActivity(), ConnexionManager.user.firebaseId,listDataHeader, listDataChild, listAdapter, expListView, loader, DeviceInformation.isTablet(getActivity()));
     }
 
     // Debug

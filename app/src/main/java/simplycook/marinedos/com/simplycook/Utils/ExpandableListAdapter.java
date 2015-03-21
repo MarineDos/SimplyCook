@@ -69,9 +69,20 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
                 break;
         }
 
-        if(childTaste.getComment().equals("")){
-            ImageView info = (ImageView) convertView.findViewById(R.id.iconInfoImage);
+        TextView infoText = (TextView) convertView.findViewById(R.id.textInfo);
+        ImageView info = (ImageView) convertView.findViewById(R.id.iconInfoImage);
+        if(!childTaste.getComment().equals("")){
+            if(DeviceInformation.isTablet(_context)){
+                infoText.setText(childTaste.getComment());
+                infoText.setVisibility(View.VISIBLE);
+                info.setVisibility(View.INVISIBLE);
+            }else {
+                infoText.setVisibility(View.INVISIBLE);
+                info.setVisibility(View.VISIBLE);
+            }
+        }else{
             info.setVisibility(View.INVISIBLE);
+            infoText.setVisibility(View.INVISIBLE);
         }
 
         return convertView;

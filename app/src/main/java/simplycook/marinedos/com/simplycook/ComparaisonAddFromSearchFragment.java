@@ -30,7 +30,6 @@ import java.util.List;
 import simplycook.marinedos.com.simplycook.Utils.ComparatorManager;
 import simplycook.marinedos.com.simplycook.Utils.FavorisArrayAdapter;
 import simplycook.marinedos.com.simplycook.Utils.User;
-import simplycook.marinedos.com.simplycook.Utils.UsersManager;
 
 public class ComparaisonAddFromSearchFragment extends ListFragment {
 

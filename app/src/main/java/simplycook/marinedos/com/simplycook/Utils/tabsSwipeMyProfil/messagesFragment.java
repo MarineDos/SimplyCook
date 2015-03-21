@@ -19,9 +19,7 @@ import java.util.List;
 import simplycook.marinedos.com.simplycook.R;
 import simplycook.marinedos.com.simplycook.Utils.ConnexionManager;
 import simplycook.marinedos.com.simplycook.Utils.DeviceInformation;
-import simplycook.marinedos.com.simplycook.Utils.ExpandableListAdapter;
 import simplycook.marinedos.com.simplycook.Utils.ExpandableListAdapter_Message;
-import simplycook.marinedos.com.simplycook.Utils.Taste;
 import simplycook.marinedos.com.simplycook.Utils.TasteMessage;
 
 public class messagesFragment extends Fragment {

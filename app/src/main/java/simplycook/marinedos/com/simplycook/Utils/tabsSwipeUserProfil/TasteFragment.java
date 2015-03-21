@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,6 +31,7 @@ public class TasteFragment extends Fragment {
     private List<String> listDataHeader;
     private HashMap<String, List<Taste>> listDataChild;
     private String userFirebaseId;
+    private ProgressBar loader;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -39,7 +41,24 @@ public class TasteFragment extends Fragment {
 
         // Get user id
         userFirebaseId = ((ProfilActivity)getActivity()).userFirebaseId;
+
+        // Profil
+        TextView nameView = (TextView) rootView.findViewById(R.id.profil_name);
+        final ImageView imgView = (ImageView) rootView.findViewById(R.id.profil_img);
+        UsersManager.updateProfil(userFirebaseId, nameView, imgView);
+
+        // add to favorite
+        final ImageView favorisImg = (ImageView) rootView.findViewById(R.id.favoris_img);
+        UsersManager.updateIfFavoris(userFirebaseId, favorisImg);
+        favorisImg.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                UsersManager.addFavoris(userFirebaseId, favorisImg);
+                return false;
+            }
+        });
         // List
+        loader = (ProgressBar) rootView.findViewById(R.id.loader);
         expListView = (ExpandableListView) rootView.findViewById(R.id.expandableListView_food);
         expListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
 
@@ -70,29 +89,13 @@ public class TasteFragment extends Fragment {
         prepareListData();
         //prepareListData_debug();
 
-        // Profil
-        TextView nameView = (TextView) rootView.findViewById(R.id.profil_name);
-        final ImageView imgView = (ImageView) rootView.findViewById(R.id.profil_img);
-        UsersManager.updateProfil(userFirebaseId, nameView, imgView);
-
-        // add to favorite
-        final ImageView favorisImg = (ImageView) rootView.findViewById(R.id.favoris_img);
-        UsersManager.updateIfFavoris(userFirebaseId, favorisImg);
-        favorisImg.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                UsersManager.addFavoris(userFirebaseId, favorisImg);
-                return false;
-            }
-        });
-
 
         return rootView;
     }
 
     private void prepareListData()
     {
-        TasteManager.updateFoodList(userFirebaseId,listDataHeader, listDataChild, listAdapter, expListView, DeviceInformation.isTablet(getActivity()));
+        TasteManager.updateFoodList(getActivity(), userFirebaseId,listDataHeader, listDataChild, listAdapter, expListView, loader, DeviceInformation.isTablet(getActivity()));
     }
 
     // Debug

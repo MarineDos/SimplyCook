@@ -1,8 +1,5 @@
 package simplycook.marinedos.com.simplycook.Utils;
 
-/**
- * Created by Marine on 04/01/2015.
- */
 public class TasteMessage {
     public String firstName;
     public String lastName;

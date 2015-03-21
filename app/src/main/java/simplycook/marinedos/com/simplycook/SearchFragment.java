@@ -1,11 +1,11 @@
 package simplycook.marinedos.com.simplycook;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -15,6 +15,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.firebase.client.DataSnapshot;
@@ -30,7 +31,6 @@ import java.util.List;
 
 import simplycook.marinedos.com.simplycook.Utils.FavorisArrayAdapter;
 import simplycook.marinedos.com.simplycook.Utils.User;
-import simplycook.marinedos.com.simplycook.Utils.UsersManager;
 
 public class SearchFragment extends ListFragment {
     private static final Firebase ref = new Firebase("https://simplycook.firebaseio.com");
@@ -39,6 +39,7 @@ public class SearchFragment extends ListFragment {
     private static List<User> users = new ArrayList<User>();
     private ImageView searchButton;
     private EditText searchEditText;
+    private ProgressBar loader;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -63,6 +64,7 @@ public class SearchFragment extends ListFragment {
 
         mListView = getListView();
         mListView.setAdapter(mAdapter);
+        loader = (ProgressBar) root.findViewById(R.id.loader);
 
         searchButton = (ImageView) root.findViewById(R.id.searchButton);
         searchEditText = (EditText) root.findViewById(R.id.searchText);
@@ -70,6 +72,8 @@ public class SearchFragment extends ListFragment {
         searchEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
+                loader.setVisibility(View.VISIBLE);
+                mListView.setVisibility(View.GONE);
                 updateSearchList();
                 return false;
             }
@@ -78,6 +82,8 @@ public class SearchFragment extends ListFragment {
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                loader.setVisibility(View.VISIBLE);
+                mListView.setVisibility(View.GONE);
                 updateSearchList();
             }
         });
@@ -131,6 +137,8 @@ public class SearchFragment extends ListFragment {
                         }
                         mAdapter.notifyDataSetChanged();
                     }
+                    loader.setVisibility(View.GONE);
+                    mListView.setVisibility(View.VISIBLE);
                 }
 
                 @Override
@@ -140,7 +148,6 @@ public class SearchFragment extends ListFragment {
             });
         }
     }
-
 
     private static class getFbImageTaskAndNotify extends AsyncTask<HashMap<String, User>, Void, Bitmap> {
         public String userId;
@@ -176,5 +183,15 @@ public class SearchFragment extends ListFragment {
         }
     }
 
+    public void onListItemClick(ListView l, View v, int pos, long id) {
+        super.onListItemClick(l, v, pos, id);
+        User user = mAdapter.getItem(pos);
+
+        Intent intent = new Intent(getActivity(), ProfilActivity.class);
+        intent.putExtra("firebaseId", user.firebaseId);
+        getActivity().startActivity(intent);
+
+
+    }
 
 }

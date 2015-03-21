@@ -1,6 +1,5 @@
 package simplycook.marinedos.com.simplycook;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ListFragment;
@@ -9,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,11 +40,13 @@ public class ComparaisonAddFromFavorisFragment extends ListFragment {
     {
         super.onActivityCreated(savedInstanceState);
 
-        List<User> users = new ArrayList<User>();
-        mAdapter = new FavorisArrayAdapter(getActivity(), R.layout.favoris_list_item, users);
-        UsersManager.updateAFavorisUsersList(mAdapter, users);
+        ProgressBar loader = (ProgressBar) getView().findViewById(R.id.loader);
 
+        List<User> users = new ArrayList<User>();
         mListView = getListView();
+        mAdapter = new FavorisArrayAdapter(getActivity(), R.layout.favoris_list_item, users);
+        UsersManager.updateAFavorisUsersList(getActivity(), mAdapter, users, mListView, loader);
+
         mListView.setAdapter(mAdapter);
     }
 

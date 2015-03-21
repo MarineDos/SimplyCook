@@ -28,6 +28,8 @@ public class ComparaisonAddFromSearch extends ActionBarActivity {
         if (extras != null) {
             index = extras.getInt("index");
         }
+
+        getActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
 

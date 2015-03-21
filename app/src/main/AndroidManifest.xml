@@ -26,7 +26,11 @@
         <activity android:name="com.facebook.LoginActivity" />
         <activity
             android:name=".CreateAccountActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:parentActivityName=".ConnectActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ConnectActivity" />
         </activity>
         <activity
             android:name=".HomeActivity"
@@ -34,23 +38,43 @@
         </activity>
         <activity
             android:name=".MyProfilActivity"
-            android:label="@string/title_activity_profil" >
+            android:label="@string/title_activity_profil"
+            android:parentActivityName=".HomeActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".HomeActivity" />
         </activity>
         <activity
             android:name=".FavorisActivity"
-            android:label="@string/title_activity_favoris" >
+            android:label="@string/title_activity_favoris"
+            android:parentActivityName=".HomeActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".HomeActivity" />
         </activity>
         <activity
             android:name=".ComparaisonActivity"
-            android:label="@string/title_activity_comparaison" >
+            android:label="@string/title_activity_comparaison"
+            android:parentActivityName=".ComparaisonChoiceActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ComparaisonChoiceActivity" />
         </activity>
         <activity
             android:name=".ComparaisonChoiceActivity"
-            android:label="@string/title_activity_comparaison" >
+            android:label="@string/title_activity_comparaison"
+            android:parentActivityName=".HomeActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".HomeActivity" />
         </activity>
         <activity
             android:name=".SearchActivity"
-            android:label="@string/title_activity_search" >
+            android:label="@string/title_activity_search"
+            android:parentActivityName=".HomeActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".HomeActivity" />
         </activity>
         <activity
             android:name=".ProfilActivity"
@@ -58,15 +82,24 @@
         </activity>
         <activity
             android:name=".ComparaisonAddFromFavoris"
-            android:label="@string/title_activity_comparaison_add_from_favoris" >
+            android:label="@string/title_activity_comparaison_add_from_favoris"
+            android:parentActivityName=".ComparaisonChoiceActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ComparaisonChoiceActivity" />
+        </activity>
+
+        <activity
+            android:name=".ComparaisonAddFromSearch"
+            android:label="@string/title_activity_comparaison_add_from_search"
+            android:parentActivityName=".ComparaisonChoiceActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ComparaisonChoiceActivity" />
         </activity>
 
         <service android:name=".Utils.Service.SuggestNotificationService" />
 
-        <activity
-            android:name=".ComparaisonAddFromSearch"
-            android:label="@string/title_activity_comparaison_add_from_search" >
-        </activity>
     </application>
 
 </manifest>

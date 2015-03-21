@@ -1,6 +1,9 @@
 package simplycook.marinedos.com.simplycook.Utils;
 
+import android.content.Context;
+import android.view.View;
 import android.widget.ExpandableListView;
+import android.widget.ProgressBar;
 
 import com.firebase.client.AuthData;
 import com.firebase.client.DataSnapshot;
@@ -31,7 +34,7 @@ public class TasteManager {
         }
     }
 
-    public static void updateFoodList(final String userId, final List<String> listDataHeader, final HashMap<String, List<Taste>> listDataChild, final ExpandableListAdapter listAdapter, final ExpandableListView expListView, final boolean expandList) {
+    public static void updateFoodList(final Context context, final String userId, final List<String> listDataHeader, final HashMap<String, List<Taste>> listDataChild, final ExpandableListAdapter listAdapter, final ExpandableListView expListView, final ProgressBar loader, final boolean expandList) {
         // Get all category of food
         ref.child("/category").orderByChild("name").addValueEventListener(new ValueEventListener() {
             @Override
@@ -81,6 +84,8 @@ public class TasteManager {
 
                                         listAdapter.notifyDataSetChanged();
                                     }
+                                    Anim.hide(context, loader);
+                                    Anim.show(context, expListView);
                                 }
 
                                 @Override

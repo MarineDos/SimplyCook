@@ -24,7 +24,6 @@ import java.util.ArrayList;
 import simplycook.marinedos.com.simplycook.ProfilActivity;
 import simplycook.marinedos.com.simplycook.R;
 import simplycook.marinedos.com.simplycook.Utils.Taste;
-import simplycook.marinedos.com.simplycook.Utils.TasteManager;
 import simplycook.marinedos.com.simplycook.Utils.UsersManager;
 
 public class SuggestTasteFragment extends Fragment {

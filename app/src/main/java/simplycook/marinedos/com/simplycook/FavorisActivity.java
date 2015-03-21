@@ -22,6 +22,7 @@ public class FavorisActivity extends ActionBarActivity {
                     .add(R.id.container, fragment)
                     .commit();
         }
+        getActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override

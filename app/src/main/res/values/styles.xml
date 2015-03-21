@@ -39,4 +39,9 @@
         <item name="android:layout_marginTop">10dp</item>
     </style>
 
+    <style name="SimplyCook.noResultCenter">
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:paddingTop">20dp</item>
+    </style>
+
 </resources>

@@ -4,9 +4,6 @@ import android.content.Context;
 import android.view.Gravity;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class ComparatorManager {
     private static User[] usersToCompare = new User[4];
     private static int usersToCompareNumber = 0;

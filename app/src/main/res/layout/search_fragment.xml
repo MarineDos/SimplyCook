@@ -28,11 +28,21 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:choiceMode="singleChoice"
+        android:visibility="gone"
         android:drawSelectorOnTop="false"/>
 
-    <TextView android:id="@id/android:empty"
+    <TextView android:id="@android:id/empty"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/SimplyCook.noResultCenter"
         android:text="@string/NoResult"/>
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:minWidth="150dp"
+        android:minHeight="150dp"
+        android:visibility="gone"
+        android:id="@+id/loader"/>
 
 </LinearLayout>

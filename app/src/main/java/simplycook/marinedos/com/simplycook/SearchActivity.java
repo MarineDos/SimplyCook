@@ -1,11 +1,7 @@
 package simplycook.marinedos.com.simplycook;
 
-import android.app.ListActivity;
-import android.app.SearchManager;
-import android.content.Intent;
 import android.support.v4.app.ListFragment;
 import android.support.v7.app.ActionBarActivity;
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -26,6 +22,8 @@ public class SearchActivity extends ActionBarActivity {
                     .add(R.id.container, fragment)
                     .commit();
         }
+
+        getActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
