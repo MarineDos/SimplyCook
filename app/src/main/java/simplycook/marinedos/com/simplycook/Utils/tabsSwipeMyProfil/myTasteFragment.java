@@ -24,13 +24,28 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+/** @brief	Class that manage the taste fragment. */
 public class myTasteFragment extends Fragment {
+    /** @brief	The list adapter. */
     private ExpandableListAdapter listAdapter;
+    /** @brief	The exponent list view. */
     private ExpandableListView expListView;
+    /** @brief	The list data header. */
     private List<String> listDataHeader;
+    /** @brief	The list data child. */
     private HashMap<String, List<Taste>> listDataChild;
+    /** @brief	The loader control. */
     private ProgressBar loader;
 
+	/**
+    *@brief		Executes when create a view.
+    *
+    *@param		inflater		  	The inflater.
+    *@param		container		  	The container.
+    *@param		savedInstanceState	State of the saved instance.
+    *
+    *@return	The View.
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -85,6 +100,7 @@ public class myTasteFragment extends Fragment {
         return rootView;
     }
 
+    /** @brief	Prepare list data. */
     private void prepareListData()
     {
         TasteManager.updateFoodList(getActivity(), ConnexionManager.user.firebaseId,listDataHeader, listDataChild, listAdapter, expListView, loader, DeviceInformation.isTablet(getActivity()));

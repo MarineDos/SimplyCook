@@ -26,10 +26,21 @@ import simplycook.marinedos.com.simplycook.R;
 import simplycook.marinedos.com.simplycook.Utils.Taste;
 import simplycook.marinedos.com.simplycook.Utils.UsersManager;
 
+/** @brief	Class tgat manage the suggestion of taste fragment. */
 public class SuggestTasteFragment extends Fragment {
 
+	/** @brief	The reference for firebase. */
     private final Firebase ref = new Firebase("https://simplycook.firebaseio.com");
 
+	/**
+    *@brief		Executes when create a view.
+    *
+    *@param		inflater		  	The inflater.
+    *@param		container		  	The container.
+    *@param		savedInstanceState	State of the saved instance.
+    *
+    *@return	The View.
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

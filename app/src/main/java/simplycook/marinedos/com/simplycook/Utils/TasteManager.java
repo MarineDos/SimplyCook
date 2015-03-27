@@ -16,9 +16,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/** @brief	Class that manage the tastes. */
 public class TasteManager {
+	/** @brief	The reference for firebase. */
     private static final Firebase ref = new Firebase("https://simplycook.firebaseio.com");
 
+    /**
+    *@brief		Adds a taste to the category in firebase.
+    *
+    *@param		taste   	The taste.
+    *@param		category	The category.
+     */
     public static void addTaste(final Taste taste, final String category){
         AuthData authData = ref.getAuth();
         if (authData != null) {
@@ -34,6 +42,18 @@ public class TasteManager {
         }
     }
 
+    /**
+    *@brief		Updates the food list.
+    *
+    *@param		context		  	The context of the view.
+    *@param		userId		  	Identifier for the user.
+    *@param		listDataHeader	The list data header.
+    *@param		listDataChild 	The list data child.
+    *@param		listAdapter   	The list adapter.
+    *@param		expListView   	The exponent list view.
+    *@param		loader		  	The loader.
+    *@param		expandList	  	List of expands.
+     */
     public static void updateFoodList(final Context context, final String userId, final List<String> listDataHeader, final HashMap<String, List<Taste>> listDataChild, final ExpandableListAdapter listAdapter, final ExpandableListView expListView, final ProgressBar loader, final boolean expandList) {
         // Get all category of food
         ref.child("/category").orderByChild("name").addValueEventListener(new ValueEventListener() {

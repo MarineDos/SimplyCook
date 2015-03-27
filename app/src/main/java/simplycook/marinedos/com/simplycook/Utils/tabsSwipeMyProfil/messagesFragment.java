@@ -23,13 +23,27 @@ import simplycook.marinedos.com.simplycook.Utils.ExpandableListAdapter_Message;
 import simplycook.marinedos.com.simplycook.Utils.TasteMessage;
 
 public class messagesFragment extends Fragment {
+    /** @brief	The list of messages. */
     private ExpandableListAdapter_Message listAdapter;
+    /** @brief	The list view. */
     private ExpandableListView expListView;
+    /** @brief	The list data header. */
     private List<String> listDataHeader;
+    /** @brief	The list data child. */
     private HashMap<String, List<TasteMessage>> listDataChild;
 
+	/** @brief	The reference for firebase. */
     private static final Firebase ref = new Firebase("https://simplycook.firebaseio.com");
 
+    /**
+    *@brief		Executes when create a view.
+    *
+    *@param		inflater		  	The inflater.
+    *@param		container		  	The container.
+    *@param		savedInstanceState	State of the saved instance.
+    *
+    *@return	The View.
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -48,6 +62,11 @@ public class messagesFragment extends Fragment {
         return rootView;
     }
 
+    /**
+    *@brief		Prepare list data.
+    *
+    *@param		expandList	List of expands.
+     */
     private void prepareListData(final boolean expandList){
         // Get all category of food
         ref.child("/category").orderByChild("name").addValueEventListener(new ValueEventListener() {

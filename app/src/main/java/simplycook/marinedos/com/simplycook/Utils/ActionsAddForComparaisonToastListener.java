@@ -13,15 +13,29 @@ import simplycook.marinedos.com.simplycook.ComparaisonChoiceActivity;
 import simplycook.marinedos.com.simplycook.ComparaisonChoiceFragment;
 import simplycook.marinedos.com.simplycook.R;
 
+/** @brief	Class that manage addition for comparaison. */
 public class ActionsAddForComparaisonToastListener implements View.OnClickListener {
+    /** @brief	The index. */
     private int mIndex;
+    /** @brief	The context of the view */
     private Context mContext;
 
+    /**
+    *@brief		Constructor.
+    *
+    *@param		index  	The mIndex.
+    *@param		context	The mContext.
+     */
     public ActionsAddForComparaisonToastListener(int index, Context context){
         mIndex = index;
         mContext = context;
     }
 
+    /**
+    *@brief		Executes the click action.
+    *
+    *@param		v	The View.
+     */
     @Override
     public void onClick(View v) {
         AlertDialog.Builder builder = new AlertDialog.Builder(mContext);

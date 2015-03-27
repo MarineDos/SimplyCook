@@ -25,9 +25,21 @@ import simplycook.marinedos.com.simplycook.R;
 import simplycook.marinedos.com.simplycook.Utils.Taste;
 import simplycook.marinedos.com.simplycook.Utils.TasteManager;
 
+/** @brief	Class that manages taste fragment. */
 public class manageTasteFragment extends Fragment {
 
+	/** @brief	The reference for firebase. */
     private final Firebase ref = new Firebase("https://simplycook.firebaseio.com");
+
+    /**
+    *@brief		Executes when create a view.
+    *
+    *@param		inflater		  	The inflater.
+    *@param		container		  	The container.
+    *@param		savedInstanceState	State of the saved instance.
+    *
+    *@return	The View.
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -36,7 +48,7 @@ public class manageTasteFragment extends Fragment {
 
         final Spinner spinnerFood= (Spinner) rootView.findViewById(R.id.food_spinner);
 
-        // Populate catégorie
+        // Populate categorie
         final Spinner spinnerCategory= (Spinner) rootView.findViewById(R.id.category_spinner);
         // Get All categories
         ref.child("/category").orderByChild("name").addValueEventListener(new ValueEventListener() {

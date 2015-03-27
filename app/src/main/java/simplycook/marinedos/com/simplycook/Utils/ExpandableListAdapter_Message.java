@@ -21,32 +21,70 @@ import java.util.List;
 import simplycook.marinedos.com.simplycook.R;
 
 
+/** @brief	Class that manage an expandable list of messages. */
 public class ExpandableListAdapter_Message extends BaseExpandableListAdapter{
+    /** @brief	The context of the view. */
     private Context _context;
-    private List<String> _listDataHeader; // header titles
-    // child data in format of header title, child title
+    /** @brief	Header titles. */
+    private List<String> _listDataHeader;
+    /** @brief	Child data in format of header title, child title. */
     private HashMap<String, List<TasteMessage>> _listDataChild;
 
+	*/** @brief	The reference for firebase. */
     private final Firebase ref = new Firebase("https://simplycook.firebaseio.com");
 
+    /**
+    *@brief		Constructor.
+    *
+    *@param		context		  	The context of the view.
+    *@param		listDataHeader	The list data header.
+    *@param		listChildData 	The list data child.
+     */
     public ExpandableListAdapter_Message(Context context, List<String> listDataHeader,
                                  HashMap<String, List<TasteMessage>> listChildData) {
         this._context = context;
         this._listDataHeader = listDataHeader;
         this._listDataChild = listChildData;
     }
-
-    @Override
+    
+    /**
+    *@brief		Gets a child data in HashMap _listDataChild.
+    *
+    *@param		groupPosition 	The group position.
+    *@param		childPosititon	The child data posititon.
+    *
+    *@return	The child data.
+     */
+	 @Override
     public Object getChild(int groupPosition, int childPosititon) {
         return this._listDataChild.get(this._listDataHeader.get(groupPosition))
                 .get(childPosititon);
     }
 
-    @Override
+    /**
+    *@brief		Gets a child data identifier.
+    *
+    *@param		groupPosition	The group position.
+    *@param		childPosition	The child data position.
+    *
+    *@return	The child data identifier.
+     */
+	 @Override
     public long getChildId(int groupPosition, int childPosition) {
         return childPosition;
     }
 
+    /**
+    *@brief		Gets a child data view.
+    *
+    *@param		groupPosition	The group position.
+    *@param		childPosition	The child data position.
+    *@param		isLastChild  	true if this object is the last child data.
+    *@param		convertView  	The convert view.
+    *@param		parent		 	The parent view.
+    *
+    *@return	The child data view.
+     */
     @Override
     public View getChildView(final int groupPosition, final int childPosition,
                              boolean isLastChild, View convertView, ViewGroup parent) {
@@ -199,27 +237,63 @@ public class ExpandableListAdapter_Message extends BaseExpandableListAdapter{
         return convertView;
     }
 
+    /**
+    *@brief		Gets the number of children in the group.
+    *
+    *@param		groupPosition	The group position.
+    *
+    *@return	The number of children.
+     */
     @Override
     public int getChildrenCount(int groupPosition) {
         return this._listDataChild.get(this._listDataHeader.get(groupPosition))
                 .size();
     }
 
+    /**
+    *@brief		Gets a group.
+    *
+    *@param		groupPosition	The group position.
+    *
+    *@return	The group.
+     */
     @Override
     public Object getGroup(int groupPosition) {
         return this._listDataHeader.get(groupPosition);
     }
 
+    /**
+    *@brief		Gets the number of group.
+    *
+    *@return	The number of group.
+     */
     @Override
     public int getGroupCount() {
         return this._listDataHeader.size();
     }
 
+    /**
+    *@brief		Gets group identifier.
+    *
+    *@param		groupPosition	The group position.
+    *
+    *@return	The group identifier.
+     */
     @Override
     public long getGroupId(int groupPosition) {
         return groupPosition;
     }
 
+    /**
+    *@brief		Gets group view.
+    *
+    *@param		groupPosition	The group position.
+    *@param		isExpanded   	true if the group is expanded.
+    *@param		convertView  	The convert view.
+    *@param		parent		 	The parent view.
+    *
+    *@return	The group view.
+     */
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded,
                              View convertView, ViewGroup parent) {
@@ -238,11 +312,24 @@ public class ExpandableListAdapter_Message extends BaseExpandableListAdapter{
         return convertView;
     }
 
+    /**
+    *@brief		Query if this object has stable identifiers.
+    *
+    *@return	true if stable identifiers, false if not.
+     */
     @Override
     public boolean hasStableIds() {
         return false;
     }
 
+    /**
+    *@brief		Query if the child is selectable.
+    *
+    *@param		groupPosition	The group position.
+    *@param		childPosition	The child position.
+    *
+    *@return	true if child selectable, false if not.
+     */
     @Override
     public boolean isChildSelectable(int groupPosition, int childPosition) {
         return true;

@@ -20,9 +20,12 @@ import simplycook.marinedos.com.simplycook.Utils.FavorisArrayAdapter;
 import simplycook.marinedos.com.simplycook.Utils.User;
 import simplycook.marinedos.com.simplycook.Utils.UsersManager;
 
+/** @brief	Class that manage the favorite fragment. */
 public class myFavoriteFragment extends ListFragment {
 
+    /** @brief	The list view control. */
     private ListView mListView;
+    /** @brief	The adapter. */
     private ArrayAdapter<User> mAdapter;
 
     @Override
@@ -30,6 +33,15 @@ public class myFavoriteFragment extends ListFragment {
         super.onCreate(savedInstanceState);
     }
 
+	/**
+    *@brief		Executes when create a view.
+    *
+    *@param		inflater		  	The inflater.
+    *@param		container		  	The container.
+    *@param		savedInstanceState	State of the saved instance.
+    *
+    *@return	The View.
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

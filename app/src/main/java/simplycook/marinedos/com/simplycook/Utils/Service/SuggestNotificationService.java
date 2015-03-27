@@ -20,8 +20,11 @@ import com.firebase.client.ValueEventListener;
 import simplycook.marinedos.com.simplycook.ConnectActivity;
 import simplycook.marinedos.com.simplycook.R;
 
+/** @brief	Class that suggests notification service.
+ */
 public class SuggestNotificationService extends IntentService{
 
+    /** @brief	Default constructor. */
     public SuggestNotificationService() {
         super("SuggestNotificationService");
     }
@@ -82,6 +85,7 @@ public class SuggestNotificationService extends IntentService{
 
     }
 
+    /** @brief	Searches for the entries. */
     private void searchForEntries(){
         final Context context = this;
         final Firebase ref = new Firebase("https://simplycook.firebaseio.com");

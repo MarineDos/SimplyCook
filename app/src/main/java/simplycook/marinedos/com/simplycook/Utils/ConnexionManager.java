@@ -28,11 +28,19 @@ import simplycook.marinedos.com.simplycook.ConnectActivity;
 import simplycook.marinedos.com.simplycook.HomeActivity;
 import simplycook.marinedos.com.simplycook.R;
 
+/** @brief	Class that manage the connexions. */
 public class ConnexionManager {
-
+	
+	/** @brief	The reference for firebase. */
     private static final Firebase ref = new Firebase("https://simplycook.firebaseio.com");
+    /** @brief	The user. */
     public static User user = new User();
 
+    /**
+    *@brief	Stores a new user.
+    *
+    *@param	newUser	The new user.
+     */
     public static void storeUser(Map<String, String> newUser){
 
         AuthData authData = ref.getAuth();
@@ -54,6 +62,7 @@ public class ConnexionManager {
 
     }
 
+    /** @brief	Searches for the first and store user. */
     public static void searchAndStoreUser(){
         String search;
         AuthData authData = ref.getAuth();
@@ -110,8 +119,14 @@ public class ConnexionManager {
         }
     }
 
+    /** @brief	Class that get FaceBook image task. */
     static class getFbImageTask extends AsyncTask<String, Void, Bitmap> {
 
+        /**
+        *@brief		Override onPostExecute and give the bitmap to the user.
+        *
+        *@param		bitmap	The FaceBook image in bitmap.
+         */
         @Override
         protected void onPostExecute(Bitmap bitmap) {
             // Set image to the ImageView
@@ -119,6 +134,13 @@ public class ConnexionManager {
             user.imageBitmap = bitmap;
         }
 
+        /**
+        *@brief		Executes the operation in background.
+        *
+        *@param		userIds	Variable arguments providing list of identifiers for the users.
+        *
+        *@return	The FaceBook image in bitmap.
+         */
         @Override
         protected Bitmap doInBackground(String... userIds) {
             String userId = userIds[0];
@@ -137,6 +159,11 @@ public class ConnexionManager {
         }
     }
 
+    /**
+    *@brief		Disconnects the user.
+    *
+    *@param		context	The context of the view.
+     */
     public static void disconnect(Context context){
         AuthData authData = ref.getAuth();
 
@@ -162,6 +189,12 @@ public class ConnexionManager {
         }
     }
 
+    /**
+    *@brief		Connects the firebase with facebook.
+    *
+    *@param		session	The session.
+    *@param		context	The context of the view.
+     */
     public static void connectFirebaseWithFacebook(final Session session, final Context context){
 
         System.out.println("Logging in with Facebook");

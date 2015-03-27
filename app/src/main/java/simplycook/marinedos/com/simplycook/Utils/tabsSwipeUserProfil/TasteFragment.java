@@ -25,14 +25,30 @@ import simplycook.marinedos.com.simplycook.Utils.Taste;
 import simplycook.marinedos.com.simplycook.Utils.TasteManager;
 import simplycook.marinedos.com.simplycook.Utils.UsersManager;
 
+/** @brief	Class that manage the taste fragment. */
 public class TasteFragment extends Fragment {
+    /** @brief	The list adapter. */
     private ExpandableListAdapter listAdapter;
+    /** @brief	The exponent list view. */
     private ExpandableListView expListView;
+    /** @brief	The list data header. */
     private List<String> listDataHeader;
+    /** @brief	The list data child. */
     private HashMap<String, List<Taste>> listDataChild;
+    /** @brief	Identifier for the user firebase. */
     private String userFirebaseId;
+    /** @brief	The loader control. */
     private ProgressBar loader;
 
+	/**
+    *@brief		Executes when create a view.
+    *
+    *@param		inflater		  	The inflater.
+    *@param		container		  	The container.
+    *@param		savedInstanceState	State of the saved instance.
+    *
+    *@return	The View.
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -93,6 +109,7 @@ public class TasteFragment extends Fragment {
         return rootView;
     }
 
+    /** @brief	Prepare list data. */
     private void prepareListData()
     {
         TasteManager.updateFoodList(getActivity(), userFirebaseId,listDataHeader, listDataChild, listAdapter, expListView, loader, DeviceInformation.isTablet(getActivity()));
